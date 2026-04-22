@@ -143,14 +143,13 @@ function SpotlightCard({ children, className = "" }: { children: React.ReactNode
 }
 
 // Animated Counter component
-function AnimatedCounter({ value, prefix = "", suffix = "" }: { value: number, prefix?: string, suffix?: string }) {
+function AnimatedCounter({ value, prefix = "", suffix = "", currency = false }: { value: number, prefix?: string, suffix?: string, currency?: boolean }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (isInView) {
-      let start = 0;
       const end = value;
       const duration = 2000;
       const startTime = performance.now();
@@ -158,9 +157,8 @@ function AnimatedCounter({ value, prefix = "", suffix = "" }: { value: number, p
       const updateCounter = (currentTime: number) => {
         const elapsedTime = currentTime - startTime;
         const progress = Math.min(elapsedTime / duration, 1);
-        // easeOutQuart
         const easeProgress = 1 - Math.pow(1 - progress, 4);
-        
+
         setCount(Math.floor(end * easeProgress));
 
         if (progress < 1) {
@@ -172,19 +170,34 @@ function AnimatedCounter({ value, prefix = "", suffix = "" }: { value: number, p
     }
   }, [isInView, value]);
 
-  // Format large numbers
-  const formattedCount = value >= 1000000 
-    ? (count / 1000000).toFixed(1) 
-    : value >= 1000 
-      ? (count / 1000).toFixed(1) 
-      : count;
+  let formatted: string;
+  if (currency) {
+    formatted = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(count);
+  } else {
+    const abbr = value >= 1000000 ? "M" : value >= 1000 ? "k" : "";
+    const num = value >= 1000000
+      ? (count / 1000000).toFixed(1)
+      : value >= 1000
+        ? (count / 1000).toFixed(1)
+        : String(count);
+    formatted = `${prefix}${num}${abbr}${suffix}`;
+  }
 
-  return (
-    <span ref={ref}>
-      {prefix}{formattedCount}{value >= 1000000 ? "M" : value >= 1000 ? "k" : ""}{suffix}
-    </span>
-  );
+  return <span ref={ref}>{currency ? formatted : formatted}</span>;
 }
+
+const formatBRL = (value: number) =>
+  new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(value);
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("pdv");
@@ -304,7 +317,7 @@ export default function Home() {
                         </div>
                         <div className="text-right">
                           <h3 className="font-black text-4xl bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-                            R$ <AnimatedCounter value={12450} />
+                            <AnimatedCounter value={12450} currency />
                           </h3>
                           <p className="text-sm text-green-500 font-bold flex items-center justify-end gap-1 mt-1">
                             <span className="bg-green-500/20 p-0.5 rounded text-[10px]">↗</span> +24% vs ontem
@@ -328,6 +341,7 @@ export default function Home() {
                               cursor={{ stroke: "hsl(var(--primary))", strokeWidth: 2, strokeDasharray: "4 4" }}
                               contentStyle={{ backgroundColor: "hsl(var(--card))", borderColor: "hsl(var(--border))", borderRadius: "12px", boxShadow: "0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)", fontWeight: 600 }}
                               itemStyle={{ color: "hsl(var(--primary))", fontWeight: 700 }}
+                              formatter={(value: number) => [formatBRL(value), "Vendas"]}
                             />
                             <Area type="monotone" dataKey="sales" stroke="hsl(var(--primary))" strokeWidth={4} fillOpacity={1} fill="url(#colorSalesHero)" animationDuration={2000} />
                           </AreaChart>
