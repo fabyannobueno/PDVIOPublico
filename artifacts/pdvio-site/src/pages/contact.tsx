@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Mail, Phone, MessageSquare, ArrowRight, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
-import { WHATSAPP_PHONE, WHATSAPP_URL, CONTACT_EMAIL } from "@/lib/constants";
+import { WHATSAPP_PHONE, WHATSAPP_URL, CONTACT_EMAIL, COMPANY_ADDRESS_LINE1, COMPANY_ADDRESS_LINE2 } from "@/lib/constants";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -88,7 +88,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h3 className="font-bold text-lg mb-1">Escritório</h3>
-                      <p className="text-muted-foreground text-sm">Av. Paulista, 1000 - Bela Vista<br/>São Paulo - SP, 01310-100</p>
+                      <p className="text-muted-foreground text-sm">{COMPANY_ADDRESS_LINE1}<br/>{COMPANY_ADDRESS_LINE2}</p>
                     </div>
                   </CardContent>
                 </Card>
