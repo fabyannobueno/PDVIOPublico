@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { SiInstagram, SiWhatsapp, SiYoutube } from "react-icons/si";
 import { useTheme } from "./theme-provider";
-import { APP_URL, WHATSAPP_URL } from "@/lib/constants";
+import { APP_URL, WHATSAPP_URL, TERMS_URL, PRIVACY_URL } from "@/lib/constants";
 
 export function Footer() {
   const { theme } = useTheme();
@@ -62,8 +62,8 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-6 text-foreground">Legal</h3>
             <ul className="flex flex-col gap-4">
-              <li><a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Termos de Serviço</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Política de Privacidade</a></li>
+              <li><a href={TERMS_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary font-medium transition-colors">Termos de Serviço</a></li>
+              <li><a href={PRIVACY_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary font-medium transition-colors">Política de Privacidade</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Compliance LGPD</a></li>
             </ul>
           </div>
