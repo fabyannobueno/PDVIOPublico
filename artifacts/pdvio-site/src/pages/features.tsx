@@ -128,12 +128,12 @@ export default function Features() {
                       <div className="w-3 h-3 rounded-full bg-border"></div>
                       <div className="w-3 h-3 rounded-full bg-border"></div>
                     </div>
-                    <CardContent className="p-0 aspect-[4/3] bg-background/50 overflow-hidden">
+                    <CardContent className="p-0 bg-background/50 overflow-hidden">
                       <img
                         src={feature.image}
                         alt={feature.title}
                         loading="lazy"
-                        className="w-full h-full object-cover object-top"
+                        className="w-full h-auto block"
                       />
                     </CardContent>
                   </Card>
