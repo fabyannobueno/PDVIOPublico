@@ -179,12 +179,25 @@ function AnimatedCounter({ value, prefix = "", suffix = "", currency = false }: 
       maximumFractionDigits: 2,
     }).format(count);
   } else {
-    const abbr = value >= 1000000 ? "M" : value >= 1000 ? "k" : "";
-    const num = value >= 1000000
-      ? (count / 1000000).toFixed(1)
-      : value >= 1000
-        ? (count / 1000).toFixed(1)
-        : String(count);
+    const fmt = (n: number, digits: number) =>
+      new Intl.NumberFormat("pt-BR", {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: digits,
+      }).format(n);
+    let num: string;
+    let abbr = "";
+    if (value >= 1_000_000_000) {
+      num = fmt(count / 1_000_000_000, 1);
+      abbr = " bi";
+    } else if (value >= 1_000_000) {
+      num = fmt(count / 1_000_000, 1);
+      abbr = " mi";
+    } else if (value >= 1_000) {
+      num = fmt(count / 1_000, 1);
+      abbr = " mil";
+    } else {
+      num = fmt(count, Number.isInteger(value) ? 0 : 1);
+    }
     formatted = `${prefix}${num}${abbr}${suffix}`;
   }
 
