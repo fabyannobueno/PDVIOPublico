@@ -26,7 +26,8 @@ export default function Features() {
       title: "Frente de caixa ultra-rápida", 
       desc: "Um PDV projetado para não criar filas. Venda em segundos com atalhos de teclado, leitor de código de barras e múltiplas formas de pagamento integradas.",
       sub: ["Busca rápida de produtos", "Leitor de código de barras USB", "Descontos no item ou subtotal", "Venda de produtos por peso"],
-      color: "from-purple-500 to-fuchsia-500"
+      color: "from-purple-500 to-fuchsia-500",
+      image: "/feature-pdv.webp"
     },
     { 
       id: "comandas",
@@ -34,7 +35,8 @@ export default function Features() {
       title: "Gestão inteligente de Mesas e Comandas", 
       desc: "Controle total do salão na palma da mão. Gerencie pedidos por mesa, divida contas facilmente e adicione observações para a cozinha sem erros.",
       sub: ["Mapa de mesas visual e interativo", "Transferência de itens entre mesas", "Taxa de serviço automática", "Divisão de conta por pessoas"],
-      color: "from-blue-500 to-cyan-500"
+      color: "from-blue-500 to-cyan-500",
+      image: "/feature-comandas.webp"
     },
     { 
       id: "kds",
@@ -42,7 +44,8 @@ export default function Features() {
       title: "KDS: A revolução na sua Cozinha", 
       desc: "Adeus impressoras e papéis perdidos. Os pedidos chegam na tela da cozinha instantaneamente, organizados por tempo e setor.",
       sub: ["Fila de preparo com cores por tempo", "Aviso sonoro de novo pedido", "Filtro por setor (bar, cozinha, chapa)", "Histórico de pedidos concluídos"],
-      color: "from-orange-500 to-red-500"
+      color: "from-orange-500 to-red-500",
+      image: "/feature-kds.webp"
     },
     { 
       id: "estoque",
@@ -50,7 +53,8 @@ export default function Features() {
       title: "Controle de Estoque e Fichas Técnicas", 
       desc: "Saiba exatamente o que você tem e o que precisa comprar. Controle ingredientes, crie categorias e gerencie adicionais com precisão.",
       sub: ["Alerta inteligente de estoque mínimo", "Grupos de complementos e adicionais", "Histórico de movimentação detalhado", "Importação em massa via Excel"],
-      color: "from-emerald-500 to-teal-500"
+      color: "from-emerald-500 to-teal-500",
+      image: "/feature-estoque.webp"
     }
   ];
 
@@ -124,11 +128,13 @@ export default function Features() {
                       <div className="w-3 h-3 rounded-full bg-border"></div>
                       <div className="w-3 h-3 rounded-full bg-border"></div>
                     </div>
-                    <CardContent className="p-8 aspect-[4/3] flex items-center justify-center bg-background/50">
-                      <div className="text-center">
-                        <feature.icon className="h-16 w-16 text-muted-foreground/20 mx-auto mb-4" />
-                        <div className="font-bold text-xl text-muted-foreground/40">Interface do {feature.title.split(' ')[0]}</div>
-                      </div>
+                    <CardContent className="p-0 aspect-[4/3] bg-background/50 overflow-hidden">
+                      <img
+                        src={feature.image}
+                        alt={feature.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover object-top"
+                      />
                     </CardContent>
                   </Card>
                 </div>
