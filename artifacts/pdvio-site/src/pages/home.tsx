@@ -287,7 +287,7 @@ export default function Home() {
                   
                   <div className="flex flex-1 overflow-hidden relative z-10">
                     <div className="w-20 border-r border-border bg-muted/20 flex flex-col items-center py-6 gap-8">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-fuchsia-500 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-primary/30">P</div>
+                      <img src="/pdvio-icon.png" alt="PDVIO" className="w-10 h-10 object-contain drop-shadow-lg" />
                       <MonitorSmartphone className="h-6 w-6 text-primary drop-shadow-md" />
                       <ShoppingCart className="h-6 w-6 text-muted-foreground/60 hover:text-muted-foreground transition-colors" />
                       <Package className="h-6 w-6 text-muted-foreground/60 hover:text-muted-foreground transition-colors" />
