@@ -970,10 +970,10 @@ export default function Home() {
             <div className="overflow-hidden px-4 md:px-6 py-10" ref={emblaRef}>
               <div className="flex gap-6 -ml-4">
                 {[
-                  { quote: "Abandonamos um sistema que custava R$400/mês e travava todo fim de semana. O PDVIO é 10x melhor, mais rápido e o suporte realmente resolve.", name: "Mariana Costa", role: "Dona", company: "Hamburgueria Sabor", city: "São Paulo, SP" },
-                  { quote: "O KDS mudou a dinâmica da nossa cozinha. Antes perdíamos pedidos no papel. Hoje a tela organiza tudo por tempo de espera. Impecável.", name: "Roberto Silva", role: "Chef", company: "Bistro 44", city: "Curitiba, PR" },
-                  { quote: "A implantação demorou literalmente 10 minutos. Importei minha planilha de produtos, loguei no tablet e abri o caixa. Simples assim.", name: "Amanda Ferreira", role: "Gerente", company: "Mercadinho Express", city: "Belo Horizonte, MG" },
-                  { quote: "O Dashboard no celular me permite viajar tranquilo. Vejo as vendas, ticket médio e cancelamentos em tempo real de qualquer lugar do mundo.", name: "Carlos Mendes", role: "Sócio-Diretor", company: "Rede Bar Brasil", city: "Rio de Janeiro, RJ" }
+                  { quote: "Abandonamos um sistema que custava R$400/mês e travava todo fim de semana. O PDVIO é 10x melhor, mais rápido e o suporte realmente resolve.", name: "Mariana Costa", role: "Dona", company: "Hamburgueria Sabor", city: "São Paulo, SP", img: "/mariana.webp" },
+                  { quote: "O KDS mudou a dinâmica da nossa cozinha. Antes perdíamos pedidos no papel. Hoje a tela organiza tudo por tempo de espera. Impecável.", name: "Roberto Silva", role: "Chef", company: "Bistro 44", city: "Curitiba, PR", img: "/roberto.webp" },
+                  { quote: "A implantação demorou literalmente 10 minutos. Importei minha planilha de produtos, loguei no tablet e abri o caixa. Simples assim.", name: "Amanda Ferreira", role: "Gerente", company: "Mercadinho Express", city: "Belo Horizonte, MG", img: "/amanda.webp" },
+                  { quote: "O Dashboard no celular me permite viajar tranquilo. Vejo as vendas, ticket médio e cancelamentos em tempo real de qualquer lugar do mundo.", name: "Carlos Mendes", role: "Sócio-Diretor", company: "Rede Bar Brasil", city: "Rio de Janeiro, RJ", img: "/carlos.webp" }
                 ].map((t, i) => (
                   <div key={i} className="flex-[0_0_85%] md:flex-[0_0_400px] pl-4">
                     <Card className="h-full border border-border bg-card shadow-lg hover:border-primary/30 transition-colors">
@@ -983,9 +983,7 @@ export default function Home() {
                         </div>
                         <p className="text-lg text-foreground font-medium leading-relaxed flex-1">"{t.quote}"</p>
                         <div className="flex items-center gap-4 mt-auto pt-6 border-t border-border">
-                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-500 flex items-center justify-center text-white font-bold text-lg shrink-0">
-                            {t.name.charAt(0)}
-                          </div>
+                          <img src={t.img} alt={t.name} loading="lazy" width={48} height={48} className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 shrink-0" />
                           <div>
                             <h4 className="font-bold text-foreground">{t.name}</h4>
                             <p className="text-sm text-muted-foreground">{t.role}, {t.company}</p>
