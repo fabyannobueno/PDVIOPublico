@@ -462,7 +462,7 @@ export default function Home() {
 
             {/* Bento 4: Offline */}
             <AnimatedSection delay={0.4} className="md:col-span-3">
-              <SpotlightCard className="h-full rounded-[2rem] bg-primary text-primary-foreground border border-primary p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+              <SpotlightCard className="h-full rounded-[2rem] bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white border border-white/10 p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
                 <div className="absolute inset-0 bg-noise opacity-10 mix-blend-overlay"></div>
                 <div className="relative z-10 max-w-xl">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/10 mb-6">
@@ -470,7 +470,7 @@ export default function Home() {
                     <span className="text-xs font-bold uppercase tracking-wider">Sempre online</span>
                   </div>
                   <h3 className="text-3xl font-bold mb-4">A internet caiu? O PDV não.</h3>
-                  <p className="text-primary-foreground/80 text-lg leading-relaxed">
+                  <p className="text-white/80 text-lg leading-relaxed">
                     Nossa tecnologia PWA permite que você continue vendendo mesmo offline. Quando a conexão volta, tudo é sincronizado automaticamente.
                   </p>
                 </div>
