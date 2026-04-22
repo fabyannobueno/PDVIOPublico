@@ -544,9 +544,7 @@ export default function Home() {
                     <div className="grid grid-cols-12 h-full bg-background">
                       {/* Sidebar */}
                       <div className="col-span-1 bg-gradient-to-b from-muted/40 to-muted/10 border-r border-border flex flex-col items-center py-3 gap-1.5">
-                        <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary to-fuchsia-600 flex items-center justify-center shadow-lg shadow-primary/30 mb-2 p-1.5">
-                          <img src="/pdvio-icon.png" alt="PDVIO" className="w-full h-full object-contain" />
-                        </div>
+                        <img src="/pdvio-icon.png" alt="PDVIO" className="w-8 h-8 object-contain mb-2" />
                         {[
                           { i: CreditCard, a: true, l: "PDV" },
                           { i: ShoppingCart, l: "Pedidos" },
