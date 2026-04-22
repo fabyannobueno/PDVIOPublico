@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import useEmblaCarousel from "embla-carousel-react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { 
   CheckCircle2, 
   Store, 
@@ -473,8 +474,13 @@ export default function Home() {
                     Nossa tecnologia PWA permite que você continue vendendo mesmo offline. Quando a conexão volta, tudo é sincronizado automaticamente.
                   </p>
                 </div>
-                <div className="relative z-10 hidden md:block">
-                  <MonitorSmartphone className="w-32 h-32 text-primary-foreground/20" />
+                <div className="relative z-10 hidden md:block w-64 h-64">
+                  <DotLottieReact
+                    src="https://lottie.host/fbb051d4-9805-41c0-bd68-a6274dfac4a7/WaBto1fhcj.lottie"
+                    loop
+                    autoplay
+                    className="w-full h-full"
+                  />
                 </div>
               </SpotlightCard>
             </AnimatedSection>
