@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Mail, Phone, MessageSquare, ArrowRight, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
+import { WHATSAPP_PHONE, WHATSAPP_URL } from "@/lib/constants";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -54,8 +55,8 @@ export default function Contact() {
                     </div>
                     <h3 className="font-black text-2xl mb-2">WhatsApp</h3>
                     <p className="text-white/80 mb-6 leading-relaxed">O canal mais rápido. Fale direto com nossos consultores agora mesmo.</p>
-                    <a href="#" className="font-bold text-xl hover:underline mb-2 flex items-center gap-2">
-                      (11) 98765-4321 <ArrowRight className="w-5 h-5" />
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-xl hover:underline mb-2 flex items-center gap-2">
+                      {WHATSAPP_PHONE} <ArrowRight className="w-5 h-5" />
                     </a>
                     <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider bg-white/20 py-1 px-3 rounded-full mt-4">
                       <Clock className="w-3 h-3" /> Resposta em minutos

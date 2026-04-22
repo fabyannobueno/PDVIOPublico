@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { SiInstagram, SiWhatsapp, SiYoutube } from "react-icons/si";
 import { useTheme } from "./theme-provider";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL, WHATSAPP_URL } from "@/lib/constants";
 
 export function Footer() {
   const { theme } = useTheme();
@@ -27,7 +27,7 @@ export function Footer() {
               <a href="#" className="w-10 h-10 rounded-full bg-muted/50 flex items-center justify-center text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all hover:scale-110" aria-label="Instagram">
                 <SiInstagram className="h-5 w-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-muted/50 flex items-center justify-center text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all hover:scale-110" aria-label="WhatsApp">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-muted/50 flex items-center justify-center text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all hover:scale-110" aria-label="WhatsApp">
                 <SiWhatsapp className="h-5 w-5" />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-muted/50 flex items-center justify-center text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all hover:scale-110" aria-label="YouTube">

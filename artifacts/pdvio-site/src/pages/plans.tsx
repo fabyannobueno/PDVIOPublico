@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Switch } from "@/components/ui/switch";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL, WHATSAPP_URL } from "@/lib/constants";
 import { CheckCircle2, MessageSquare, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -132,8 +132,10 @@ export default function Plans() {
                   <MessageSquare className="w-10 h-10 mb-6 text-primary-foreground/80" />
                   <h3 className="text-xl font-bold mb-2">Não encontrou sua dúvida?</h3>
                   <p className="text-primary-foreground/80 mb-6 text-sm leading-relaxed">Nossa equipe está pronta para responder qualquer pergunta via WhatsApp.</p>
-                  <Button variant="secondary" className="w-full font-bold text-primary hover:bg-white transition-colors">
-                    Falar no WhatsApp <ArrowRight className="w-4 h-4 ml-2" />
+                  <Button asChild variant="secondary" className="w-full font-bold text-primary hover:bg-white transition-colors">
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                      Falar no WhatsApp <ArrowRight className="w-4 h-4 ml-2" />
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
