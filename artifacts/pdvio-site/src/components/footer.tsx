@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { SiInstagram, SiWhatsapp, SiYoutube } from "react-icons/si";
 import { useTheme } from "./theme-provider";
-import { APP_URL, WHATSAPP_URL, TERMS_URL, PRIVACY_URL } from "@/lib/constants";
+import { APP_URL, WHATSAPP_URL, TERMS_URL, PRIVACY_URL, LGPD_URL, INTEGRATIONS_URL, CHANGELOG_URL, CAREERS_URL, BLOG_URL, COMPANY_CNPJ } from "@/lib/constants";
 
 export function Footer() {
   const { theme } = useTheme();
@@ -42,8 +42,8 @@ export function Footer() {
             <ul className="flex flex-col gap-4">
               <li><Link href="/funcionalidades" className="text-muted-foreground hover:text-primary font-medium transition-colors">Funcionalidades</Link></li>
               <li><Link href="/planos" className="text-muted-foreground hover:text-primary font-medium transition-colors">Preços e Planos</Link></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Integrações</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Novidades (v3.0)</a></li>
+              <li><a href={INTEGRATIONS_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary font-medium transition-colors">Integrações</a></li>
+              <li><a href={CHANGELOG_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary font-medium transition-colors">Novidades (v3.0)</a></li>
             </ul>
           </div>
 
@@ -53,8 +53,8 @@ export function Footer() {
             <ul className="flex flex-col gap-4">
               <li><Link href="/quem-somos" className="text-muted-foreground hover:text-primary font-medium transition-colors">Nossa História</Link></li>
               <li><Link href="/contato" className="text-muted-foreground hover:text-primary font-medium transition-colors">Fale Conosco</Link></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Trabalhe Conosco <span className="ml-2 text-[10px] font-bold bg-primary/20 text-primary px-2 py-0.5 rounded-full">VAGAS</span></a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Blog do Varejo</a></li>
+              <li><a href={CAREERS_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary font-medium transition-colors">Trabalhe Conosco <span className="ml-2 text-[10px] font-bold bg-primary/20 text-primary px-2 py-0.5 rounded-full">VAGAS</span></a></li>
+              <li><a href={BLOG_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary font-medium transition-colors">Blog do Varejo</a></li>
             </ul>
           </div>
 
@@ -64,14 +64,14 @@ export function Footer() {
             <ul className="flex flex-col gap-4">
               <li><a href={TERMS_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary font-medium transition-colors">Termos de Serviço</a></li>
               <li><a href={PRIVACY_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary font-medium transition-colors">Política de Privacidade</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Compliance LGPD</a></li>
+              <li><a href={LGPD_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary font-medium transition-colors">Compliance LGPD</a></li>
             </ul>
           </div>
         </div>
 
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-muted-foreground font-medium">
-            © {new Date().getFullYear()} PDVIO Tecnologia Ltda. CNPJ: 00.000.000/0001-00.
+            © {new Date().getFullYear()} PDVIO Tecnologia Ltda. CNPJ: {COMPANY_CNPJ}.
           </p>
           <div className="flex gap-6 items-center">
             <span className="text-muted-foreground font-medium flex items-center gap-2">

@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Mail, Phone, MessageSquare, ArrowRight, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
-import { WHATSAPP_PHONE, WHATSAPP_URL } from "@/lib/constants";
+import { WHATSAPP_PHONE, WHATSAPP_URL, CONTACT_EMAIL } from "@/lib/constants";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -74,7 +74,7 @@ export default function Contact() {
                     <div>
                       <h3 className="font-bold text-lg mb-1">E-mail</h3>
                       <p className="text-muted-foreground text-sm mb-2">Para dúvidas gerais e suporte.</p>
-                      <a href="mailto:contato@pdvio.com.br" className="font-bold text-primary hover:underline">contato@pdvio.com.br</a>
+                      <a href={`mailto:${CONTACT_EMAIL}`} className="font-bold text-primary hover:underline">{CONTACT_EMAIL}</a>
                     </div>
                   </CardContent>
                 </Card>
