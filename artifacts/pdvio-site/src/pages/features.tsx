@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL, asset } from "@/lib/constants";
 import { CheckCircle2, CreditCard, Store, ChefHat, Package, Lock, BarChart3, Users, Printer, MonitorSmartphone, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -27,7 +27,7 @@ export default function Features() {
       desc: "Um PDV projetado para não criar filas. Venda em segundos com atalhos de teclado, leitor de código de barras e múltiplas formas de pagamento integradas.",
       sub: ["Busca rápida de produtos", "Leitor de código de barras USB", "Descontos no item ou subtotal", "Venda de produtos por peso"],
       color: "from-purple-500 to-fuchsia-500",
-      image: "/feature-pdv.webp"
+      image: asset("feature-pdv.webp")
     },
     { 
       id: "comandas",
@@ -36,7 +36,7 @@ export default function Features() {
       desc: "Controle total do salão na palma da mão. Gerencie pedidos por mesa, divida contas facilmente e adicione observações para a cozinha sem erros.",
       sub: ["Mapa de mesas visual e interativo", "Transferência de itens entre mesas", "Taxa de serviço automática", "Divisão de conta por pessoas"],
       color: "from-blue-500 to-cyan-500",
-      image: "/feature-comandas.webp"
+      image: asset("feature-comandas.webp")
     },
     { 
       id: "kds",
@@ -45,7 +45,7 @@ export default function Features() {
       desc: "Adeus impressoras e papéis perdidos. Os pedidos chegam na tela da cozinha instantaneamente, organizados por tempo e setor.",
       sub: ["Fila de preparo com cores por tempo", "Aviso sonoro de novo pedido", "Filtro por setor (bar, cozinha, chapa)", "Histórico de pedidos concluídos"],
       color: "from-orange-500 to-red-500",
-      image: "/feature-kds.webp"
+      image: asset("feature-kds.webp")
     },
     { 
       id: "estoque",
@@ -54,7 +54,7 @@ export default function Features() {
       desc: "Saiba exatamente o que você tem e o que precisa comprar. Controle ingredientes, crie categorias e gerencie adicionais com precisão.",
       sub: ["Alerta inteligente de estoque mínimo", "Grupos de complementos e adicionais", "Histórico de movimentação detalhado", "Importação em massa via Excel"],
       color: "from-emerald-500 to-teal-500",
-      image: "/feature-estoque.webp"
+      image: asset("feature-estoque.webp")
     }
   ];
 

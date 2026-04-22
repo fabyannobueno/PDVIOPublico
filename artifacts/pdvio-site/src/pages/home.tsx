@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL, asset } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -314,7 +314,7 @@ export default function Home() {
                   
                   <div className="flex flex-1 overflow-hidden relative z-10">
                     <div className="w-20 border-r border-border bg-muted/20 flex flex-col items-center py-6 gap-8">
-                      <img src="/pdvio-icon.png" alt="PDVIO" className="w-10 h-10 object-contain drop-shadow-lg" />
+                      <img src={asset("pdvio-icon.png")} alt="PDVIO" className="w-10 h-10 object-contain drop-shadow-lg" />
                       <MonitorSmartphone className="h-6 w-6 text-primary drop-shadow-md" />
                       <ShoppingCart className="h-6 w-6 text-muted-foreground/60 hover:text-muted-foreground transition-colors" />
                       <Package className="h-6 w-6 text-muted-foreground/60 hover:text-muted-foreground transition-colors" />
@@ -557,7 +557,7 @@ export default function Home() {
                     <div className="grid grid-cols-12 h-full bg-background">
                       {/* Sidebar */}
                       <div className="col-span-1 bg-gradient-to-b from-muted/40 to-muted/10 border-r border-border flex flex-col items-center py-3 gap-1.5">
-                        <img src="/pdvio-icon.png" alt="PDVIO" className="w-8 h-8 object-contain mb-2" />
+                        <img src={asset("pdvio-icon.png")} alt="PDVIO" className="w-8 h-8 object-contain mb-2" />
                         {[
                           { i: CreditCard, a: true, l: "PDV" },
                           { i: ShoppingCart, l: "Pedidos" },
@@ -970,10 +970,10 @@ export default function Home() {
             <div className="overflow-hidden px-4 md:px-6 py-10" ref={emblaRef}>
               <div className="flex gap-6 -ml-4">
                 {[
-                  { quote: "Abandonamos um sistema que custava R$400/mês e travava todo fim de semana. O PDVIO é 10x melhor, mais rápido e o suporte realmente resolve.", name: "Mariana Costa", role: "Dona", company: "Hamburgueria Sabor", city: "São Paulo, SP", img: "/mariana.webp" },
-                  { quote: "O KDS mudou a dinâmica da nossa cozinha. Antes perdíamos pedidos no papel. Hoje a tela organiza tudo por tempo de espera. Impecável.", name: "Roberto Silva", role: "Chef", company: "Bistro 44", city: "Curitiba, PR", img: "/roberto.webp" },
-                  { quote: "A implantação demorou literalmente 10 minutos. Importei minha planilha de produtos, loguei no tablet e abri o caixa. Simples assim.", name: "Amanda Ferreira", role: "Gerente", company: "Mercadinho Express", city: "Belo Horizonte, MG", img: "/amanda.webp" },
-                  { quote: "O Dashboard no celular me permite viajar tranquilo. Vejo as vendas, ticket médio e cancelamentos em tempo real de qualquer lugar do mundo.", name: "Carlos Mendes", role: "Sócio-Diretor", company: "Rede Bar Brasil", city: "Rio de Janeiro, RJ", img: "/carlos.webp" }
+                  { quote: "Abandonamos um sistema que custava R$400/mês e travava todo fim de semana. O PDVIO é 10x melhor, mais rápido e o suporte realmente resolve.", name: "Mariana Costa", role: "Dona", company: "Hamburgueria Sabor", city: "São Paulo, SP", img: asset("mariana.webp") },
+                  { quote: "O KDS mudou a dinâmica da nossa cozinha. Antes perdíamos pedidos no papel. Hoje a tela organiza tudo por tempo de espera. Impecável.", name: "Roberto Silva", role: "Chef", company: "Bistro 44", city: "Curitiba, PR", img: asset("roberto.webp") },
+                  { quote: "A implantação demorou literalmente 10 minutos. Importei minha planilha de produtos, loguei no tablet e abri o caixa. Simples assim.", name: "Amanda Ferreira", role: "Gerente", company: "Mercadinho Express", city: "Belo Horizonte, MG", img: asset("amanda.webp") },
+                  { quote: "O Dashboard no celular me permite viajar tranquilo. Vejo as vendas, ticket médio e cancelamentos em tempo real de qualquer lugar do mundo.", name: "Carlos Mendes", role: "Sócio-Diretor", company: "Rede Bar Brasil", city: "Rio de Janeiro, RJ", img: asset("carlos.webp") }
                 ].map((t, i) => (
                   <div key={i} className="flex-[0_0_85%] md:flex-[0_0_400px] pl-4">
                     <Card className="h-full border border-border bg-card shadow-lg hover:border-primary/30 transition-colors">

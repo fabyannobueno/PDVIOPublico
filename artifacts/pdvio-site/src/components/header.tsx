@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { useTheme } from "./theme-provider";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL, asset } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -42,7 +42,7 @@ export function Header() {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link href="/">
           <img
-            src={theme === "dark" ? "/logo-dark.png" : "/logo-light.png"}
+            src={theme === "dark" ? asset("logo-dark.png") : asset("logo-light.png")}
             alt="PDVIO Logo"
             className="h-8 md:h-10 cursor-pointer"
           />

@@ -14,3 +14,6 @@ export const COMPANY_ADDRESS_LINE1 = import.meta.env.VITE_COMPANY_ADDRESS_LINE1;
 export const COMPANY_ADDRESS_LINE2 = import.meta.env.VITE_COMPANY_ADDRESS_LINE2;
 export const INSTAGRAM_URL = import.meta.env.VITE_INSTAGRAM_URL;
 export const YOUTUBE_URL = import.meta.env.VITE_YOUTUBE_URL;
+
+export const asset = (path: string) =>
+  `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
