@@ -541,50 +541,90 @@ export default function Home() {
                   className="w-full h-full bg-background border border-border rounded-xl shadow-inner overflow-hidden"
                 >
                   {activeTab === "pdv" && (
-                    <div className="grid grid-cols-12 h-full">
+                    <div className="grid grid-cols-12 h-full bg-background">
                       {/* Sidebar */}
-                      <div className="col-span-1 bg-muted/30 border-r border-border flex flex-col items-center py-3 gap-3">
-                        <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-black text-xs">P</div>
-                        <div className="w-7 h-7 rounded-lg bg-primary/15 flex items-center justify-center"><CreditCard className="w-3.5 h-3.5 text-primary" /></div>
-                        <div className="w-7 h-7 rounded-lg flex items-center justify-center"><Store className="w-3.5 h-3.5 text-muted-foreground" /></div>
-                        <div className="w-7 h-7 rounded-lg flex items-center justify-center"><Package className="w-3.5 h-3.5 text-muted-foreground" /></div>
-                        <div className="w-7 h-7 rounded-lg flex items-center justify-center"><BarChart3 className="w-3.5 h-3.5 text-muted-foreground" /></div>
+                      <div className="col-span-1 bg-gradient-to-b from-muted/40 to-muted/10 border-r border-border flex flex-col items-center py-3 gap-1.5">
+                        <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary to-fuchsia-600 flex items-center justify-center shadow-lg shadow-primary/30 mb-2 p-1.5">
+                          <img src="/pdvio-icon.png" alt="PDVIO" className="w-full h-full object-contain" />
+                        </div>
+                        {[
+                          { i: CreditCard, a: true, l: "PDV" },
+                          { i: ShoppingCart, l: "Pedidos" },
+                          { i: Package, l: "Estoque" },
+                          { i: Users, l: "Clientes" },
+                          { i: BarChart3, l: "Relatórios" },
+                          { i: Store, l: "Lojas" },
+                        ].map((it, i) => (
+                          <div key={i} className={`w-9 h-9 rounded-lg flex flex-col items-center justify-center relative ${it.a ? "bg-primary/15 text-primary" : "text-muted-foreground/70 hover:bg-muted/50"}`}>
+                            <it.i className="w-3.5 h-3.5" />
+                            {it.a && <span className="absolute -left-0.5 top-1/2 -translate-y-1/2 w-0.5 h-4 bg-primary rounded-r-full" />}
+                          </div>
+                        ))}
+                        <div className="mt-auto w-7 h-7 rounded-full bg-gradient-to-br from-orange-400 to-pink-500 flex items-center justify-center text-white text-[10px] font-bold ring-2 ring-background">JM</div>
                       </div>
 
                       {/* Products */}
-                      <div className="col-span-7 p-4 border-r border-border flex flex-col min-h-0">
-                        <div className="flex items-center gap-2 mb-3">
-                          <div className="flex-1 h-8 rounded-lg bg-muted/40 border border-border flex items-center px-3 text-[11px] text-muted-foreground">🔍 Buscar produto ou código…</div>
-                          <div className="text-[10px] font-bold text-muted-foreground">F2</div>
+                      <div className="col-span-7 flex flex-col min-h-0 bg-background">
+                        {/* Top bar */}
+                        <div className="flex items-center justify-between px-4 py-2.5 border-b border-border">
+                          <div className="flex items-center gap-2">
+                            <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Loja Centro</div>
+                            <span className="text-[9px] px-1.5 py-0.5 rounded bg-green-500/15 text-green-600 font-bold flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" /> Online</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-[10px] text-muted-foreground font-medium">
+                            <span>Caixa 02</span>
+                            <span className="text-border">•</span>
+                            <span>João M.</span>
+                            <span className="text-border">•</span>
+                            <span className="font-mono">20:14</span>
+                          </div>
                         </div>
-                        <div className="flex gap-1.5 mb-3 flex-wrap">
-                          {[
-                            { n: "Todos", a: true },
-                            { n: "Lanches" },
-                            { n: "Bebidas" },
-                            { n: "Pizzas" },
-                            { n: "Sobremesas" },
-                            { n: "Combos" },
-                          ].map((c, i) => (
-                            <span key={i} className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${c.a ? "bg-primary text-primary-foreground" : "bg-muted/40 text-muted-foreground border border-border"}`}>{c.n}</span>
-                          ))}
+                        <div className="px-4 pt-3 pb-2">
+                          <div className="flex items-center gap-2 mb-3">
+                            <div className="flex-1 h-9 rounded-lg bg-muted/30 border border-border flex items-center gap-2 px-3 text-[11px] text-muted-foreground/80">
+                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+                              <span>Buscar produto, código ou ler código de barras…</span>
+                              <kbd className="ml-auto text-[9px] font-mono bg-background border border-border rounded px-1.5 py-0.5 text-foreground/60">F2</kbd>
+                            </div>
+                          </div>
+                          <div className="flex gap-1.5 mb-3 overflow-hidden">
+                            {[
+                              { n: "Todos", c: 124, a: true },
+                              { n: "Lanches", c: 32 },
+                              { n: "Bebidas", c: 28 },
+                              { n: "Pizzas", c: 14 },
+                              { n: "Sobremesas", c: 9 },
+                              { n: "Combos", c: 12 },
+                            ].map((c, i) => (
+                              <button key={i} className={`text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5 whitespace-nowrap transition-colors ${c.a ? "bg-foreground text-background" : "bg-muted/30 text-muted-foreground hover:bg-muted/60"}`}>
+                                {c.n}
+                                <span className={`text-[9px] px-1 rounded ${c.a ? "bg-background/20" : "bg-background/50"}`}>{c.c}</span>
+                              </button>
+                            ))}
+                          </div>
                         </div>
-                        <div className="grid grid-cols-4 gap-2 flex-1 min-h-0">
+                        <div className="grid grid-cols-4 gap-2 px-4 pb-4 flex-1 min-h-0 overflow-hidden">
                           {[
-                            { n: "X-Bacon", p: "22,00", e: "🥓", c: "from-orange-500/15 to-orange-500/5 border-orange-500/30" },
-                            { n: "Coca 2L", p: "14,00", e: "🥤", c: "from-red-500/15 to-red-500/5 border-red-500/30" },
-                            { n: "Batata G", p: "18,00", e: "🍟", c: "from-yellow-500/15 to-yellow-500/5 border-yellow-500/30" },
-                            { n: "Suco", p: "9,00", e: "🧃", c: "from-green-500/15 to-green-500/5 border-green-500/30" },
-                            { n: "Pizza M", p: "55,00", e: "🍕", c: "from-rose-500/15 to-rose-500/5 border-rose-500/30" },
-                            { n: "Cerveja", p: "12,00", e: "🍺", c: "from-amber-500/15 to-amber-500/5 border-amber-500/30" },
-                            { n: "Combo 1", p: "39,90", e: "🍔", c: "from-purple-500/15 to-purple-500/5 border-purple-500/30" },
-                            { n: "Sundae", p: "16,00", e: "🍨", c: "from-pink-500/15 to-pink-500/5 border-pink-500/30" },
+                            { n: "X-Bacon Especial", sku: "LCH001", p: "22,00", e: "🥓", c: "from-orange-400 to-amber-600", est: 18 },
+                            { n: "Coca-Cola 2L", sku: "BEB003", p: "14,00", e: "🥤", c: "from-red-500 to-rose-700", est: 42 },
+                            { n: "Batata Frita G", sku: "ACO002", p: "18,00", e: "🍟", c: "from-yellow-400 to-amber-500", est: 24 },
+                            { n: "Suco Natural", sku: "BEB011", p: "9,00", e: "🧃", c: "from-green-400 to-emerald-600", est: 15 },
+                            { n: "Pizza Calabresa M", sku: "PIZ001", p: "55,00", e: "🍕", c: "from-rose-400 to-red-600", est: 8 },
+                            { n: "Heineken 600ml", sku: "BEB022", p: "12,00", e: "🍺", c: "from-amber-400 to-yellow-700", est: 36 },
+                            { n: "Combo Família", sku: "COM004", p: "39,90", e: "🍔", c: "from-purple-500 to-fuchsia-600", est: 0, novo: true },
+                            { n: "Sundae Caramelo", sku: "SOB007", p: "16,00", e: "🍨", c: "from-pink-400 to-rose-500", est: 22 },
                           ].map((p, i) => (
-                            <div key={i} className={`rounded-xl border bg-gradient-to-br ${p.c} p-2.5 flex flex-col justify-between hover:scale-[1.02] transition-transform cursor-pointer`}>
-                              <div className="text-2xl leading-none">{p.e}</div>
-                              <div>
-                                <div className="text-[11px] font-bold leading-tight">{p.n}</div>
-                                <div className="text-[11px] font-mono font-black text-foreground/90">R$ {p.p}</div>
+                            <div key={i} className="rounded-xl border border-border bg-card overflow-hidden flex flex-col hover:border-primary/40 hover:shadow-md transition-all cursor-pointer group">
+                              <div className={`relative h-14 bg-gradient-to-br ${p.c} flex items-center justify-center overflow-hidden`}>
+                                <span className="text-3xl drop-shadow-sm">{p.e}</span>
+                                {p.novo && <span className="absolute top-1 right-1 text-[8px] font-black bg-white text-black px-1 py-0.5 rounded">NOVO</span>}
+                                {p.est > 0 && p.est < 10 && <span className="absolute top-1 left-1 text-[8px] font-bold bg-amber-500/90 text-white px-1 py-0.5 rounded">{p.est} un.</span>}
+                                {p.est === 0 && <div className="absolute inset-0 bg-black/40 flex items-center justify-center"><span className="text-[9px] font-black text-white">SEM ESTOQUE</span></div>}
+                              </div>
+                              <div className="p-2 flex flex-col gap-0.5">
+                                <div className="text-[10px] text-muted-foreground/70 font-mono leading-none">{p.sku}</div>
+                                <div className="text-[11px] font-bold leading-tight truncate">{p.n}</div>
+                                <div className="text-[12px] font-mono font-black text-foreground mt-0.5">R$ {p.p}</div>
                               </div>
                             </div>
                           ))}
@@ -592,38 +632,67 @@ export default function Home() {
                       </div>
 
                       {/* Cart */}
-                      <div className="col-span-4 flex flex-col bg-muted/20 min-h-0">
-                        <div className="px-4 py-3 border-b border-border flex items-center justify-between">
-                          <div>
-                            <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-bold">Venda</div>
-                            <div className="text-sm font-black">#1284 • Caixa 02</div>
-                          </div>
-                          <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-green-500/15 text-green-500">ABERTO</span>
-                        </div>
-                        <div className="flex-1 px-4 py-3 space-y-2 overflow-hidden text-xs">
-                          {[
-                            { q: 1, n: "X-Bacon", v: "22,00" },
-                            { q: 2, n: "Coca 2L", v: "28,00" },
-                            { q: 1, n: "Batata G", v: "18,00" },
-                            { q: 1, n: "Combo 1", v: "39,90" },
-                          ].map((it, i) => (
-                            <div key={i} className="flex items-center justify-between gap-2">
-                              <div className="flex items-center gap-2 min-w-0">
-                                <span className="w-5 h-5 rounded bg-primary/15 text-primary text-[10px] font-bold flex items-center justify-center shrink-0">{it.q}</span>
-                                <span className="truncate">{it.n}</span>
+                      <div className="col-span-4 flex flex-col bg-muted/15 border-l border-border min-h-0">
+                        <div className="px-4 py-3 border-b border-border bg-card">
+                          <div className="flex items-center justify-between mb-1">
+                            <div className="flex items-center gap-2">
+                              <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center"><ShoppingCart className="w-3.5 h-3.5 text-primary" /></div>
+                              <div>
+                                <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-bold leading-none mb-0.5">Venda em andamento</div>
+                                <div className="text-sm font-black leading-none">#1284</div>
                               </div>
-                              <span className="font-mono font-bold">{it.v}</span>
+                            </div>
+                            <span className="text-[9px] font-black px-2 py-1 rounded-full bg-green-500/15 text-green-600 flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-green-500" /> ABERTO</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-[10px] text-muted-foreground mt-2">
+                            <Users className="w-3 h-3" />
+                            <span className="font-medium">Cliente: <span className="text-foreground font-bold">Maria S.</span></span>
+                            <span className="text-border">•</span>
+                            <span>CPF nota: ✓</span>
+                          </div>
+                        </div>
+                        <div className="flex-1 px-3 py-2.5 space-y-1.5 overflow-hidden">
+                          {[
+                            { q: 1, n: "X-Bacon Especial", v: "22,00", obs: "sem cebola" },
+                            { q: 2, n: "Coca-Cola 2L", v: "28,00" },
+                            { q: 1, n: "Batata Frita G", v: "18,00" },
+                            { q: 1, n: "Combo Família", v: "39,90", desc: "10%" },
+                          ].map((it, i) => (
+                            <div key={i} className="bg-card border border-border rounded-lg px-2.5 py-2 flex items-center gap-2">
+                              <div className="flex items-center gap-0.5 bg-muted/40 rounded">
+                                <button className="w-4 h-5 text-muted-foreground text-[10px] font-bold hover:text-foreground">−</button>
+                                <span className="w-5 text-center text-[11px] font-black">{it.q}</span>
+                                <button className="w-4 h-5 text-muted-foreground text-[10px] font-bold hover:text-foreground">+</button>
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="text-[11px] font-bold leading-tight truncate">{it.n}</div>
+                                {it.obs && <div className="text-[9px] text-amber-600 italic leading-tight">obs: {it.obs}</div>}
+                                {it.desc && <div className="text-[9px] text-green-600 font-bold leading-tight">desc {it.desc}</div>}
+                              </div>
+                              <span className="font-mono font-black text-[11px]">{it.v}</span>
                             </div>
                           ))}
                         </div>
-                        <div className="px-4 py-3 border-t border-border space-y-1.5">
-                          <div className="flex justify-between text-[11px] text-muted-foreground"><span>Subtotal</span><span className="font-mono">107,90</span></div>
-                          <div className="flex justify-between text-[11px] text-muted-foreground"><span>Desconto</span><span className="font-mono">- 7,90</span></div>
-                          <div className="flex justify-between text-base font-black"><span>Total</span><span className="text-primary font-mono">R$ 100,00</span></div>
-                          <div className="grid grid-cols-3 gap-1.5 pt-2">
-                            <button className="bg-primary text-primary-foreground rounded-md py-2 text-[10px] font-bold">PIX</button>
-                            <button className="bg-foreground text-background rounded-md py-2 text-[10px] font-bold">CARTÃO</button>
-                            <button className="bg-muted text-foreground border border-border rounded-md py-2 text-[10px] font-bold">DINHEIRO</button>
+                        <div className="px-4 py-2.5 border-t border-border bg-card space-y-1">
+                          <div className="flex justify-between text-[10px] text-muted-foreground"><span>Subtotal (4 itens)</span><span className="font-mono">R$ 107,90</span></div>
+                          <div className="flex justify-between text-[10px] text-green-600 font-medium"><span>Desconto</span><span className="font-mono">− R$ 7,90</span></div>
+                          <div className="flex justify-between items-baseline pt-1 mt-1 border-t border-dashed border-border">
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">Total</span>
+                            <span className="text-primary font-black text-xl font-mono">R$ 100,00</span>
+                          </div>
+                          <div className="grid grid-cols-3 gap-1 pt-2">
+                            <button className="bg-primary text-primary-foreground rounded-md py-2 text-[10px] font-black flex flex-col items-center gap-0.5 shadow-sm">
+                              <span className="text-[9px] opacity-80">F5</span>
+                              <span>PIX</span>
+                            </button>
+                            <button className="bg-foreground text-background rounded-md py-2 text-[10px] font-black flex flex-col items-center gap-0.5">
+                              <span className="text-[9px] opacity-80">F6</span>
+                              <span>CARTÃO</span>
+                            </button>
+                            <button className="bg-card text-foreground border border-border rounded-md py-2 text-[10px] font-black flex flex-col items-center gap-0.5">
+                              <span className="text-[9px] opacity-60">F7</span>
+                              <span>DINHEIRO</span>
+                            </button>
                           </div>
                         </div>
                       </div>
