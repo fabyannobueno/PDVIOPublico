@@ -414,7 +414,7 @@ export default function Home() {
                 </div>
                 <div className="mt-8 h-48 w-full bg-muted/30 rounded-xl border border-border overflow-hidden relative">
                   {/* Faux receipt animation */}
-                  <div className="absolute inset-x-8 -bottom-10 h-64 bg-card shadow-lg border border-border rounded-t-md p-4 transition-transform duration-700 group-hover:translate-y-[-20px]">
+                  <div className="absolute inset-x-8 -bottom-10 h-64 bg-card shadow-lg border border-border rounded-t-md px-4 pb-4 pt-16 transition-transform duration-700 group-hover:translate-y-[-20px]">
                     <div className="border-b border-dashed border-border pb-2 mb-2 text-center text-xs font-mono font-bold">CUPOM NÃO FISCAL</div>
                     <div className="space-y-2 text-xs font-mono">
                       <div className="flex justify-between"><span>1x COCA COLA 2L</span><span>R$ 14,00</span></div>
