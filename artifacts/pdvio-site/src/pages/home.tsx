@@ -391,13 +391,13 @@ export default function Home() {
       {/* Scrolling Trust Marquee */}
       <section className="py-6 border-y border-border bg-card overflow-hidden">
         <div className="flex w-max animate-marquee gap-16 pr-16 whitespace-nowrap opacity-40 font-bold text-xl tracking-widest text-muted-foreground uppercase">
-          {[...Array(2)].flatMap((_, idx) => [
-            <span key={`pwa-${idx}`} aria-hidden={idx === 1} className="flex items-center gap-3 shrink-0"><MonitorSmartphone className="w-6 h-6" /> PWA</span>,
-            <span key={`esc-${idx}`} aria-hidden={idx === 1} className="flex items-center gap-3 shrink-0"><Printer className="w-6 h-6" /> ESC/POS</span>,
-            <span key={`pix-${idx}`} aria-hidden={idx === 1} className="flex items-center gap-3 shrink-0"><CreditCard className="w-6 h-6" /> PIX</span>,
-            <span key={`dre-${idx}`} aria-hidden={idx === 1} className="flex items-center gap-3 shrink-0"><BarChart3 className="w-6 h-6" /> DRE</span>,
-            <span key={`lgpd-${idx}`} aria-hidden={idx === 1} className="flex items-center gap-3 shrink-0"><Lock className="w-6 h-6" /> LGPD</span>,
-            <span key={`multi-${idx}`} aria-hidden={idx === 1} className="flex items-center gap-3 shrink-0"><Store className="w-6 h-6" /> Multi-loja</span>,
+          {[...Array(8)].flatMap((_, idx) => [
+            <span key={`pwa-${idx}`} aria-hidden={idx > 0} className="flex items-center gap-3 shrink-0"><MonitorSmartphone className="w-6 h-6" /> PWA</span>,
+            <span key={`esc-${idx}`} aria-hidden={idx > 0} className="flex items-center gap-3 shrink-0"><Printer className="w-6 h-6" /> ESC/POS</span>,
+            <span key={`pix-${idx}`} aria-hidden={idx > 0} className="flex items-center gap-3 shrink-0"><CreditCard className="w-6 h-6" /> PIX</span>,
+            <span key={`dre-${idx}`} aria-hidden={idx > 0} className="flex items-center gap-3 shrink-0"><BarChart3 className="w-6 h-6" /> DRE</span>,
+            <span key={`lgpd-${idx}`} aria-hidden={idx > 0} className="flex items-center gap-3 shrink-0"><Lock className="w-6 h-6" /> LGPD</span>,
+            <span key={`multi-${idx}`} aria-hidden={idx > 0} className="flex items-center gap-3 shrink-0"><Store className="w-6 h-6" /> Multi-loja</span>,
           ])}
         </div>
       </section>
