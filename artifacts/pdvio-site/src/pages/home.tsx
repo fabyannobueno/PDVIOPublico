@@ -518,24 +518,149 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="w-full max-w-5xl aspect-video rounded-3xl border border-border bg-card shadow-2xl relative overflow-hidden flex items-center justify-center p-8">
+            <div className="w-full max-w-5xl aspect-video rounded-3xl border border-border bg-card shadow-2xl relative overflow-hidden p-4">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTab}
-                  initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                  initial={{ opacity: 0, scale: 0.96, y: 10 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 1.05, y: -10 }}
+                  exit={{ opacity: 0, scale: 1.04, y: -10 }}
                   transition={{ duration: 0.3 }}
-                  className="w-full h-full bg-background border border-border rounded-xl shadow-inner flex items-center justify-center"
+                  className="w-full h-full bg-background border border-border rounded-xl shadow-inner overflow-hidden"
                 >
-                  <div className="text-center text-muted-foreground flex flex-col items-center">
-                    {activeTab === "pdv" && <CreditCard className="w-16 h-16 mb-4 opacity-20" />}
-                    {activeTab === "comandas" && <Store className="w-16 h-16 mb-4 opacity-20" />}
-                    {activeTab === "kds" && <ChefHat className="w-16 h-16 mb-4 opacity-20" />}
-                    {activeTab === "dashboard" && <BarChart3 className="w-16 h-16 mb-4 opacity-20" />}
-                    <p className="font-bold text-lg">Mockup Interativo: {activeTab.toUpperCase()}</p>
-                    <p className="text-sm">Representação visual detalhada do módulo</p>
-                  </div>
+                  {activeTab === "pdv" && (
+                    <div className="grid grid-cols-5 h-full">
+                      <div className="col-span-3 p-5 border-r border-border flex flex-col">
+                        <div className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">Produtos</div>
+                        <div className="grid grid-cols-3 gap-2 flex-1">
+                          {[
+                            { n: "X-Bacon", p: "22,00", c: "bg-orange-500/10 border-orange-500/30" },
+                            { n: "Coca 2L", p: "14,00", c: "bg-red-500/10 border-red-500/30" },
+                            { n: "Batata G", p: "18,00", c: "bg-yellow-500/10 border-yellow-500/30" },
+                            { n: "Suco", p: "9,00", c: "bg-green-500/10 border-green-500/30" },
+                            { n: "Pizza M", p: "55,00", c: "bg-rose-500/10 border-rose-500/30" },
+                            { n: "Cerveja", p: "12,00", c: "bg-amber-500/10 border-amber-500/30" },
+                            { n: "Combo 1", p: "39,90", c: "bg-purple-500/10 border-purple-500/30" },
+                            { n: "Sobremesa", p: "16,00", c: "bg-pink-500/10 border-pink-500/30" },
+                            { n: "Água", p: "5,00", c: "bg-blue-500/10 border-blue-500/30" },
+                          ].map((p, i) => (
+                            <div key={i} className={`rounded-lg border p-2 flex flex-col justify-between ${p.c}`}>
+                              <div className="text-xs font-bold">{p.n}</div>
+                              <div className="text-[11px] font-mono font-bold">R$ {p.p}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="col-span-2 p-5 flex flex-col bg-muted/20">
+                        <div className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">Venda #1284</div>
+                        <div className="space-y-1.5 text-xs flex-1">
+                          <div className="flex justify-between"><span>1× X-Bacon</span><span className="font-mono">22,00</span></div>
+                          <div className="flex justify-between"><span>2× Coca 2L</span><span className="font-mono">28,00</span></div>
+                          <div className="flex justify-between"><span>1× Batata G</span><span className="font-mono">18,00</span></div>
+                        </div>
+                        <div className="border-t border-border pt-3 mt-2">
+                          <div className="flex justify-between text-sm font-bold mb-3"><span>Total</span><span className="text-primary">R$ 68,00</span></div>
+                          <div className="bg-primary text-primary-foreground rounded-lg py-2 text-center text-xs font-bold">PIX • F12</div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeTab === "comandas" && (
+                    <div className="h-full flex items-center justify-center p-6 bg-muted/10">
+                      <div className="w-[260px] h-full max-h-[440px] rounded-[2rem] border-[6px] border-foreground/80 bg-background overflow-hidden flex flex-col shadow-xl">
+                        <div className="bg-primary text-primary-foreground px-4 py-3">
+                          <div className="text-[10px] uppercase tracking-wider opacity-80">Comanda</div>
+                          <div className="text-lg font-bold">Mesa 12 • 4 pessoas</div>
+                        </div>
+                        <div className="flex-1 p-3 space-y-2 overflow-hidden">
+                          {[
+                            { n: "X-Bacon", q: 2, s: "Pronto", c: "bg-green-500/15 text-green-600" },
+                            { n: "Pizza M Calabresa", q: 1, s: "Cozinha", c: "bg-yellow-500/15 text-yellow-700" },
+                            { n: "Coca 2L", q: 2, s: "Entregue", c: "bg-blue-500/15 text-blue-600" },
+                            { n: "Sobremesa", q: 4, s: "Pendente", c: "bg-orange-500/15 text-orange-600" },
+                          ].map((it, i) => (
+                            <div key={i} className="flex items-center justify-between bg-card border border-border rounded-lg px-2.5 py-2">
+                              <div>
+                                <div className="text-xs font-bold">{it.q}× {it.n}</div>
+                              </div>
+                              <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${it.c}`}>{it.s}</span>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="border-t border-border p-3">
+                          <div className="flex justify-between text-xs mb-2"><span className="text-muted-foreground">Subtotal</span><span className="font-mono font-bold">R$ 145,90</span></div>
+                          <div className="bg-primary text-primary-foreground rounded-lg py-2 text-center text-[11px] font-bold">Fechar Comanda</div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeTab === "kds" && (
+                    <div className="grid grid-cols-3 gap-3 h-full p-5 bg-muted/10">
+                      {[
+                        { mesa: "MESA 4", tempo: "12 min", cor: "border-red-500 bg-red-500/5", badge: "bg-red-500", itens: ["2× X-Bacon", "1× Batata G", "2× Coca 2L"] },
+                        { mesa: "DELIVERY", tempo: "3 min", cor: "border-yellow-500 bg-yellow-500/5", badge: "bg-yellow-500", itens: ["1× Pizza Calabresa", "1× Suco Laranja"] },
+                        { mesa: "MESA 8", tempo: "1 min", cor: "border-green-500 bg-green-500/5", badge: "bg-green-500", itens: ["3× Combo 1", "1× Sobremesa"] },
+                      ].map((p, i) => (
+                        <div key={i} className={`border-2 ${p.cor} rounded-xl p-3 flex flex-col`}>
+                          <div className="flex justify-between items-start mb-3">
+                            <div>
+                              <div className="text-xs font-black">{p.mesa}</div>
+                              <div className="text-[10px] text-muted-foreground">há {p.tempo}</div>
+                            </div>
+                            <span className={`w-2.5 h-2.5 rounded-full ${p.badge} animate-pulse`}></span>
+                          </div>
+                          <div className="space-y-1.5 flex-1">
+                            {p.itens.map((it, j) => (
+                              <div key={j} className="text-xs font-bold bg-background border border-border rounded px-2 py-1.5">{it}</div>
+                            ))}
+                          </div>
+                          <button className="mt-3 bg-foreground text-background text-[10px] font-bold py-1.5 rounded">PRONTO</button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {activeTab === "dashboard" && (
+                    <div className="grid grid-cols-3 gap-3 h-full p-4">
+                      <div className="col-span-2 row-span-2 border border-border rounded-xl p-4 flex flex-col bg-muted/10">
+                        <div className="flex justify-between items-end mb-3">
+                          <div>
+                            <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-bold">Faturamento • Hoje</div>
+                            <div className="text-2xl font-black">R$ 12.450,00</div>
+                          </div>
+                          <div className="text-xs text-green-500 font-bold">↗ +24%</div>
+                        </div>
+                        <div className="flex-1 flex items-end gap-1.5">
+                          {[35, 50, 42, 65, 55, 80, 70, 90, 75, 95, 85, 100].map((h, i) => (
+                            <div key={i} className="flex-1 bg-gradient-to-t from-primary to-fuchsia-500 rounded-t" style={{ height: `${h}%` }}></div>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="border border-border rounded-xl p-3 bg-muted/10">
+                        <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-bold mb-1">Ticket Médio</div>
+                        <div className="text-lg font-black">R$ 87,40</div>
+                        <div className="text-[10px] text-green-500 font-bold mt-1">+8% vs ontem</div>
+                      </div>
+                      <div className="border border-border rounded-xl p-3 bg-muted/10">
+                        <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-bold mb-1">Pedidos</div>
+                        <div className="text-lg font-black">142</div>
+                        <div className="text-[10px] text-green-500 font-bold mt-1">+12 vs ontem</div>
+                      </div>
+                      <div className="col-span-3 border border-border rounded-xl p-3 bg-muted/10 flex items-center gap-3">
+                        <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-bold whitespace-nowrap">Top produtos</div>
+                        <div className="flex-1 flex gap-2 overflow-hidden">
+                          {[{ n: "X-Bacon", v: 48 }, { n: "Pizza M", v: 32 }, { n: "Combo 1", v: 28 }, { n: "Coca 2L", v: 22 }].map((p, i) => (
+                            <div key={i} className="flex-1 bg-background border border-border rounded px-2 py-1">
+                              <div className="text-[10px] font-bold truncate">{p.n}</div>
+                              <div className="text-[10px] text-primary font-mono font-bold">{p.v}×</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>
