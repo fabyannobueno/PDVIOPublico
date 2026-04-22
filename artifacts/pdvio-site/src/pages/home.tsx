@@ -375,19 +375,17 @@ export default function Home() {
 
       {/* Scrolling Trust Marquee */}
       <section className="py-6 border-y border-border bg-card overflow-hidden">
-        <div className="flex w-full whitespace-nowrap">
-          <div className="flex animate-marquee items-center gap-16 px-8">
-            {[...Array(2)].fill(null).map((_, idx) => (
-              <div key={idx} className="flex items-center gap-16 shrink-0 opacity-40 font-bold text-xl tracking-widest text-muted-foreground uppercase">
-                <span className="flex items-center gap-3"><MonitorSmartphone className="w-6 h-6" /> PWA</span>
-                <span className="flex items-center gap-3"><Printer className="w-6 h-6" /> ESC/POS</span>
-                <span className="flex items-center gap-3"><CreditCard className="w-6 h-6" /> PIX</span>
-                <span className="flex items-center gap-3"><BarChart3 className="w-6 h-6" /> DRE</span>
-                <span className="flex items-center gap-3"><Lock className="w-6 h-6" /> LGPD</span>
-                <span className="flex items-center gap-3"><Store className="w-6 h-6" /> Multi-loja</span>
-              </div>
-            ))}
-          </div>
+        <div className="flex w-max animate-marquee whitespace-nowrap">
+          {[...Array(2)].fill(null).map((_, idx) => (
+            <div key={idx} aria-hidden={idx === 1} className="flex items-center gap-16 shrink-0 pr-16 opacity-40 font-bold text-xl tracking-widest text-muted-foreground uppercase">
+              <span className="flex items-center gap-3"><MonitorSmartphone className="w-6 h-6" /> PWA</span>
+              <span className="flex items-center gap-3"><Printer className="w-6 h-6" /> ESC/POS</span>
+              <span className="flex items-center gap-3"><CreditCard className="w-6 h-6" /> PIX</span>
+              <span className="flex items-center gap-3"><BarChart3 className="w-6 h-6" /> DRE</span>
+              <span className="flex items-center gap-3"><Lock className="w-6 h-6" /> LGPD</span>
+              <span className="flex items-center gap-3"><Store className="w-6 h-6" /> Multi-loja</span>
+            </div>
+          ))}
         </div>
       </section>
 
