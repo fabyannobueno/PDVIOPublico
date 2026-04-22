@@ -12,3 +12,5 @@ export const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL;
 export const COMPANY_CNPJ = import.meta.env.VITE_COMPANY_CNPJ;
 export const COMPANY_ADDRESS_LINE1 = import.meta.env.VITE_COMPANY_ADDRESS_LINE1;
 export const COMPANY_ADDRESS_LINE2 = import.meta.env.VITE_COMPANY_ADDRESS_LINE2;
+export const INSTAGRAM_URL = import.meta.env.VITE_INSTAGRAM_URL;
+export const YOUTUBE_URL = import.meta.env.VITE_YOUTUBE_URL;
