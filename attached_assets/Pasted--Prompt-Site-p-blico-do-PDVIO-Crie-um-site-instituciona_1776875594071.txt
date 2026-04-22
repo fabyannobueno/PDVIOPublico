@@ -1,0 +1,129 @@
+🎯 Prompt — Site público do PDVIO
+Crie um site institucional moderno, responsivo e de alta conversão para o PDVIO, um sistema de Ponto de Venda (PDV) brasileiro voltado para pequenos e médios comércios.
+🧠 Contexto da marca
+Nome: PDVIO
+Slogan: "Venda mais. Controle tudo."
+Pitch curto: PDV moderno com frente de caixa, comandas, cozinha (KDS), estoque, financeiro e gestão multi-loja em tempo real — tudo na nuvem, acessível pelo navegador, celular ou tablet.
+Público-alvo: restaurantes, lanchonetes, bares, mercados, distribuidoras, lojas físicas e delivery.
+Tom de voz: profissional, direto, confiante, brasileiro, sem jargão técnico. Foco no benefício prático ("vender mais", "controlar tudo", "fechar o caixa em segundos").
+🎨 Identidade visual
+Cores principais:
+Roxo PDVIO: #7c3aed (primary, gradientes)
+Roxo escuro: #1a0d2e (fundos escuros)
+Preto profundo: #0a0a0a
+Branco: #ffffff
+Acentos: gradientes roxo → magenta (from-violet-500 to-fuchsia-500)
+Tipografia: Inter (Google Fonts), pesos 400/500/600/700/800
+Estilo: dark mode como padrão, com toggle para light. Cards com bordas suaves (rounded-2xl), sombras sutis, gradientes nos heros, microanimações no hover, ícones do lucide-react.
+Logo / banner: usar a imagem og-image.jpg enviada (banner preto com roxo "VENDA MAIS. CONTROLE TUDO. PDVIO." e o "P" estilizado).
+🧱 Stack técnica
+React 18 + Vite + TypeScript
+TailwindCSS + shadcn/ui
+wouter ou react-router-dom para rotas
+lucide-react para ícones
+react-icons/si para logos de empresa
+100% responsivo (mobile-first), com SEO completo (title, meta description, Open Graph, Twitter Card)
+Fonte: Inter via Google Fonts
+🗂️ Estrutura de páginas
+1. Home (/)
+Header fixo transparente que vira sólido ao rolar, com:
+Logo PDVIO à esquerda
+Menu central: Início · Funcionalidades · Planos · Quem somos · Contato
+À direita: botão "Entrar" (outline) + botão "Criar conta grátis" (primary, gradiente roxo)
+Ambos abrem https://app.{dominioUsado}/auth em nova aba (target="_blank" rel="noopener")
+Configurar o domínio do app via variável VITE_APP_URL (default: https://app.pdvio.com.br/auth)
+Hero (full-screen)
+Fundo escuro com gradiente roxo + partículas/blobs sutis
+Título grande: "Venda mais. Controle tudo."
+Subtítulo: "O PDV completo na nuvem para o seu comércio: caixa, comandas, cozinha, estoque e relatórios — em qualquer dispositivo."
+2 CTAs: "Começar grátis" (gradiente) e "Ver como funciona" (ghost, scroll para features)
+Mockup/screenshot do dashboard à direita (placeholder)
+Selo: "✓ Sem cartão de crédito · ✓ 14 dias grátis · ✓ Suporte em português"
+Logos de confiança / "Já usado por +X comércios" (faixa cinza)
+Funcionalidades (grid 3x3 com cards e ícones lucide):
+🛒 Frente de caixa (PDV) — Vendas rápidas com leitor de código de barras, atalhos de teclado e múltiplas formas de pagamento (PIX, dinheiro, cartão, ticket, misto).
+📋 Comandas e mesas — Gerencie pedidos por mesa, divida contas, adicione observações e adicionais ("sem cebola", queijo extra, etc.).
+🍳 KDS — Tela da cozinha — Pedidos preparados aparecem em tempo real para a cozinha; marque como pronto com um clique.
+📦 Produtos e estoque — Catálogo com categorias, código de barras, adicionais com preço e produtos preparados na cozinha.
+💰 Caixa controlado — Abertura, sangria, suprimento e fechamento com conferência por forma de pagamento.
+📊 Relatórios e Dashboard — Vendas do dia, ticket médio, métodos de pagamento, comparativos e auditoria de tudo.
+🔐 Permissões por cargo — Dono, Gerente, Caixa, Garçom, Cozinha — cada um vê só o que precisa.
+🖨️ Impressão térmica — ESC/POS via USB, Serial e Bluetooth, com fallback para impressão do navegador.
+📱 PWA — App instalável — Funciona como aplicativo no celular ou desktop.
+Como funciona (timeline horizontal de 4 passos):
+Crie sua conta grátis
+Cadastre seus produtos
+Abra o caixa e comece a vender
+Acompanhe tudo pelos relatórios
+Para quem é (cards com fotos):
+Restaurantes · Lanchonetes · Bares · Mercados · Distribuidoras · Lojas físicas · Delivery
+Depoimentos (slider com 3 cards — pode usar nomes fictícios brasileiros)
+Planos (3 cards: Grátis · Pro · Empresarial — com checklist de features e CTA "Começar agora")
+Grátis: 1 caixa, até 50 produtos
+Pro: caixas ilimitados, KDS, comandas, suporte prioritário — R$ 79/mês
+Empresarial: multi-loja, API, gerente de conta dedicado — sob consulta
+FAQ (accordion com 6-8 perguntas comuns: "Preciso instalar?", "Funciona offline?", "Emite NF-e?", "Posso cancelar quando quiser?", "Tem fidelidade?", "Funciona no celular?")
+CTA final (faixa roxa em destaque): "Pronto para vender mais?" + botão "Criar conta grátis" → app.pdvio.com.br/auth
+Footer com 4 colunas:
+PDVIO (logo + slogan + redes sociais: Instagram, WhatsApp, YouTube)
+Produto (Funcionalidades, Planos, Roadmap, Novidades)
+Empresa (Quem somos, Contato, Blog, Carreiras)
+Legal (Termos de uso, Política de privacidade, LGPD)
+Linha inferior: "© 2026 PDVIO. Todos os direitos reservados."
+2. Quem somos (/quem-somos)
+Hero com headline: "Tecnologia brasileira para o comércio brasileiro"
+Texto sobre missão, visão, valores
+Seção "Nossa história" (timeline)
+Grid com fotos da equipe (placeholders) + cargos
+Números (cards): "+X comércios atendidos · +X vendas processadas · 99,9% uptime · Suporte em português"
+CTA: "Faça parte" → app.pdvio.com.br/auth
+3. Funcionalidades (/funcionalidades)
+Lista expandida e detalhada de cada módulo (PDV, Comandas, KDS, Estoque, Financeiro, Relatórios, Auditoria, Permissões, Impressão, PWA), cada um com:
+Título, descrição longa, screenshot/mockup, lista de subfeatures
+Tabela comparativa "PDVIO vs. concorrência tradicional"
+4. Planos (/planos)
+Mesma estrutura de planos da home, mas com tabela comparativa completa de features
+Toggle Mensal / Anual (com desconto no anual)
+FAQ específica de cobrança
+5. Contato (/contato)
+Hero compacto: "Fale com a gente"
+Grid 2 colunas:
+Esquerda: formulário (Nome, Empresa, E-mail, WhatsApp, Como podemos ajudar?, Mensagem) com botão "Enviar mensagem"
+O formulário pode usar mailto: ou um endpoint stub (ex: /api/contact)
+Direita: cards com canais de contato
+WhatsApp: (link https://wa.me/55XXXXXXXXXXX)
+E-mail: contato@pdvio.com.br
+Suporte: clientes existentes acessam pelo painel
+Endereço (placeholder)
+FAQ rápida no final
+6. 404 — página personalizada com ilustração e botão "Voltar para a home"
+⚙️ Comportamento dos botões de auth
+Em toda ocorrência dos botões "Entrar" e "Criar conta" (header, hero, planos, CTAs, footer), o destino deve ser:
+const APP_URL = import.meta.env.VITE_APP_URL || "https://app.pdvio.com.br/auth";
+// uso: <a href={APP_URL} target="_blank" rel="noopener noreferrer">Entrar</a>
+Entrar e Criar conta abrem a mesma URL (/auth), em nova aba.
+Adicione data-testid="link-login" e data-testid="link-signup" nos botões.
+🔍 SEO e meta tags
+No index.html, configure:
+<title>PDVIO — Sistema de ponto de venda para o seu negócio</title>
+<meta name="description" content="PDV moderno com frente de caixa, comandas, estoque inteligente e gestão multi-loja em tempo real." />
+<meta property="og:title" content="PDVIO — Venda mais. Controle tudo." />
+<meta property="og:description" content="O PDV completo na nuvem: caixa, comandas, cozinha, estoque e relatórios." />
+<meta property="og:image" content="/og-image.jpg" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="/og-image.jpg" />
+Inclua robots.txt, sitemap.xml e marcação JSON-LD de Organization e Product.
+✅ Checklist final
+ Dark mode por padrão com toggle
+ 100% responsivo (testar em 375px, 768px, 1280px, 1920px)
+ Animações suaves (fade-in, scroll reveal) sem exagero
+ Lighthouse: Performance > 90, Acessibilidade > 95, SEO > 95
+ Todos os botões "Entrar" / "Criar conta" abrem app.{dominio}/auth em nova aba
+ Variável de ambiente VITE_APP_URL configurável
+ data-testid em todos os elementos interativos
+ Favicon e Apple touch icon configurados
+ Banner social (/og-image.jpg) configurado em todas as páginas
+
+
+
