@@ -826,21 +826,49 @@ export default function Home() {
                               <span className="flex items-center gap-1 text-muted-foreground"><span className="w-2 h-2 rounded-full bg-muted-foreground/40"></span>Ontem</span>
                             </div>
                           </div>
-                          <div className="flex-1 flex items-end gap-1 relative">
-                            {[35, 50, 42, 65, 55, 80, 70, 90, 75, 95, 85, 100].map((h, i) => {
-                              const prev = [30, 45, 38, 50, 48, 62, 58, 72, 68, 78, 70, 82][i];
-                              return (
-                                <div key={i} className="flex-1 flex flex-col items-stretch gap-0.5">
-                                  <div className="flex items-end gap-0.5 h-full">
-                                    <div className="flex-1 bg-muted-foreground/15 rounded-t-sm" style={{ height: `${prev}%` }}></div>
-                                    <div className="flex-1 bg-gradient-to-t from-primary to-fuchsia-500 rounded-t-sm" style={{ height: `${h}%` }}></div>
-                                  </div>
-                                </div>
-                              );
-                            })}
-                          </div>
-                          <div className="flex justify-between text-[9px] text-muted-foreground mt-1">
-                            {["10h", "12h", "14h", "16h", "18h", "20h", "22h"].map((t, i) => <span key={i}>{t}</span>)}
+                          <div className="flex-1 min-h-0 -mx-1">
+                            <ResponsiveContainer width="100%" height="100%">
+                              <AreaChart
+                                data={[
+                                  { h: "10h", hoje: 420, ontem: 380 },
+                                  { h: "11h", hoje: 680, ontem: 520 },
+                                  { h: "12h", hoje: 1240, ontem: 980 },
+                                  { h: "13h", hoje: 1480, ontem: 1120 },
+                                  { h: "14h", hoje: 1180, ontem: 940 },
+                                  { h: "15h", hoje: 920, ontem: 860 },
+                                  { h: "16h", hoje: 1050, ontem: 880 },
+                                  { h: "17h", hoje: 1380, ontem: 1140 },
+                                  { h: "18h", hoje: 1820, ontem: 1420 },
+                                  { h: "19h", hoje: 2240, ontem: 1780 },
+                                  { h: "20h", hoje: 2480, ontem: 1920 },
+                                  { h: "21h", hoje: 2120, ontem: 1680 },
+                                  { h: "22h", hoje: 1680, ontem: 1320 },
+                                ]}
+                                margin={{ top: 8, right: 8, left: 8, bottom: 0 }}
+                              >
+                                <defs>
+                                  <linearGradient id="dashHoje" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity={0.45} />
+                                    <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity={0} />
+                                  </linearGradient>
+                                  <linearGradient id="dashOntem" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor="hsl(var(--muted-foreground))" stopOpacity={0.18} />
+                                    <stop offset="100%" stopColor="hsl(var(--muted-foreground))" stopOpacity={0} />
+                                  </linearGradient>
+                                </defs>
+                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" opacity={0.5} />
+                                <XAxis dataKey="h" axisLine={false} tickLine={false} tick={{ fontSize: 9, fill: "hsl(var(--muted-foreground))" }} interval={1} />
+                                <YAxis hide />
+                                <Tooltip
+                                  cursor={{ stroke: "hsl(var(--primary))", strokeWidth: 1.5, strokeDasharray: "4 4" }}
+                                  contentStyle={{ backgroundColor: "hsl(var(--card))", borderColor: "hsl(var(--border))", borderRadius: 10, fontSize: 11, fontWeight: 600, padding: "6px 10px" }}
+                                  formatter={(value: number, name: string) => [formatBRL(value), name === "hoje" ? "Hoje" : "Ontem"]}
+                                  labelFormatter={(l) => `Horário ${l}`}
+                                />
+                                <Area type="monotone" dataKey="ontem" stroke="hsl(var(--muted-foreground))" strokeWidth={1.5} strokeDasharray="4 3" fill="url(#dashOntem)" />
+                                <Area type="monotone" dataKey="hoje" stroke="hsl(var(--primary))" strokeWidth={2.5} fill="url(#dashHoje)" />
+                              </AreaChart>
+                            </ResponsiveContainer>
                           </div>
                         </div>
 
