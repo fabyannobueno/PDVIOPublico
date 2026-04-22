@@ -98,7 +98,7 @@ export default function About() {
                 transition={{ duration: 0.5 }}
                 className={`relative mb-16 md:w-1/2 ${i % 2 === 0 ? 'md:pr-16 md:ml-0 md:text-right' : 'md:pl-16 md:ml-auto'}`}
               >
-                <div className={`absolute top-2 w-12 h-12 bg-background border-4 border-primary rounded-full flex items-center justify-center z-10 -left-14 md:left-auto ${i % 2 === 0 ? 'md:-right-16' : 'md:-left-16'}`}>
+                <div className={`absolute top-2 w-12 h-12 bg-background border-4 border-primary rounded-full flex items-center justify-center z-10 -left-14 md:left-auto ${i % 2 === 0 ? 'md:-right-6 md:translate-x-1/2' : 'md:-left-6 md:-translate-x-1/2'}`}>
                   <item.icon className="w-5 h-5 text-primary" />
                 </div>
                 <div className="bg-card border border-border p-6 rounded-2xl shadow-lg">
