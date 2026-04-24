@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Mail, Phone, MessageSquare, ArrowRight, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
-import { WHATSAPP_PHONE, WHATSAPP_URL, CONTACT_EMAIL, COMPANY_ADDRESS_LINE1, COMPANY_ADDRESS_LINE2, BREVO_API_KEY } from "@/lib/constants";
+import { WHATSAPP_PHONE, WHATSAPP_URL, CONTACT_EMAIL, COMPANY_ADDRESS_LINE1, COMPANY_ADDRESS_LINE2, BREVO_API_KEY, SENDER_EMAIL } from "@/lib/constants";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -46,7 +46,7 @@ export default function Contact() {
           accept: "application/json",
         },
         body: JSON.stringify({
-          sender: { name: name || "Site PDVIO", email: CONTACT_EMAIL },
+          sender: { name: "Site PDVIO", email: SENDER_EMAIL },
           replyTo: { email, name: name || undefined },
           to: [{ email: CONTACT_EMAIL, name: "PDVIO" }],
           subject: `Contato do site — ${company || name || email}`,
