@@ -6,24 +6,74 @@ import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Mail, Phone, MessageSquare, ArrowRight, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
-import { WHATSAPP_PHONE, WHATSAPP_URL, CONTACT_EMAIL, COMPANY_ADDRESS_LINE1, COMPANY_ADDRESS_LINE2 } from "@/lib/constants";
+import { WHATSAPP_PHONE, WHATSAPP_URL, CONTACT_EMAIL, COMPANY_ADDRESS_LINE1, COMPANY_ADDRESS_LINE2, BREVO_API_KEY } from "@/lib/constants";
 
 export default function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("name") || "");
+    const company = String(data.get("company") || "");
+    const email = String(data.get("email") || "");
+    const whatsapp = String(data.get("whatsapp") || "");
+    const message = String(data.get("message") || "");
+
     setIsSubmitting(true);
-    
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    const escape = (s: string) =>
+      s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+    const htmlContent = `
+      <h2>Nova mensagem do site</h2>
+      <p><strong>Nome:</strong> ${escape(name)}</p>
+      <p><strong>Empresa:</strong> ${escape(company)}</p>
+      <p><strong>E-mail:</strong> ${escape(email)}</p>
+      <p><strong>WhatsApp:</strong> ${escape(whatsapp)}</p>
+      <p><strong>Mensagem:</strong></p>
+      <p>${escape(message).replace(/\n/g, "<br/>")}</p>
+    `;
+
+    try {
+      const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+        method: "POST",
+        headers: {
+          "api-key": BREVO_API_KEY,
+          "content-type": "application/json",
+          accept: "application/json",
+        },
+        body: JSON.stringify({
+          sender: { name: name || "Site PDVIO", email: CONTACT_EMAIL },
+          replyTo: { email, name: name || undefined },
+          to: [{ email: CONTACT_EMAIL, name: "PDVIO" }],
+          subject: `Contato do site — ${company || name || email}`,
+          htmlContent,
+        }),
+      });
+
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(err || `HTTP ${res.status}`);
+      }
+
       toast({
         title: "Mensagem enviada com sucesso!",
         description: "Nossa equipe retornará em até 2 horas.",
       });
-      (e.target as HTMLFormElement).reset();
-    }, 1000);
+      form.reset();
+    } catch (err) {
+      toast({
+        title: "Erro ao enviar mensagem",
+        description: "Tente novamente ou fale com a gente pelo WhatsApp.",
+        variant: "destructive",
+      });
+      console.error("Brevo error:", err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -111,28 +161,28 @@ export default function Contact() {
                       <div className="grid md:grid-cols-2 gap-6">
                         <div className="space-y-2 relative group">
                           <label htmlFor="name" className="text-sm font-bold text-muted-foreground group-focus-within:text-primary transition-colors">Nome completo</label>
-                          <Input id="name" required placeholder="João da Silva" className="bg-muted/30 border-border/50 h-12 rounded-xl focus-visible:ring-primary/50 text-base" />
+                          <Input id="name" name="name" required placeholder="João da Silva" className="bg-muted/30 border-border/50 h-12 rounded-xl focus-visible:ring-primary/50 text-base" />
                         </div>
                         <div className="space-y-2 relative group">
                           <label htmlFor="company" className="text-sm font-bold text-muted-foreground group-focus-within:text-primary transition-colors">Empresa</label>
-                          <Input id="company" required placeholder="Sua Loja" className="bg-muted/30 border-border/50 h-12 rounded-xl focus-visible:ring-primary/50 text-base" />
+                          <Input id="company" name="company" required placeholder="Sua Loja" className="bg-muted/30 border-border/50 h-12 rounded-xl focus-visible:ring-primary/50 text-base" />
                         </div>
                       </div>
                       
                       <div className="grid md:grid-cols-2 gap-6">
                         <div className="space-y-2 relative group">
                           <label htmlFor="email" className="text-sm font-bold text-muted-foreground group-focus-within:text-primary transition-colors">E-mail corporativo</label>
-                          <Input id="email" type="email" required placeholder="joao@empresa.com.br" className="bg-muted/30 border-border/50 h-12 rounded-xl focus-visible:ring-primary/50 text-base" />
+                          <Input id="email" name="email" type="email" required placeholder="joao@empresa.com.br" className="bg-muted/30 border-border/50 h-12 rounded-xl focus-visible:ring-primary/50 text-base" />
                         </div>
                         <div className="space-y-2 relative group">
                           <label htmlFor="whatsapp" className="text-sm font-bold text-muted-foreground group-focus-within:text-primary transition-colors">WhatsApp</label>
-                          <Input id="whatsapp" required placeholder="(11) 99999-9999" className="bg-muted/30 border-border/50 h-12 rounded-xl focus-visible:ring-primary/50 text-base" />
+                          <Input id="whatsapp" name="whatsapp" required placeholder="(11) 99999-9999" className="bg-muted/30 border-border/50 h-12 rounded-xl focus-visible:ring-primary/50 text-base" />
                         </div>
                       </div>
                       
                       <div className="space-y-2 relative group">
                         <label htmlFor="message" className="text-sm font-bold text-muted-foreground group-focus-within:text-primary transition-colors">Como podemos ajudar?</label>
-                        <Textarea id="message" required placeholder="Detalhe sua necessidade, número de lojas, etc." className="min-h-[150px] bg-muted/30 border-border/50 rounded-xl focus-visible:ring-primary/50 text-base resize-none" />
+                        <Textarea id="message" name="message" required placeholder="Detalhe sua necessidade, número de lojas, etc." className="min-h-[150px] bg-muted/30 border-border/50 rounded-xl focus-visible:ring-primary/50 text-base resize-none" />
                       </div>
                       
                       <Button type="submit" className="w-full h-14 text-lg font-bold rounded-xl btn-shine bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white border-0 shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform" disabled={isSubmitting}>
