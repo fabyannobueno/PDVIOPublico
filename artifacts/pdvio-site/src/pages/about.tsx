@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { REGISTER_URL } from "@/lib/constants";
+import { REGISTER_URL, asset } from "@/lib/constants";
 import { Target, Eye, Heart, Code2, Users, Rocket, Building2 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -122,7 +122,7 @@ export default function About() {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { name: "Lucas", role: "CEO & Produto", color: "bg-purple-500" },
+              { name: "Fabiano Bueno", role: "CEO & Produto", color: "bg-purple-500", image: asset("fabiano-bueno.webp") },
               { name: "Marina", role: "CTO", color: "bg-fuchsia-500" },
               { name: "Thiago", role: "Design", color: "bg-blue-500" },
               { name: "Julia", role: "Sucesso do Cliente", color: "bg-orange-500" },
@@ -134,6 +134,9 @@ export default function About() {
               <motion.div key={i} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: i * 0.05 }}>
                 <Card className="border-border bg-card overflow-hidden group cursor-pointer">
                   <div className={`aspect-square ${member.color} relative`}>
+                    {member.image && (
+                      <img src={member.image} alt={member.name} className="absolute inset-0 w-full h-full object-cover" />
+                    )}
                     <div className="absolute inset-0 bg-noise opacity-20 mix-blend-overlay"></div>
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-sm text-white font-bold text-center p-4">
                       {member.role}
