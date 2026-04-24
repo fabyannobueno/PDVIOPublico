@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
-import { APP_URL, asset } from "@/lib/constants";
+import { REGISTER_URL, asset } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -262,7 +262,7 @@ export default function Home() {
               
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 pt-2">
                 <Button asChild size="lg" className="h-16 px-8 text-lg btn-shine bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-2xl shadow-xl shadow-primary/25 hover:scale-105 active:scale-95 transition-all">
-                  <a href={APP_URL} target="_blank" rel="noopener noreferrer" data-testid="link-signup">
+                  <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer" data-testid="link-signup">
                     Começar grátis <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
@@ -1017,7 +1017,7 @@ export default function Home() {
               Junte-se a milhares de comerciantes que já simplificaram suas vendas com o PDVIO.
             </p>
             <Button asChild size="lg" className="h-16 px-10 text-xl btn-shine bg-foreground text-background hover:bg-foreground/90 rounded-full shadow-2xl">
-              <a href={APP_URL} target="_blank" rel="noopener noreferrer">
+              <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer">
                 Criar conta gratuitamente
               </a>
             </Button>

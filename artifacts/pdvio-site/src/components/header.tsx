@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { useTheme } from "./theme-provider";
-import { APP_URL, asset } from "@/lib/constants";
+import { LOGIN_URL, REGISTER_URL, asset } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -86,13 +86,13 @@ export function Header() {
           </Button>
           
           <Button variant="ghost" asChild className="font-semibold hover:bg-primary/10 hover:text-primary rounded-full px-6" data-testid="link-login">
-            <a href={APP_URL} target="_blank" rel="noopener noreferrer">
+            <a href={LOGIN_URL} target="_blank" rel="noopener noreferrer">
               Entrar
             </a>
           </Button>
           
           <Button asChild className="btn-shine rounded-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500 text-white border-0 shadow-lg shadow-primary/20 px-6 font-semibold transition-all hover:scale-105 active:scale-95" data-testid="link-signup">
-            <a href={APP_URL} target="_blank" rel="noopener noreferrer">
+            <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer">
               Começar grátis
             </a>
           </Button>
@@ -150,12 +150,12 @@ export function Header() {
               </nav>
               <div className="flex flex-col gap-3 pt-4 border-t border-border">
                 <Button variant="outline" asChild className="w-full justify-center h-12 rounded-xl text-base font-semibold" data-testid="link-login-mobile">
-                  <a href={APP_URL} target="_blank" rel="noopener noreferrer">
+                  <a href={LOGIN_URL} target="_blank" rel="noopener noreferrer">
                     Entrar
                   </a>
                 </Button>
                 <Button asChild className="w-full justify-center h-12 rounded-xl text-base font-semibold bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white border-0 shadow-lg shadow-primary/20" data-testid="link-signup-mobile">
-                  <a href={APP_URL} target="_blank" rel="noopener noreferrer">
+                  <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer">
                     Criar conta grátis
                   </a>
                 </Button>

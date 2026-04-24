@@ -1,4 +1,6 @@
 export const APP_URL = import.meta.env.VITE_APP_URL;
+export const LOGIN_URL = import.meta.env.VITE_LOGIN_URL;
+export const REGISTER_URL = import.meta.env.VITE_REGISTER_URL;
 export const TERMS_URL = import.meta.env.VITE_TERMS_URL;
 export const PRIVACY_URL = import.meta.env.VITE_PRIVACY_URL;
 export const LGPD_URL = import.meta.env.VITE_LGPD_URL;

@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { SiInstagram, SiWhatsapp, SiYoutube } from "react-icons/si";
 import { useTheme } from "./theme-provider";
-import { APP_URL, WHATSAPP_URL, TERMS_URL, PRIVACY_URL, LGPD_URL, INTEGRATIONS_URL, CHANGELOG_URL, CAREERS_URL, BLOG_URL, COMPANY_CNPJ, INSTAGRAM_URL, YOUTUBE_URL, asset } from "@/lib/constants";
+import { WHATSAPP_URL, TERMS_URL, PRIVACY_URL, LGPD_URL, INTEGRATIONS_URL, CHANGELOG_URL, CAREERS_URL, BLOG_URL, COMPANY_CNPJ, INSTAGRAM_URL, YOUTUBE_URL, asset } from "@/lib/constants";
 
 export function Footer() {
   const { theme } = useTheme();

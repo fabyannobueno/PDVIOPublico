@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { APP_URL, asset } from "@/lib/constants";
+import { REGISTER_URL, asset } from "@/lib/constants";
 import { CheckCircle2, CreditCard, Store, ChefHat, Package, Lock, BarChart3, Users, Printer, MonitorSmartphone, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -216,7 +216,7 @@ export default function Features() {
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-4xl md:text-5xl font-black mb-8 tracking-tighter">Chega de sofrer com sistemas ruins.</h2>
           <Button asChild size="lg" className="h-16 px-10 text-xl btn-shine bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-full shadow-2xl hover:scale-105 transition-transform">
-            <a href={APP_URL} target="_blank" rel="noopener noreferrer">Começar teste de 14 dias grátis</a>
+            <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer">Começar teste de 14 dias grátis</a>
           </Button>
         </div>
       </section>

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Switch } from "@/components/ui/switch";
-import { APP_URL, WHATSAPP_URL } from "@/lib/constants";
+import { REGISTER_URL, WHATSAPP_URL } from "@/lib/constants";
 import { CheckCircle2, MessageSquare, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -53,7 +53,7 @@ export default function Plans() {
                     <li className="flex items-center gap-3 text-muted-foreground/50"><CheckCircle2 className="h-5 w-5 shrink-0" /> <span className="text-sm">Sem KDS (Cozinha)</span></li>
                   </ul>
                   <Button asChild variant="outline" className="w-full h-12 rounded-xl font-bold text-base hover:bg-muted">
-                    <a href={APP_URL} target="_blank" rel="noopener noreferrer">Criar conta grátis</a>
+                    <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer">Criar conta grátis</a>
                   </Button>
                 </CardContent>
               </Card>
@@ -86,7 +86,7 @@ export default function Plans() {
                     <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-bold">Suporte prioritário (WhatsApp)</span></li>
                   </ul>
                   <Button asChild className="w-full h-14 rounded-xl font-bold text-lg btn-shine bg-gradient-to-r from-purple-600 to-fuchsia-600 shadow-lg shadow-primary/25 hover:scale-105 transition-transform">
-                    <a href={APP_URL} target="_blank" rel="noopener noreferrer">Testar grátis por 14 dias</a>
+                    <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer">Testar grátis por 14 dias</a>
                   </Button>
                 </CardContent>
               </Card>
