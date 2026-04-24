@@ -68,7 +68,11 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="pdvio-theme">
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+          <WouterRouter base={(() => {
+            const b = import.meta.env.BASE_URL;
+            if (!b || b === "/" || b === "./" || b.startsWith(".")) return "";
+            return b.replace(/\/$/, "");
+          })()}>
             <Router />
           </WouterRouter>
           <Toaster />
