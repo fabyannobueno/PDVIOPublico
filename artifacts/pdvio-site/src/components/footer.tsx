@@ -1,7 +1,9 @@
 import { Link } from "wouter";
 import { SiInstagram, SiWhatsapp, SiYoutube } from "react-icons/si";
 import { useTheme } from "./theme-provider";
-import { WHATSAPP_URL, TERMS_URL, PRIVACY_URL, LGPD_URL, INTEGRATIONS_URL, CHANGELOG_URL, CAREERS_URL, BLOG_URL, COMPANY_CNPJ, INSTAGRAM_URL, YOUTUBE_URL, asset } from "@/lib/constants";
+import { WHATSAPP_URL, TERMS_URL, PRIVACY_URL, LGPD_URL, INTEGRATIONS_URL, CHANGELOG_URL, CAREERS_URL, BLOG_URL, COMPANY_CNPJ, INSTAGRAM_URL, YOUTUBE_URL } from "@/lib/constants";
+import logoDark from "@/assets/logo-dark.png";
+import logoLight from "@/assets/logo-light.png";
 
 export function Footer() {
   const { theme } = useTheme();
@@ -15,7 +17,7 @@ export function Footer() {
           <div className="flex flex-col gap-6 lg:col-span-2">
             <Link href="/">
               <img
-                src={theme === "dark" ? asset("logo-dark.png") : asset("logo-light.png")}
+                src={theme === "dark" ? logoDark : logoLight}
                 alt="PDVIO Logo"
                 className="h-10 w-auto"
               />

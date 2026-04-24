@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { REGISTER_URL, asset } from "@/lib/constants";
+import pdvioIcon from "@/assets/pdvio-icon.png";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -314,7 +315,7 @@ export default function Home() {
                   
                   <div className="flex flex-1 overflow-hidden relative z-10">
                     <div className="w-20 border-r border-border bg-muted/20 flex flex-col items-center py-6 gap-8">
-                      <img src={asset("pdvio-icon.png")} alt="PDVIO" className="w-10 h-10 object-contain drop-shadow-lg" />
+                      <img src={pdvioIcon} alt="PDVIO" className="w-10 h-10 object-contain drop-shadow-lg" />
                       <MonitorSmartphone className="h-6 w-6 text-primary drop-shadow-md" />
                       <ShoppingCart className="h-6 w-6 text-muted-foreground/60 hover:text-muted-foreground transition-colors" />
                       <Package className="h-6 w-6 text-muted-foreground/60 hover:text-muted-foreground transition-colors" />
@@ -557,7 +558,7 @@ export default function Home() {
                     <div className="grid grid-cols-12 h-full bg-background">
                       {/* Sidebar */}
                       <div className="col-span-1 bg-gradient-to-b from-muted/40 to-muted/10 border-r border-border flex flex-col items-center py-3 gap-1.5">
-                        <img src={asset("pdvio-icon.png")} alt="PDVIO" className="w-8 h-8 object-contain mb-2" />
+                        <img src={pdvioIcon} alt="PDVIO" className="w-8 h-8 object-contain mb-2" />
                         {[
                           { i: CreditCard, a: true, l: "PDV" },
                           { i: ShoppingCart, l: "Pedidos" },
