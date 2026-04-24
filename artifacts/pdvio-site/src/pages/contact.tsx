@@ -8,9 +8,19 @@ import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import { WHATSAPP_PHONE, WHATSAPP_URL, CONTACT_EMAIL, COMPANY_ADDRESS_LINE1, COMPANY_ADDRESS_LINE2, BREVO_API_KEY, SENDER_EMAIL } from "@/lib/constants";
 
+function maskPhone(value: string) {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  if (digits.length <= 2) return digits.length ? `(${digits}` : "";
+  if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+  if (digits.length <= 10)
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+}
+
 export default function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [whatsapp, setWhatsapp] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -64,6 +74,7 @@ export default function Contact() {
         description: "Nossa equipe retornará em até 2 horas.",
       });
       form.reset();
+      setWhatsapp("");
     } catch (err) {
       toast({
         title: "Erro ao enviar mensagem",
@@ -176,7 +187,18 @@ export default function Contact() {
                         </div>
                         <div className="space-y-2 relative group">
                           <label htmlFor="whatsapp" className="text-sm font-bold text-muted-foreground group-focus-within:text-primary transition-colors">WhatsApp</label>
-                          <Input id="whatsapp" name="whatsapp" required placeholder="(11) 99999-9999" className="bg-muted/30 border-border/50 h-12 rounded-xl focus-visible:ring-primary/50 text-base" />
+                          <Input
+                            id="whatsapp"
+                            name="whatsapp"
+                            type="tel"
+                            inputMode="tel"
+                            required
+                            placeholder="(11) 99999-9999"
+                            value={whatsapp}
+                            onChange={(e) => setWhatsapp(maskPhone(e.target.value))}
+                            maxLength={15}
+                            className="bg-muted/30 border-border/50 h-12 rounded-xl focus-visible:ring-primary/50 text-base"
+                          />
                         </div>
                       </div>
                       
