@@ -133,6 +133,9 @@ export default function Features() {
                         src={feature.image}
                         alt={feature.title}
                         loading="lazy"
+                        decoding="async"
+                        width={1200}
+                        height={750}
                         className="w-full h-auto block"
                       />
                     </CardContent>

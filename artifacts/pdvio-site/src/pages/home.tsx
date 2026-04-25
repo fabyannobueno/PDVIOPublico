@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { REGISTER_URL, asset } from "@/lib/constants";
 import pdvioIcon from "@/assets/pdvio-icon.png";
@@ -87,122 +87,99 @@ function AnimatedSection({ children, className = "", delay = 0 }: { children: Re
   );
 }
 
-// Spotlight Card component
+// Spotlight Card component (DOM-driven, no React re-renders on mousemove)
 function SpotlightCard({ children, className = "" }: { children: React.ReactNode, className?: string }) {
   const divRef = useRef<HTMLDivElement>(null);
-  const [isFocused, setIsFocused] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [opacity, setOpacity] = useState(0);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!divRef.current || isFocused) return;
-
-    const div = divRef.current;
-    const rect = div.getBoundingClientRect();
-
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  };
-
-  const handleFocus = () => {
-    setIsFocused(true);
-    setOpacity(1);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
-    setOpacity(0);
+    if (!divRef.current || !overlayRef.current) return;
+    const rect = divRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    overlayRef.current.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(124, 58, 237, 0.1), transparent 40%)`;
   };
 
   const handleMouseEnter = () => {
-    setOpacity(1);
+    if (overlayRef.current) overlayRef.current.style.opacity = "1";
   };
 
   const handleMouseLeave = () => {
-    setOpacity(0);
+    if (overlayRef.current) overlayRef.current.style.opacity = "0";
   };
 
   return (
     <div
       ref={divRef}
       onMouseMove={handleMouseMove}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={`relative overflow-hidden ${className}`}
     >
       <div
-        className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
-        style={{
-          opacity,
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(124, 58, 237, 0.1), transparent 40%)`,
-        }}
+        ref={overlayRef}
+        className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300"
       />
       {children}
     </div>
   );
 }
 
-// Animated Counter component
+// Animated Counter component (DOM-driven, no React re-renders during animation)
 function AnimatedCounter({ value, prefix = "", suffix = "", currency = false }: { value: number, prefix?: string, suffix?: string, currency?: boolean }) {
-  const ref = useRef(null);
+  const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
-  const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    if (isInView) {
-      const end = value;
-      const duration = 2000;
-      const startTime = performance.now();
-
-      const updateCounter = (currentTime: number) => {
-        const elapsedTime = currentTime - startTime;
-        const progress = Math.min(elapsedTime / duration, 1);
-        const easeProgress = 1 - Math.pow(1 - progress, 4);
-
-        setCount(end * easeProgress);
-
-        if (progress < 1) {
-          requestAnimationFrame(updateCounter);
-        }
-      };
-
-      requestAnimationFrame(updateCounter);
+  const formatValue = (n: number): string => {
+    if (currency) {
+      return new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(n);
     }
-  }, [isInView, value]);
-
-  let formatted: string;
-  if (currency) {
-    formatted = new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(count);
-  } else {
-    const fmt = (n: number, digits: number) =>
+    const fmt = (val: number, digits: number) =>
       new Intl.NumberFormat("pt-BR", {
         minimumFractionDigits: 0,
         maximumFractionDigits: digits,
-      }).format(n);
+      }).format(val);
     let num: string;
     let abbr = "";
     if (value >= 1_000_000_000) {
-      num = fmt(count / 1_000_000_000, 1);
+      num = fmt(n / 1_000_000_000, 1);
       abbr = " bi";
     } else if (value >= 1_000_000) {
-      num = fmt(count / 1_000_000, 1);
+      num = fmt(n / 1_000_000, 1);
       abbr = " mi";
     } else if (value >= 1_000) {
-      num = fmt(count / 1_000, 1);
+      num = fmt(n / 1_000, 1);
       abbr = " mil";
     } else {
-      num = fmt(count, Number.isInteger(value) ? 0 : 1);
+      num = fmt(n, Number.isInteger(value) ? 0 : 1);
     }
-    formatted = `${prefix}${num}${abbr}${suffix}`;
-  }
+    return `${prefix}${num}${abbr}${suffix}`;
+  };
 
-  return <span ref={ref}>{currency ? formatted : formatted}</span>;
+  useEffect(() => {
+    if (!isInView || !ref.current) return;
+    const end = value;
+    const duration = 2000;
+    const startTime = performance.now();
+    let raf = 0;
+
+    const tick = (currentTime: number) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easeProgress = 1 - Math.pow(1 - progress, 4);
+      if (ref.current) ref.current.textContent = formatValue(end * easeProgress);
+      if (progress < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isInView, value]);
+
+  return <span ref={ref}>{formatValue(0)}</span>;
 }
 
 const formatBRL = (value: number) =>
@@ -215,9 +192,6 @@ const formatBRL = (value: number) =>
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("pdv");
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  
   const [emblaRef] = useEmblaCarousel({ loop: true, align: "center" });
 
   return (
@@ -255,11 +229,11 @@ export default function Home() {
                 </h1>
               </motion.div>
               
-              <motion.variants variants={fadeIn}>
+              <motion.div variants={fadeIn}>
                 <p className="text-xl md:text-2xl text-muted-foreground font-medium leading-relaxed max-w-xl">
                   O sistema de gestão na nuvem que acelera sua operação, reduz falhas e multiplica lucros. 
                 </p>
-              </motion.variants>
+              </motion.div>
               
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 pt-2">
                 <Button asChild size="lg" className="h-16 px-8 text-lg btn-shine bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-2xl shadow-xl shadow-primary/25 hover:scale-105 active:scale-95 transition-all">

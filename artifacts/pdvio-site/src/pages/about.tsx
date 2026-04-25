@@ -135,7 +135,7 @@ export default function About() {
                 <Card className="border-border bg-card overflow-hidden group cursor-pointer">
                   <div className={`aspect-square ${member.color} relative`}>
                     {member.image && (
-                      <img src={member.image} alt={member.name} className="absolute inset-0 w-full h-full object-cover" />
+                      <img src={member.image} alt={member.name} loading="lazy" decoding="async" width={400} height={400} className="absolute inset-0 w-full h-full object-cover" />
                     )}
                     <div className="absolute inset-0 bg-noise opacity-20 mix-blend-overlay"></div>
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-sm text-white font-bold text-center p-4">
