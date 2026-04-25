@@ -160,7 +160,7 @@ function AnimatedCounter({ value, prefix = "", suffix = "", currency = false }: 
         const progress = Math.min(elapsedTime / duration, 1);
         const easeProgress = 1 - Math.pow(1 - progress, 4);
 
-        setCount(Math.floor(end * easeProgress));
+        setCount(end * easeProgress);
 
         if (progress < 1) {
           requestAnimationFrame(updateCounter);
@@ -946,7 +946,7 @@ export default function Home() {
               { value: 2500, label: "Lojas ativas", prefix: "+" },
               { value: 1200000000, label: "Processados", prefix: "R$ " },
               { value: 99.9, label: "Uptime", suffix: "%" },
-              { value: 4.5, label: "Na App Store", suffix: " ★" }
+              { value: 4.9, label: "Na App Store", suffix: " ★" }
             ].map((stat, i) => (
               <AnimatedSection key={i} delay={i * 0.1} className="flex flex-col items-center justify-center">
                 <div className="text-5xl md:text-6xl font-black mb-3 tracking-tighter">
