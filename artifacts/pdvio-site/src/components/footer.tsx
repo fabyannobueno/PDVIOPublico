@@ -1,5 +1,7 @@
 import { Link } from "wouter";
 import { SiInstagram, SiWhatsapp, SiYoutube } from "react-icons/si";
+import { ArrowUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useTheme } from "./theme-provider";
 import { WHATSAPP_URL, TERMS_URL, PRIVACY_URL, LGPD_URL, INTEGRATIONS_URL, CHANGELOG_URL, CAREERS_URL, BLOG_URL, COMPANY_CNPJ, INSTAGRAM_URL, YOUTUBE_URL } from "@/lib/constants";
 import logoDark from "@/assets/logo-dark.png";
@@ -11,6 +13,14 @@ export function Footer() {
   return (
     <footer className="bg-card border-t border-border pt-24 pb-12 relative overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+      <Button
+        type="button"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label="Voltar ao topo"
+        className="absolute top-6 right-6 md:top-8 md:right-8 h-12 w-12 rounded-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500 text-white border-0 shadow-lg shadow-primary/30 hover:scale-110 active:scale-95 transition-transform z-20 p-0 flex items-center justify-center"
+      >
+        <ArrowUp className="h-5 w-5" />
+      </Button>
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-16">
           {/* Column 1 - Brand */}
