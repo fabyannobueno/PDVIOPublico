@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { REGISTER_URL, asset } from "@/lib/constants";
-import { CheckCircle2, CreditCard, Store, ChefHat, Package, Lock, BarChart3, Users, Printer, MonitorSmartphone, ArrowRight } from "lucide-react";
+import { CheckCircle2, CreditCard, Store, ChefHat, Package, Lock, BarChart3, Users, Printer, MonitorSmartphone, ArrowRight, Check, X } from "lucide-react";
 import { motion } from "framer-motion";
 
 const staggerContainer = {
@@ -176,34 +176,103 @@ export default function Features() {
 
       {/* Comparison Table */}
       <section className="py-32 bg-background">
-        <div className="container mx-auto px-4 max-w-5xl text-center">
-          <h2 className="text-4xl font-black mb-4 tracking-tight">A diferença é clara</h2>
-          <p className="text-xl text-muted-foreground mb-16">Veja por que as empresas estão migrando de sistemas legados para o PDVIO.</p>
-          
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black mb-4 tracking-tight">A diferença é clara</h2>
+            <p className="text-xl text-muted-foreground">Tudo que o PDVIO entrega — e que os sistemas antigos ainda cobram caro pra não ter.</p>
+          </div>
+
           <div className="overflow-hidden rounded-[2rem] border border-border bg-card shadow-2xl">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr>
-                  <th className="p-6 font-bold text-lg w-1/3 border-b border-border bg-muted/20">Recurso</th>
-                  <th className="p-6 font-black text-xl w-1/3 border-x border-b border-border bg-gradient-to-br from-primary/10 to-fuchsia-500/10 text-primary text-center">PDVIO</th>
-                  <th className="p-6 font-bold text-lg text-muted-foreground w-1/3 border-b border-border bg-muted/20 text-center">Sistemas Antigos</th>
+                  <th className="p-4 md:p-6 font-bold text-sm md:text-lg w-1/2 border-b border-border bg-muted/20">Recurso</th>
+                  <th className="p-4 md:p-6 font-black text-base md:text-xl w-1/4 border-x border-b border-border bg-gradient-to-br from-primary/10 to-fuchsia-500/10 text-primary text-center">PDVIO</th>
+                  <th className="p-4 md:p-6 font-bold text-sm md:text-lg text-muted-foreground w-1/4 border-b border-border bg-muted/20 text-center">Sistemas Antigos</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
                 {[
-                  { label: "Instalação", pdv: "Nuvem, em segundos", old: "Presencial, dias ou semanas" },
-                  { label: "Equipamento", pdv: "Qualquer PC, tablet ou celular", old: "Computadores caros específicos" },
-                  { label: "Atualizações", pdv: "Automáticas e gratuitas", old: "Lentas e pagas" },
-                  { label: "Modo Offline", pdv: "Sim (PWA)", old: "Depende de rede local" },
-                  { label: "Fidelidade", pdv: "Nenhuma. Cancele quando quiser.", old: "Contratos de 12 a 24 meses" },
-                  { label: "Suporte", pdv: "WhatsApp, tempo real", old: "Tickets, e-mail demorado" },
-                ].map((row, i) => (
-                  <tr key={i} className="group hover:bg-muted/10 transition-colors">
-                    <td className="p-6 font-medium">{row.label}</td>
-                    <td className="p-6 border-x border-border bg-gradient-to-br from-primary/[0.02] to-fuchsia-500/[0.02] text-foreground font-bold text-center">{row.pdv}</td>
-                    <td className="p-6 text-muted-foreground text-center">{row.old}</td>
-                  </tr>
-                ))}
+                  { group: "Operação" },
+                  { label: "Instalação 100% em nuvem", detail: "Sem servidor local, sem técnico", pdv: true, old: false },
+                  { label: "Funciona em PC, tablet e celular", detail: "Multiplataforma de verdade", pdv: true, old: false },
+                  { label: "Modo offline (PWA)", detail: "Vende mesmo sem internet, sincroniza depois", pdv: true, old: false },
+                  { label: "Atualizações automáticas e gratuitas", pdv: true, old: false },
+                  { label: "Sem fidelidade — cancele quando quiser", pdv: true, old: false },
+                  { label: "Suporte por WhatsApp em tempo real", pdv: true, old: false },
+                  { label: "Onboarding sozinho em 10 minutos", pdv: true, old: false },
+
+                  { group: "Frente de caixa" },
+                  { label: "PDV ultra-rápido com atalhos de teclado", pdv: true, old: true, oldNote: "Só os caros" },
+                  { label: "Leitor de código de barras USB", pdv: true, old: true },
+                  { label: "Venda por peso (balança)", pdv: true, old: true, oldNote: "Configuração paga" },
+                  { label: "PIX nativo no PDV", detail: "QR Code dinâmico com confirmação automática", pdv: true, old: false },
+                  { label: "TEF integrado (cartão)", pdv: true, old: true },
+                  { label: "Caixa blindado (fechamento cego)", pdv: true, old: false },
+                  { label: "Múltiplas formas de pagamento na mesma venda", pdv: true, old: true },
+
+                  { group: "Salão e cozinha" },
+                  { label: "KDS — Kitchen Display System", detail: "Pedidos na tela da cozinha, sem papel", pdv: true, old: false },
+                  { label: "Mapa de mesas visual e interativo", pdv: true, old: true, oldNote: "Plano premium" },
+                  { label: "Comandas eletrônicas no celular do garçom", pdv: true, old: false },
+                  { label: "Divisão de conta por pessoa", pdv: true, old: false },
+                  { label: "Transferência de itens entre mesas", pdv: true, old: true, oldNote: "Limitado" },
+                  { label: "Taxa de serviço automática", pdv: true, old: true },
+                  { label: "Filtros por setor (bar, cozinha, chapa)", pdv: true, old: false },
+
+                  { group: "Estoque e produtos" },
+                  { label: "Controle de estoque com alerta de mínimo", pdv: true, old: true },
+                  { label: "Fichas técnicas e baixa por ingrediente", pdv: true, old: false },
+                  { label: "Grupos de complementos e adicionais", pdv: true, old: false },
+                  { label: "Importação em massa via Excel", pdv: true, old: false },
+                  { label: "Histórico completo de movimentação", pdv: true, old: true },
+
+                  { group: "Gestão e BI" },
+                  { label: "Dashboard em tempo real no celular", detail: "Acompanhe vendas de qualquer lugar", pdv: true, old: false },
+                  { label: "Relatórios de DRE, Curva ABC e fluxo de caixa", pdv: true, old: false },
+                  { label: "Gestão multi-loja centralizada", pdv: true, old: true, oldNote: "Cobrança por loja" },
+                  { label: "Permissões granulares por cargo", pdv: true, old: true },
+                  { label: "Cadastro de clientes e fidelidade", pdv: true, old: true },
+
+                  { group: "Custo" },
+                  { label: "Teste grátis de 14 dias sem cartão", pdv: true, old: false },
+                  { label: "Sem taxa de instalação", pdv: true, old: false },
+                  { label: "Sem cobrança por terminal extra", pdv: true, old: false },
+                ].map((row, i) =>
+                  "group" in row ? (
+                    <tr key={i} className="bg-muted/30">
+                      <td colSpan={3} className="px-4 md:px-6 py-3 text-xs font-black uppercase tracking-wider text-primary">
+                        {row.group}
+                      </td>
+                    </tr>
+                  ) : (
+                    <tr key={i} className="hover:bg-muted/10 transition-colors">
+                      <td className="p-4 md:p-6">
+                        <div className="font-semibold text-foreground text-sm md:text-base">{row.label}</div>
+                        {row.detail && <div className="text-xs text-muted-foreground mt-1">{row.detail}</div>}
+                      </td>
+                      <td className="p-4 md:p-6 border-x border-border bg-gradient-to-br from-primary/[0.03] to-fuchsia-500/[0.03] text-center">
+                        <div className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-purple-600 to-fuchsia-600 shadow-md shadow-primary/20">
+                          <Check className="h-4 w-4 text-white" strokeWidth={3} />
+                        </div>
+                      </td>
+                      <td className="p-4 md:p-6 text-center">
+                        {row.old ? (
+                          <div className="inline-flex flex-col items-center gap-1">
+                            <div className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-muted border border-border">
+                              <Check className="h-4 w-4 text-muted-foreground" strokeWidth={3} />
+                            </div>
+                            {row.oldNote && <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-bold">{row.oldNote}</span>}
+                          </div>
+                        ) : (
+                          <div className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-destructive/10 border border-destructive/30">
+                            <X className="h-4 w-4 text-destructive" strokeWidth={3} />
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  )
+                )}
               </tbody>
             </table>
           </div>
