@@ -474,7 +474,7 @@ export default function Home() {
                     Nossa tecnologia PWA permite que você continue vendendo mesmo offline. Quando a conexão volta, tudo é sincronizado automaticamente.
                   </p>
                 </div>
-                <div className="relative z-10 w-56 h-56 md:w-80 md:h-80 shrink-0">
+                <div className="relative z-10 w-full max-w-sm h-72 md:w-80 md:h-80 md:max-w-none shrink-0">
                   <DotLottieReact
                     src="https://lottie.host/fbb051d4-9805-41c0-bd68-a6274dfac4a7/WaBto1fhcj.lottie"
                     loop
