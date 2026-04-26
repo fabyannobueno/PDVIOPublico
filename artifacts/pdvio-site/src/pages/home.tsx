@@ -461,7 +461,7 @@ export default function Home() {
             </AnimatedSection>
 
             {/* Bento 4: Offline */}
-            <AnimatedSection delay={0.4} className="md:col-span-3">
+            <AnimatedSection delay={0.4} className="md:col-span-3 min-h-[520px] md:min-h-[480px]">
               <SpotlightCard className="h-full rounded-[2rem] bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white border border-white/10 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 relative overflow-hidden">
                 <div className="absolute inset-0 bg-noise opacity-10 mix-blend-overlay"></div>
                 <div className="relative z-10 max-w-xl">
@@ -474,7 +474,7 @@ export default function Home() {
                     Nossa tecnologia PWA permite que você continue vendendo mesmo offline. Quando a conexão volta, tudo é sincronizado automaticamente.
                   </p>
                 </div>
-                <div className="relative z-10 w-full max-w-sm h-72 md:w-80 md:h-80 md:max-w-none shrink-0">
+                <div className="relative z-10 w-56 h-56 md:w-80 md:h-80 shrink-0">
                   <DotLottieReact
                     src="https://lottie.host/fbb051d4-9805-41c0-bd68-a6274dfac4a7/WaBto1fhcj.lottie"
                     loop
