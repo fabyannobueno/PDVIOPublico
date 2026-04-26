@@ -35,17 +35,21 @@ export default function Plans() {
       {/* Plans */}
       <section className="py-24 bg-muted/20">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
-            {/* Grátis */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto items-stretch">
+            {/* Iniciante */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
-              <Card className="border border-border/50 bg-card hover:-translate-y-2 transition-transform duration-300">
-                <CardContent className="p-8 flex flex-col h-full">
+              <Card className="border border-border/50 bg-card hover:-translate-y-2 transition-transform duration-300 h-full">
+                <CardContent className="p-7 flex flex-col h-full">
                   <h3 className="text-2xl font-bold mb-2">Iniciante</h3>
-                  <p className="text-muted-foreground text-sm h-10 leading-relaxed">Para quem está começando e precisa do básico bem feito.</p>
+                  <p className="text-muted-foreground text-sm h-12 leading-relaxed">Para quem está começando e precisa do básico bem feito.</p>
                   <div className="my-8">
-                    <span className="text-5xl font-black tracking-tighter">R$ 0</span><span className="text-muted-foreground font-medium">/mês</span>
+                    <div className="flex items-end gap-1">
+                      <span className="text-5xl font-black tracking-tighter">R$ 0</span>
+                      <span className="text-muted-foreground font-medium pb-1">/mês</span>
+                    </div>
+                    <p className="text-xs text-transparent font-bold mt-2 select-none">.</p>
                   </div>
-                  <ul className="flex flex-col gap-4 mb-10 flex-1">
+                  <ul className="flex flex-col gap-3.5 mb-8 flex-1">
                     <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-medium">1 Caixa / Usuário</span></li>
                     <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-medium">Até 50 produtos</span></li>
                     <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-medium">Relatórios básicos</span></li>
@@ -59,33 +63,67 @@ export default function Plans() {
               </Card>
             </motion.div>
 
+            {/* Essencial */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
+              <Card className="border border-border/50 bg-card hover:-translate-y-2 transition-transform duration-300 h-full">
+                <CardContent className="p-7 flex flex-col h-full">
+                  <h3 className="text-2xl font-bold mb-2">Essencial</h3>
+                  <p className="text-muted-foreground text-sm h-12 leading-relaxed">Para quem já tem clientes e precisa crescer com organização.</p>
+                  <div className="my-8">
+                    <div className="flex items-end gap-1">
+                      <span className="text-5xl font-black tracking-tighter">R$ {isAnnual ? '49' : '69'}</span>
+                      <span className="text-muted-foreground font-medium pb-1">/mês</span>
+                    </div>
+                    {isAnnual ? (
+                      <p className="text-xs text-green-500 font-bold mt-2">Cobrado R$ 588 anualmente</p>
+                    ) : (
+                      <p className="text-xs text-transparent font-bold mt-2 select-none">.</p>
+                    )}
+                  </div>
+                  <ul className="flex flex-col gap-3.5 mb-8 flex-1">
+                    <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-medium">Até 2 lojas</span></li>
+                    <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-medium">Até 1.000 produtos</span></li>
+                    <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-medium">3 usuários por loja</span></li>
+                    <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-medium">Comandas e mesas</span></li>
+                    <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-medium">Suporte por chat</span></li>
+                  </ul>
+                  <Button asChild variant="outline" className="w-full h-12 rounded-xl font-bold text-base hover:bg-muted">
+                    <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer">Testar grátis por 14 dias</a>
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+
             {/* Pro */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="relative z-10">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="relative z-10">
               <div className="absolute -inset-1 bg-gradient-to-b from-purple-500 to-fuchsia-500 rounded-[2rem] blur opacity-30"></div>
-              <Card className="border-border bg-card shadow-2xl relative overflow-hidden rounded-[1.5rem] lg:scale-105">
+              <Card className="border-border bg-card shadow-2xl relative overflow-hidden rounded-[1.5rem] h-full">
                 <div className="absolute top-0 inset-x-0 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white text-center text-[10px] font-black py-1.5 uppercase tracking-widest">
                   Mais escolhido
                 </div>
-                <CardContent className="p-10 flex flex-col h-full mt-2">
+                <CardContent className="p-7 flex flex-col h-full mt-3">
                   <h3 className="text-3xl font-black mb-2 text-primary">Pro</h3>
-                  <p className="text-muted-foreground text-sm h-10 leading-relaxed">O sistema completo para o seu comércio operar em alta performance.</p>
+                  <p className="text-muted-foreground text-sm h-12 leading-relaxed">O sistema completo para operar em alta performance, com várias lojas.</p>
                   <div className="my-8">
                     <div className="flex items-end gap-1">
-                      <span className="text-6xl font-black tracking-tighter">R$ {isAnnual ? '79' : '99'}</span>
-                      <span className="text-muted-foreground font-medium pb-2">/mês</span>
+                      <span className="text-5xl font-black tracking-tighter">R$ {isAnnual ? '129' : '159'}</span>
+                      <span className="text-muted-foreground font-medium pb-1">/mês</span>
                     </div>
-                    {isAnnual && <p className="text-xs text-green-500 font-bold mt-2">Cobrado R$ 948 anualmente</p>}
-                    {!isAnnual && <p className="text-xs text-transparent font-bold mt-2 select-none">Cobrado</p>}
+                    {isAnnual ? (
+                      <p className="text-xs text-green-500 font-bold mt-2">Cobrado R$ 1.548 anualmente</p>
+                    ) : (
+                      <p className="text-xs text-transparent font-bold mt-2 select-none">.</p>
+                    )}
                   </div>
-                  <ul className="flex flex-col gap-4 mb-10 flex-1">
-                    <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-bold">Usuários e Caixas ilimitados</span></li>
+                  <ul className="flex flex-col gap-3.5 mb-8 flex-1">
+                    <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-bold">Multi-loja (até 10 lojas)</span></li>
+                    <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-bold">Usuários e caixas ilimitados</span></li>
                     <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-bold">Produtos ilimitados</span></li>
-                    <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-bold">Comandas e gestão de mesas</span></li>
                     <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-bold">KDS (Tela da cozinha)</span></li>
-                    <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-bold">Controle de Estoque e Fichas</span></li>
+                    <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-bold">Estoque, fichas e BI completo</span></li>
                     <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-bold">Suporte prioritário (WhatsApp)</span></li>
                   </ul>
-                  <Button asChild className="w-full h-14 rounded-xl font-bold text-lg btn-shine bg-gradient-to-r from-purple-600 to-fuchsia-600 shadow-lg shadow-primary/25 hover:scale-105 transition-transform">
+                  <Button asChild className="w-full h-12 rounded-xl font-bold text-base btn-shine bg-gradient-to-r from-purple-600 to-fuchsia-600 shadow-lg shadow-primary/25 hover:scale-105 transition-transform">
                     <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer">Testar grátis por 14 dias</a>
                   </Button>
                 </CardContent>
@@ -93,19 +131,22 @@ export default function Plans() {
             </motion.div>
 
             {/* Empresarial */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}>
-              <Card className="border border-border/50 bg-card hover:-translate-y-2 transition-transform duration-300">
-                <CardContent className="p-8 flex flex-col h-full">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>
+              <Card className="border border-border/50 bg-card hover:-translate-y-2 transition-transform duration-300 h-full">
+                <CardContent className="p-7 flex flex-col h-full">
                   <h3 className="text-2xl font-bold mb-2">Empresarial</h3>
-                  <p className="text-muted-foreground text-sm h-10 leading-relaxed">Para redes, franquias e operações complexas com várias lojas.</p>
+                  <p className="text-muted-foreground text-sm h-12 leading-relaxed">Para redes, franquias e operações complexas com várias lojas.</p>
                   <div className="my-8">
-                    <span className="text-4xl font-black tracking-tighter">Custom</span>
+                    <div className="flex items-end gap-1">
+                      <span className="text-4xl font-black tracking-tighter">Custom</span>
+                    </div>
+                    <p className="text-xs text-transparent font-bold mt-2 select-none">.</p>
                   </div>
-                  <ul className="flex flex-col gap-4 mb-10 flex-1">
+                  <ul className="flex flex-col gap-3.5 mb-8 flex-1">
                     <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-foreground shrink-0" /> <span className="text-sm font-medium">Tudo do plano Pro</span></li>
-                    <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-foreground shrink-0" /> <span className="text-sm font-medium">Multi-loja centralizado</span></li>
+                    <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-foreground shrink-0" /> <span className="text-sm font-medium">Lojas ilimitadas</span></li>
                     <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-foreground shrink-0" /> <span className="text-sm font-medium">API de integração aberta</span></li>
-                    <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-foreground shrink-0" /> <span className="text-sm font-medium">Gerente de conta dedicado (CSM)</span></li>
+                    <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-foreground shrink-0" /> <span className="text-sm font-medium">Gerente de conta dedicado</span></li>
                     <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-foreground shrink-0" /> <span className="text-sm font-medium">Onboarding personalizado</span></li>
                   </ul>
                   <Button asChild variant="outline" className="w-full h-12 rounded-xl font-bold text-base hover:bg-muted">
