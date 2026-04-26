@@ -474,7 +474,7 @@ export default function Home() {
                     Nossa tecnologia PWA permite que você continue vendendo mesmo offline. Quando a conexão volta, tudo é sincronizado automaticamente.
                   </p>
                 </div>
-                <div className="relative z-10 hidden md:block w-80 h-80 shrink-0">
+                <div className="relative z-10 w-56 h-56 md:w-80 md:h-80 shrink-0">
                   <DotLottieReact
                     src="https://lottie.host/fbb051d4-9805-41c0-bd68-a6274dfac4a7/WaBto1fhcj.lottie"
                     loop
@@ -915,14 +915,14 @@ export default function Home() {
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute inset-0 bg-noise opacity-20 mix-blend-overlay"></div>
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12 text-center md:divide-x divide-y md:divide-y-0 divide-primary-foreground/10">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-12 text-center md:divide-x divide-y md:divide-y-0 divide-primary-foreground/15">
             {[
               { value: 2500, label: "Lojas ativas", prefix: "+" },
               { value: 1200000000, label: "Processados", prefix: "R$ " },
               { value: 99.9, label: "Uptime", suffix: "%" },
               { value: 4.9, label: "Na App Store", suffix: " ★" }
             ].map((stat, i) => (
-              <AnimatedSection key={i} delay={i * 0.1} className="flex flex-col items-center justify-center pt-10 md:pt-0 first:pt-0">
+              <AnimatedSection key={i} delay={i * 0.1} className="flex flex-col items-center justify-center py-10 md:py-0">
                 <div className="text-4xl md:text-6xl font-black mb-3 tracking-tighter">
                   <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
                 </div>
