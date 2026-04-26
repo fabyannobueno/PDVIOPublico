@@ -398,7 +398,7 @@ export default function Home() {
             <p className="text-base md:text-xl text-muted-foreground leading-relaxed">Arquitetura modular desenhada para o varejo moderno. Ative as funcionalidades conforme o seu negócio cresce.</p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-3 gap-6 auto-rows-[380px]">
+          <div className="grid md:grid-cols-3 gap-6 auto-rows-[460px] md:auto-rows-[380px]">
             {/* Bento 1: PDV (Large) */}
             <AnimatedSection delay={0.1} className="md:col-span-2 md:row-span-2">
               <SpotlightCard className="h-full rounded-[2rem] bg-gradient-to-br from-card to-background border border-border flex flex-col p-10 group">
