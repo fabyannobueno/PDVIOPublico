@@ -915,15 +915,15 @@ export default function Home() {
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute inset-0 bg-noise opacity-20 mix-blend-overlay"></div>
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center divide-x divide-primary-foreground/10">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12 text-center md:divide-x divide-y md:divide-y-0 divide-primary-foreground/10">
             {[
               { value: 2500, label: "Lojas ativas", prefix: "+" },
               { value: 1200000000, label: "Processados", prefix: "R$ " },
               { value: 99.9, label: "Uptime", suffix: "%" },
               { value: 4.9, label: "Na App Store", suffix: " ★" }
             ].map((stat, i) => (
-              <AnimatedSection key={i} delay={i * 0.1} className="flex flex-col items-center justify-center">
-                <div className="text-5xl md:text-6xl font-black mb-3 tracking-tighter">
+              <AnimatedSection key={i} delay={i * 0.1} className="flex flex-col items-center justify-center pt-10 md:pt-0 first:pt-0">
+                <div className="text-4xl md:text-6xl font-black mb-3 tracking-tighter">
                   <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
                 </div>
                 <div className="text-primary-foreground/80 font-semibold uppercase tracking-widest text-sm">{stat.label}</div>
