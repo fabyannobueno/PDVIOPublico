@@ -14,6 +14,8 @@ import Features from "@/pages/features";
 import Plans from "@/pages/plans";
 import Contact from "@/pages/contact";
 import Careers from "@/pages/careers";
+import Integrations from "@/pages/integrations";
+import Changelog from "@/pages/changelog";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -56,6 +58,8 @@ function Router() {
             <Route path="/planos" component={() => <PageWrapper path="/planos"><Plans /></PageWrapper>} />
             <Route path="/contato" component={() => <PageWrapper path="/contato"><Contact /></PageWrapper>} />
             <Route path="/trabalhe-conosco" component={() => <PageWrapper path="/trabalhe-conosco"><Careers /></PageWrapper>} />
+            <Route path="/integracoes" component={() => <PageWrapper path="/integracoes"><Integrations /></PageWrapper>} />
+            <Route path="/novidades" component={() => <PageWrapper path="/novidades"><Changelog /></PageWrapper>} />
             <Route component={() => <PageWrapper path="404"><NotFound /></PageWrapper>} />
           </Switch>
         </AnimatePresence>

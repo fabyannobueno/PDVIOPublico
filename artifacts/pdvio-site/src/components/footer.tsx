@@ -3,7 +3,7 @@ import { SiInstagram, SiWhatsapp, SiYoutube } from "react-icons/si";
 import { ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "./theme-provider";
-import { WHATSAPP_URL, TERMS_URL, PRIVACY_URL, LGPD_URL, INTEGRATIONS_URL, CHANGELOG_URL, BLOG_URL, COMPANY_CNPJ, INSTAGRAM_URL, YOUTUBE_URL } from "@/lib/constants";
+import { WHATSAPP_URL, TERMS_URL, PRIVACY_URL, LGPD_URL, BLOG_URL, COMPANY_CNPJ, INSTAGRAM_URL, YOUTUBE_URL } from "@/lib/constants";
 import logoDark from "@/assets/logo-dark.png";
 import logoLight from "@/assets/logo-light.png";
 
@@ -54,8 +54,8 @@ export function Footer() {
             <ul className="flex flex-col gap-4">
               <li><Link href="/funcionalidades" className="text-muted-foreground hover:text-primary font-medium transition-colors">Funcionalidades</Link></li>
               <li><Link href="/planos" className="text-muted-foreground hover:text-primary font-medium transition-colors">Preços e Planos</Link></li>
-              <li><a href={INTEGRATIONS_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary font-medium transition-colors">Integrações</a></li>
-              <li><a href={CHANGELOG_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary font-medium transition-colors">Novidades (v3.0)</a></li>
+              <li><Link href="/integracoes" className="text-muted-foreground hover:text-primary font-medium transition-colors">Integrações</Link></li>
+              <li><Link href="/novidades" className="text-muted-foreground hover:text-primary font-medium transition-colors inline-flex items-center gap-2">Novidades <span className="text-[10px] font-bold bg-fuchsia-500/20 text-fuchsia-500 px-2 py-0.5 rounded-full">v3.0</span></Link></li>
             </ul>
           </div>
 
