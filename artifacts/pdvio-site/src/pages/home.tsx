@@ -398,7 +398,7 @@ export default function Home() {
             <p className="text-base md:text-xl text-muted-foreground leading-relaxed">Arquitetura modular desenhada para o varejo moderno. Ative as funcionalidades conforme o seu negócio cresce.</p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-3 gap-6 auto-rows-[320px]">
+          <div className="grid md:grid-cols-3 gap-6 auto-rows-[380px]">
             {/* Bento 1: PDV (Large) */}
             <AnimatedSection delay={0.1} className="md:col-span-2 md:row-span-2">
               <SpotlightCard className="h-full rounded-[2rem] bg-gradient-to-br from-card to-background border border-border flex flex-col p-10 group">
@@ -462,19 +462,19 @@ export default function Home() {
 
             {/* Bento 4: Offline */}
             <AnimatedSection delay={0.4} className="md:col-span-3">
-              <SpotlightCard className="h-full rounded-[2rem] bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white border border-white/10 p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+              <SpotlightCard className="h-full rounded-[2rem] bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white border border-white/10 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 relative overflow-hidden">
                 <div className="absolute inset-0 bg-noise opacity-10 mix-blend-overlay"></div>
                 <div className="relative z-10 max-w-xl">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/10 mb-6">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/10 mb-5">
                     <span className="w-2 h-2 rounded-full bg-green-400"></span>
                     <span className="text-xs font-bold uppercase tracking-wider">Sempre online</span>
                   </div>
-                  <h3 className="text-3xl font-bold mb-4">A internet caiu? O PDV não.</h3>
-                  <p className="text-white/80 text-lg leading-relaxed">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-3">A internet caiu? O PDV não.</h3>
+                  <p className="text-white/80 text-base md:text-lg leading-relaxed">
                     Nossa tecnologia PWA permite que você continue vendendo mesmo offline. Quando a conexão volta, tudo é sincronizado automaticamente.
                   </p>
                 </div>
-                <div className="relative z-10 hidden md:block w-64 h-64">
+                <div className="relative z-10 hidden md:block w-80 h-80 shrink-0">
                   <DotLottieReact
                     src="https://lottie.host/fbb051d4-9805-41c0-bd68-a6274dfac4a7/WaBto1fhcj.lottie"
                     loop
