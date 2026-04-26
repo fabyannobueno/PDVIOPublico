@@ -19,10 +19,10 @@ export default function About() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-primary/10 blur-[100px] pointer-events-none"></div>
         <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
           <motion.div initial="hidden" animate="visible" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }}>
-            <motion.h1 variants={fadeIn} className="text-5xl md:text-7xl font-black tracking-tighter mb-6">
+            <motion.h1 variants={fadeIn} className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-6">
               Tecnologia brasileira <br/>para o <span className="gradient-text">comércio brasileiro</span>
             </motion.h1>
-            <motion.p variants={fadeIn} className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+            <motion.p variants={fadeIn} className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
               Nascemos para descomplicar a gestão das pequenas e médias empresas, entregando tecnologia de ponta com um preço justo e acessível.
             </motion.p>
           </motion.div>
@@ -123,16 +123,16 @@ export default function About() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { name: "Fabiano Bueno", role: "CEO & Produto", color: "bg-purple-500", image: asset("fabiano-bueno.webp") },
-              { name: "Marina", role: "CTO", color: "bg-fuchsia-500" },
-              { name: "Thiago", role: "Design", color: "bg-blue-500" },
-              { name: "Julia", role: "Sucesso do Cliente", color: "bg-orange-500" },
-              { name: "Pedro", role: "Engenharia", color: "bg-teal-500" },
-              { name: "Sofia", role: "Marketing", color: "bg-rose-500" },
-              { name: "Rafael", role: "Vendas", color: "bg-indigo-500" },
-              { name: "Você?", role: "Ver vagas abertas", color: "bg-primary" },
-            ].map((member, i) => (
-              <motion.div key={i} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: i * 0.05 }}>
-                <Card className="border-border bg-card overflow-hidden group cursor-pointer">
+              { name: "Marina Costa", role: "CTO", color: "bg-fuchsia-500", image: asset("marina-costa.webp") },
+              { name: "Thiago Almeda", role: "Design", color: "bg-blue-500", image: asset("thiago-almeda.webp") },
+              { name: "Julia Ferraz", role: "Sucesso do Cliente", color: "bg-orange-500", image: asset("julia-ferraz.webp") },
+              { name: "Pedro Paulo", role: "Engenharia", color: "bg-teal-500", image: asset("pedro-paulo.webp") },
+              { name: "Sofia Lopes", role: "Marketing", color: "bg-rose-500", image: asset("sofia-lopes.webp") },
+              { name: "Rafael Santos", role: "Vendas", color: "bg-indigo-500", image: asset("rafael-santos.webp") },
+              { name: "Você?", role: "Ver vagas abertas", color: "bg-primary", image: asset("pdvio-perfil-22.webp"), href: "/trabalhe-conosco" },
+            ].map((member, i) => {
+              const card = (
+                <Card className="border-border bg-card overflow-hidden group cursor-pointer h-full">
                   <div className={`aspect-square ${member.color} relative`}>
                     {member.image && (
                       <img src={member.image} alt={member.name} loading="lazy" decoding="async" width={400} height={400} className="absolute inset-0 w-full h-full object-cover" />
@@ -147,8 +147,13 @@ export default function About() {
                     <p className="text-xs text-muted-foreground">{member.role}</p>
                   </CardContent>
                 </Card>
-              </motion.div>
-            ))}
+              );
+              return (
+                <motion.div key={i} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: i * 0.05 }}>
+                  {member.href ? <Link href={member.href}>{card}</Link> : card}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

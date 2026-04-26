@@ -223,14 +223,14 @@ export default function Home() {
               
               <motion.div variants={fadeIn} className="relative">
                 <div className="absolute -inset-x-4 -inset-y-4 z-0 bg-gradient-to-r from-primary/20 to-fuchsia-500/20 blur-2xl opacity-50 dark:opacity-30 rounded-[3rem]"></div>
-                <h1 className="relative z-10 text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-foreground leading-[1.05]">
+                <h1 className="relative z-10 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-foreground leading-[1.05]">
                   Venda mais. <br />
                   <span className="gradient-text animate-pulse block pb-2">Controle tudo.</span>
                 </h1>
               </motion.div>
               
               <motion.div variants={fadeIn}>
-                <p className="text-xl md:text-2xl text-muted-foreground font-medium leading-relaxed max-w-xl">
+                <p className="text-lg md:text-2xl text-muted-foreground font-medium leading-relaxed max-w-xl">
                   O sistema de gestão na nuvem que acelera sua operação, reduz falhas e multiplica lucros. 
                 </p>
               </motion.div>
@@ -394,8 +394,8 @@ export default function Home() {
       <section className="py-32 bg-background relative">
         <div className="container mx-auto px-4 md:px-6">
           <AnimatedSection className="max-w-3xl mb-20">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-6">Tudo que você precisa.<br/><span className="text-muted-foreground">Nada do que você não precisa.</span></h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">Arquitetura modular desenhada para o varejo moderno. Ative as funcionalidades conforme o seu negócio cresce.</p>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6">Tudo que você precisa.<br/><span className="text-muted-foreground">Nada do que você não precisa.</span></h2>
+            <p className="text-base md:text-xl text-muted-foreground leading-relaxed">Arquitetura modular desenhada para o varejo moderno. Ative as funcionalidades conforme o seu negócio cresce.</p>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-3 gap-6 auto-rows-[320px]">

@@ -3,7 +3,7 @@ import { SiInstagram, SiWhatsapp, SiYoutube } from "react-icons/si";
 import { ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "./theme-provider";
-import { WHATSAPP_URL, TERMS_URL, PRIVACY_URL, LGPD_URL, INTEGRATIONS_URL, CHANGELOG_URL, CAREERS_URL, BLOG_URL, COMPANY_CNPJ, INSTAGRAM_URL, YOUTUBE_URL } from "@/lib/constants";
+import { WHATSAPP_URL, TERMS_URL, PRIVACY_URL, LGPD_URL, INTEGRATIONS_URL, CHANGELOG_URL, BLOG_URL, COMPANY_CNPJ, INSTAGRAM_URL, YOUTUBE_URL } from "@/lib/constants";
 import logoDark from "@/assets/logo-dark.png";
 import logoLight from "@/assets/logo-light.png";
 
@@ -65,7 +65,7 @@ export function Footer() {
             <ul className="flex flex-col gap-4">
               <li><Link href="/quem-somos" className="text-muted-foreground hover:text-primary font-medium transition-colors">Nossa História</Link></li>
               <li><Link href="/contato" className="text-muted-foreground hover:text-primary font-medium transition-colors">Fale Conosco</Link></li>
-              <li><a href={CAREERS_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary font-medium transition-colors">Trabalhe Conosco <span className="ml-2 text-[10px] font-bold bg-primary/20 text-primary px-2 py-0.5 rounded-full">VAGAS</span></a></li>
+              <li><Link href="/trabalhe-conosco" className="text-muted-foreground hover:text-primary font-medium transition-colors">Trabalhe Conosco <span className="ml-2 text-[10px] font-bold bg-primary/20 text-primary px-2 py-0.5 rounded-full">VAGAS</span></Link></li>
               <li><a href={BLOG_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary font-medium transition-colors">Blog do Varejo</a></li>
             </ul>
           </div>

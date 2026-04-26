@@ -180,13 +180,13 @@ export default function Features() {
       {/* Comparison Table */}
       <section className="py-32 bg-background">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black mb-4 tracking-tight">A diferença é clara</h2>
-            <p className="text-xl text-muted-foreground">Tudo que o PDVIO entrega — e que os sistemas antigos ainda cobram caro pra não ter.</p>
+          <div className="text-center mb-12 md:mb-16 px-2">
+            <h2 className="text-3xl md:text-4xl font-black mb-4 tracking-tight">A diferença é clara</h2>
+            <p className="text-base md:text-xl text-muted-foreground">Tudo que o PDVIO entrega — e que os sistemas antigos ainda cobram caro pra não ter.</p>
           </div>
 
-          <div className="overflow-hidden rounded-[2rem] border border-border bg-card shadow-2xl">
-            <table className="w-full text-left border-collapse">
+          <div className="overflow-x-auto rounded-[2rem] border border-border bg-card shadow-2xl">
+            <table className="w-full text-left border-collapse min-w-[640px]">
               <thead>
                 <tr>
                   <th className="p-4 md:p-6 font-bold text-sm md:text-lg w-1/2 border-b border-border bg-muted/20">Recurso</th>

@@ -17,7 +17,7 @@ export default function Plans() {
         <div className="absolute inset-0 bg-noise opacity-[0.03] pointer-events-none"></div>
         <div className="container mx-auto px-4 text-center max-w-3xl relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h1 className="text-5xl md:text-6xl font-black mb-6 tracking-tighter">Planos simples.<br/>Sem surpresas.</h1>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-6 tracking-tighter">Planos simples.<br/>Sem surpresas.</h1>
             <p className="text-xl text-muted-foreground mb-12">Teste grátis por 14 dias, sem precisar cadastrar cartão de crédito.</p>
             
             <div className="flex items-center justify-center gap-4">
