@@ -461,7 +461,7 @@ export default function Home() {
             </AnimatedSection>
 
             {/* Bento 4: Offline */}
-            <AnimatedSection delay={0.4} className="md:col-span-3 min-h-[520px] md:min-h-[480px]">
+            <AnimatedSection delay={0.4} className="md:col-span-3 min-h-[520px] md:min-h-0">
               <SpotlightCard className="h-full rounded-[2rem] bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white border border-white/10 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 relative overflow-hidden">
                 <div className="absolute inset-0 bg-noise opacity-10 mix-blend-overlay"></div>
                 <div className="relative z-10 max-w-xl">
