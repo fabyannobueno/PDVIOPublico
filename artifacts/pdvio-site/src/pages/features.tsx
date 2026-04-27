@@ -185,100 +185,166 @@ export default function Features() {
             <p className="text-base md:text-xl text-muted-foreground">Tudo que o PDVIO entrega — e que os sistemas antigos ainda cobram caro pra não ter.</p>
           </div>
 
-          <div className="overflow-x-auto rounded-[2rem] border border-border bg-card shadow-2xl">
-            <table className="w-full text-left border-collapse min-w-[640px]">
-              <thead>
-                <tr>
-                  <th className="p-4 md:p-6 font-bold text-sm md:text-lg w-1/2 border-b border-border bg-muted/20">Recurso</th>
-                  <th className="p-4 md:p-6 font-black text-base md:text-xl w-1/4 border-x border-b border-border bg-gradient-to-br from-primary/10 to-fuchsia-500/10 text-primary text-center">PDVIO</th>
-                  <th className="p-4 md:p-6 font-bold text-sm md:text-lg text-muted-foreground w-1/4 border-b border-border bg-muted/20 text-center">Sistemas Antigos</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                {[
-                  { group: "Operação" },
-                  { label: "Instalação 100% em nuvem", detail: "Sem servidor local, sem técnico", pdv: true, old: false },
-                  { label: "Funciona em PC, tablet e celular", detail: "Multiplataforma de verdade", pdv: true, old: false },
-                  { label: "Modo offline (PWA)", detail: "Vende mesmo sem internet, sincroniza depois", pdv: true, old: false },
-                  { label: "Atualizações automáticas e gratuitas", pdv: true, old: false },
-                  { label: "Sem fidelidade — cancele quando quiser", pdv: true, old: false },
-                  { label: "Suporte por WhatsApp em tempo real", pdv: true, old: false },
-                  { label: "Onboarding sozinho em 10 minutos", pdv: true, old: false },
+          {(() => {
+            const rows: Array<{ group: string } | { label: string; detail?: string; pdv: boolean; old: boolean; oldNote?: string }> = [
+              { group: "Operação" },
+              { label: "Instalação 100% em nuvem", detail: "Sem servidor local, sem técnico", pdv: true, old: false },
+              { label: "Funciona em PC, tablet e celular", detail: "Multiplataforma de verdade", pdv: true, old: false },
+              { label: "Modo offline (PWA)", detail: "Vende mesmo sem internet, sincroniza depois", pdv: true, old: false },
+              { label: "Atualizações automáticas e gratuitas", pdv: true, old: false },
+              { label: "Sem fidelidade — cancele quando quiser", pdv: true, old: false },
+              { label: "Suporte por WhatsApp em tempo real", pdv: true, old: false },
+              { label: "Onboarding sozinho em 10 minutos", pdv: true, old: false },
 
-                  { group: "Frente de caixa" },
-                  { label: "PDV ultra-rápido com atalhos de teclado", pdv: true, old: true, oldNote: "Só os caros" },
-                  { label: "Leitor de código de barras USB", pdv: true, old: true },
-                  { label: "Venda por peso (balança)", pdv: true, old: true, oldNote: "Configuração paga" },
-                  { label: "PIX nativo no PDV", detail: "QR Code dinâmico com confirmação automática", pdv: true, old: false },
-                  { label: "TEF integrado (cartão)", pdv: true, old: true },
-                  { label: "Caixa blindado (fechamento cego)", pdv: true, old: false },
-                  { label: "Múltiplas formas de pagamento na mesma venda", pdv: true, old: true },
+              { group: "Frente de caixa" },
+              { label: "PDV ultra-rápido com atalhos de teclado", pdv: true, old: true, oldNote: "Só os caros" },
+              { label: "Leitor de código de barras USB", pdv: true, old: true },
+              { label: "Venda por peso (balança)", pdv: true, old: true, oldNote: "Configuração paga" },
+              { label: "PIX nativo no PDV", detail: "QR Code dinâmico com confirmação automática", pdv: true, old: false },
+              { label: "TEF integrado (cartão)", pdv: true, old: true },
+              { label: "Caixa blindado (fechamento cego)", pdv: true, old: false },
+              { label: "Múltiplas formas de pagamento na mesma venda", pdv: true, old: true },
 
-                  { group: "Salão e cozinha" },
-                  { label: "KDS — Kitchen Display System", detail: "Pedidos na tela da cozinha, sem papel", pdv: true, old: false },
-                  { label: "Mapa de mesas visual e interativo", pdv: true, old: true, oldNote: "Plano premium" },
-                  { label: "Comandas eletrônicas no celular do garçom", pdv: true, old: false },
-                  { label: "Divisão de conta por pessoa", pdv: true, old: false },
-                  { label: "Transferência de itens entre mesas", pdv: true, old: true, oldNote: "Limitado" },
-                  { label: "Taxa de serviço automática", pdv: true, old: true },
-                  { label: "Filtros por setor (bar, cozinha, chapa)", pdv: true, old: false },
+              { group: "Salão e cozinha" },
+              { label: "KDS — Kitchen Display System", detail: "Pedidos na tela da cozinha, sem papel", pdv: true, old: false },
+              { label: "Mapa de mesas visual e interativo", pdv: true, old: true, oldNote: "Plano premium" },
+              { label: "Comandas eletrônicas no celular do garçom", pdv: true, old: false },
+              { label: "Divisão de conta por pessoa", pdv: true, old: false },
+              { label: "Transferência de itens entre mesas", pdv: true, old: true, oldNote: "Limitado" },
+              { label: "Taxa de serviço automática", pdv: true, old: true },
+              { label: "Filtros por setor (bar, cozinha, chapa)", pdv: true, old: false },
 
-                  { group: "Estoque e produtos" },
-                  { label: "Controle de estoque com alerta de mínimo", pdv: true, old: true },
-                  { label: "Fichas técnicas e baixa por ingrediente", pdv: true, old: false },
-                  { label: "Grupos de complementos e adicionais", pdv: true, old: false },
-                  { label: "Importação em massa via Excel", pdv: true, old: false },
-                  { label: "Histórico completo de movimentação", pdv: true, old: true },
+              { group: "Estoque e produtos" },
+              { label: "Controle de estoque com alerta de mínimo", pdv: true, old: true },
+              { label: "Fichas técnicas e baixa por ingrediente", pdv: true, old: false },
+              { label: "Grupos de complementos e adicionais", pdv: true, old: false },
+              { label: "Importação em massa via Excel", pdv: true, old: false },
+              { label: "Histórico completo de movimentação", pdv: true, old: true },
 
-                  { group: "Gestão e BI" },
-                  { label: "Dashboard em tempo real no celular", detail: "Acompanhe vendas de qualquer lugar", pdv: true, old: false },
-                  { label: "Relatórios de DRE, Curva ABC e fluxo de caixa", pdv: true, old: false },
-                  { label: "Gestão multi-loja centralizada", pdv: true, old: true, oldNote: "Cobrança por loja" },
-                  { label: "Permissões granulares por cargo", pdv: true, old: true },
-                  { label: "Cadastro de clientes e fidelidade", pdv: true, old: true },
+              { group: "Gestão e BI" },
+              { label: "Dashboard em tempo real no celular", detail: "Acompanhe vendas de qualquer lugar", pdv: true, old: false },
+              { label: "Relatórios de DRE, Curva ABC e fluxo de caixa", pdv: true, old: false },
+              { label: "Gestão multi-loja centralizada", pdv: true, old: true, oldNote: "Cobrança por loja" },
+              { label: "Permissões granulares por cargo", pdv: true, old: true },
+              { label: "Cadastro de clientes e fidelidade", pdv: true, old: true },
 
-                  { group: "Custo" },
-                  { label: "Teste grátis de 14 dias sem cartão", pdv: true, old: false },
-                  { label: "Sem taxa de instalação", pdv: true, old: false },
-                  { label: "Sem cobrança por terminal extra", pdv: true, old: false },
-                ].map((row, i) =>
-                  "group" in row ? (
-                    <tr key={i} className="bg-muted/30">
-                      <td colSpan={3} className="px-4 md:px-6 py-3 text-xs font-black uppercase tracking-wider text-primary">
-                        {row.group}
-                      </td>
-                    </tr>
-                  ) : (
-                    <tr key={i} className="hover:bg-muted/10 transition-colors">
-                      <td className="p-4 md:p-6">
-                        <div className="font-semibold text-foreground text-sm md:text-base">{row.label}</div>
-                        {row.detail && <div className="text-xs text-muted-foreground mt-1">{row.detail}</div>}
-                      </td>
-                      <td className="p-4 md:p-6 border-x border-border bg-gradient-to-br from-primary/[0.03] to-fuchsia-500/[0.03] text-center">
-                        <div className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-purple-600 to-fuchsia-600 shadow-md shadow-primary/20">
-                          <Check className="h-4 w-4 text-white" strokeWidth={3} />
-                        </div>
-                      </td>
-                      <td className="p-4 md:p-6 text-center">
-                        {row.old ? (
-                          <div className="inline-flex flex-col items-center gap-1">
-                            <div className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-muted border border-border">
-                              <Check className="h-4 w-4 text-muted-foreground" strokeWidth={3} />
-                            </div>
-                            {row.oldNote && <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-bold">{row.oldNote}</span>}
-                          </div>
+              { group: "Custo" },
+              { label: "Teste grátis de 14 dias sem cartão", pdv: true, old: false },
+              { label: "Sem taxa de instalação", pdv: true, old: false },
+              { label: "Sem cobrança por terminal extra", pdv: true, old: false },
+            ];
+
+            return (
+              <>
+                {/* Desktop: tabela */}
+                <div className="hidden md:block rounded-[2rem] border border-border bg-card shadow-2xl overflow-hidden">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr>
+                        <th className="p-6 font-bold text-lg w-1/2 border-b border-border bg-muted/20">Recurso</th>
+                        <th className="p-6 font-black text-xl w-1/4 border-x border-b border-border bg-gradient-to-br from-primary/10 to-fuchsia-500/10 text-primary text-center">PDVIO</th>
+                        <th className="p-6 font-bold text-lg text-muted-foreground w-1/4 border-b border-border bg-muted/20 text-center">Sistemas Antigos</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      {rows.map((row, i) =>
+                        "group" in row ? (
+                          <tr key={i} className="bg-muted/30">
+                            <td colSpan={3} className="px-6 py-3 text-xs font-black uppercase tracking-wider text-primary">{row.group}</td>
+                          </tr>
                         ) : (
-                          <div className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-destructive/10 border border-destructive/30">
-                            <X className="h-4 w-4 text-destructive" strokeWidth={3} />
-                          </div>
-                        )}
-                      </td>
-                    </tr>
-                  )
-                )}
-              </tbody>
-            </table>
-          </div>
+                          <tr key={i} className="hover:bg-muted/10 transition-colors">
+                            <td className="p-6">
+                              <div className="font-semibold text-foreground text-base">{row.label}</div>
+                              {row.detail && <div className="text-xs text-muted-foreground mt-1">{row.detail}</div>}
+                            </td>
+                            <td className="p-6 border-x border-border bg-gradient-to-br from-primary/[0.03] to-fuchsia-500/[0.03] text-center">
+                              <div className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-purple-600 to-fuchsia-600 shadow-md shadow-primary/20">
+                                <Check className="h-4 w-4 text-white" strokeWidth={3} />
+                              </div>
+                            </td>
+                            <td className="p-6 text-center">
+                              {row.old ? (
+                                <div className="inline-flex flex-col items-center gap-1">
+                                  <div className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-muted border border-border">
+                                    <Check className="h-4 w-4 text-muted-foreground" strokeWidth={3} />
+                                  </div>
+                                  {row.oldNote && <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-bold">{row.oldNote}</span>}
+                                </div>
+                              ) : (
+                                <div className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-destructive/10 border border-destructive/30">
+                                  <X className="h-4 w-4 text-destructive" strokeWidth={3} />
+                                </div>
+                              )}
+                            </td>
+                          </tr>
+                        )
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Mobile: cards agrupados */}
+                <div className="md:hidden space-y-6">
+                  {(() => {
+                    const groups: Array<{ name: string; items: Extract<typeof rows[number], { label: string }>[] }> = [];
+                    let current: { name: string; items: Extract<typeof rows[number], { label: string }>[] } | null = null;
+                    rows.forEach((r) => {
+                      if ("group" in r) {
+                        current = { name: r.group, items: [] };
+                        groups.push(current);
+                      } else if (current) {
+                        current.items.push(r);
+                      }
+                    });
+                    return groups.map((g, gi) => (
+                      <div key={gi} className="rounded-2xl border border-border bg-card shadow-lg overflow-hidden">
+                        <div className="px-4 py-2.5 bg-muted/30 border-b border-border">
+                          <span className="text-[11px] font-black uppercase tracking-wider text-primary">{g.name}</span>
+                        </div>
+                        <ul className="divide-y divide-border">
+                          {g.items.map((r, ri) => (
+                            <li key={ri} className="p-4">
+                              <div className="font-bold text-sm text-foreground leading-snug mb-1">{r.label}</div>
+                              {r.detail && <div className="text-xs text-muted-foreground leading-relaxed mb-3">{r.detail}</div>}
+                              <div className="grid grid-cols-2 gap-2 mt-2">
+                                <div className="rounded-lg border border-primary/20 bg-gradient-to-br from-primary/5 to-fuchsia-500/5 p-2.5 flex items-center gap-2">
+                                  <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-purple-600 to-fuchsia-600 shrink-0 shadow-sm">
+                                    <Check className="h-3.5 w-3.5 text-white" strokeWidth={3} />
+                                  </div>
+                                  <div className="min-w-0">
+                                    <div className="text-[9px] uppercase tracking-wider text-muted-foreground font-bold leading-none">PDVIO</div>
+                                    <div className="text-[11px] font-black text-primary leading-tight">Sim</div>
+                                  </div>
+                                </div>
+                                <div className="rounded-lg border border-border bg-muted/20 p-2.5 flex items-center gap-2">
+                                  {r.old ? (
+                                    <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-muted border border-border shrink-0">
+                                      <Check className="h-3.5 w-3.5 text-muted-foreground" strokeWidth={3} />
+                                    </div>
+                                  ) : (
+                                    <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-destructive/10 border border-destructive/30 shrink-0">
+                                      <X className="h-3.5 w-3.5 text-destructive" strokeWidth={3} />
+                                    </div>
+                                  )}
+                                  <div className="min-w-0">
+                                    <div className="text-[9px] uppercase tracking-wider text-muted-foreground font-bold leading-none">Antigos</div>
+                                    <div className={`text-[11px] font-black leading-tight ${r.old ? "text-muted-foreground" : "text-destructive"}`}>
+                                      {r.old ? (r.oldNote || "Sim") : "Não"}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ));
+                  })()}
+                </div>
+              </>
+            );
+          })()}
         </div>
       </section>
       
