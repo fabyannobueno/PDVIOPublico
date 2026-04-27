@@ -518,8 +518,8 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="w-full max-w-5xl md:overflow-visible overflow-x-auto -mx-4 md:mx-0 px-4 md:px-0 pb-3 md:pb-0">
-              <div className="w-[900px] md:w-full aspect-video rounded-3xl border border-border bg-card shadow-2xl relative overflow-hidden p-4 mx-auto">
+            <div className="w-full max-w-5xl aspect-video rounded-3xl border border-border bg-card shadow-2xl relative overflow-hidden p-4">
+              <div className="mockup-mobile-scale md:w-full md:h-full">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTab}
@@ -909,7 +909,6 @@ export default function Home() {
               </AnimatePresence>
               </div>
             </div>
-            <p className="md:hidden text-xs text-muted-foreground mt-3 text-center">← Arraste pro lado pra ver →</p>
           </div>
         </div>
       </section>

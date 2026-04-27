@@ -277,3 +277,13 @@ video {
   }
 }
 
+
+/* Mobile-only: scale down the hero mockup to fit the viewport while keeping the desktop layout untouched */
+@media (max-width: 767px) {
+  .mockup-mobile-scale {
+    width: 900px;
+    height: 506.25px;
+    transform: scale(calc((100vw - 4rem) / 900));
+    transform-origin: top left;
+  }
+}
