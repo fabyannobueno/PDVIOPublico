@@ -518,8 +518,7 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="w-full max-w-5xl aspect-video rounded-3xl border border-border bg-card shadow-2xl relative overflow-hidden p-4">
-              <div className="mockup-mobile-scale md:w-full md:h-full">
+            <div className="hidden md:block w-full max-w-5xl aspect-video rounded-3xl border border-border bg-card shadow-2xl relative overflow-hidden p-4">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTab}
@@ -907,7 +906,241 @@ export default function Home() {
                   )}
                 </motion.div>
               </AnimatePresence>
-              </div>
+            </div>
+
+            {/* Mobile-native mockup */}
+            <div className="md:hidden w-full max-w-[360px] mx-auto rounded-[2rem] border border-border bg-card shadow-2xl relative overflow-hidden p-3" style={{ height: 600 }}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`m-${activeTab}`}
+                  initial={{ opacity: 0, scale: 0.96, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 1.04, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-full h-full bg-background border border-border rounded-2xl shadow-inner overflow-hidden flex flex-col"
+                >
+                  {activeTab === "pdv" && (
+                    <div className="flex flex-col h-full bg-background">
+                      <div className="flex items-center justify-between px-3 py-2.5 border-b border-border">
+                        <div className="flex items-center gap-2">
+                          <img src={pdvioIcon} alt="PDVIO" className="w-6 h-6 object-contain" />
+                          <div>
+                            <div className="text-[10px] font-black leading-none">Loja Centro</div>
+                            <div className="text-[9px] text-muted-foreground leading-none mt-0.5">Caixa 02 • João M.</div>
+                          </div>
+                        </div>
+                        <span className="text-[8px] px-1.5 py-0.5 rounded bg-green-500/15 text-green-600 font-bold flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" /> Online</span>
+                      </div>
+                      <div className="px-3 py-2">
+                        <div className="h-8 rounded-lg bg-muted/30 border border-border flex items-center gap-2 px-2.5 text-[10px] text-muted-foreground/80">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+                          <span>Buscar produto…</span>
+                        </div>
+                        <div className="flex gap-1.5 mt-2 overflow-x-auto pb-1 scrollbar-hide">
+                          {[
+                            { n: "Todos", a: true },
+                            { n: "Lanches" },
+                            { n: "Bebidas" },
+                            { n: "Pizzas" },
+                            { n: "Sobremesas" },
+                          ].map((c, i) => (
+                            <button key={i} className={`text-[9px] font-bold px-2 py-1 rounded-full whitespace-nowrap shrink-0 ${c.a ? "bg-foreground text-background" : "bg-muted/30 text-muted-foreground"}`}>{c.n}</button>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-1.5 px-3 pb-2 flex-1 min-h-0 overflow-hidden">
+                        {[
+                          { n: "X-Bacon Especial", p: "22,00", e: "🥓", c: "from-orange-400 to-amber-600" },
+                          { n: "Coca-Cola 2L", p: "14,00", e: "🥤", c: "from-red-500 to-rose-700" },
+                          { n: "Batata Frita G", p: "18,00", e: "🍟", c: "from-yellow-400 to-amber-500" },
+                          { n: "Combo Família", p: "39,90", e: "🍔", c: "from-purple-500 to-fuchsia-600" },
+                        ].map((p, i) => (
+                          <div key={i} className="rounded-lg border border-border bg-card overflow-hidden flex flex-col">
+                            <div className={`h-12 bg-gradient-to-br ${p.c} flex items-center justify-center`}>
+                              <span className="text-2xl drop-shadow-sm">{p.e}</span>
+                            </div>
+                            <div className="p-1.5">
+                              <div className="text-[10px] font-bold leading-tight truncate">{p.n}</div>
+                              <div className="text-[11px] font-mono font-black mt-0.5">R$ {p.p}</div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="border-t border-border bg-card px-3 py-2.5">
+                        <div className="flex items-center justify-between mb-2">
+                          <div>
+                            <div className="text-[9px] uppercase tracking-wider text-muted-foreground font-bold">Venda #1284</div>
+                            <div className="text-[10px] text-muted-foreground">4 itens • Maria S.</div>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-[9px] text-muted-foreground">Total</div>
+                            <div className="text-lg font-black font-mono text-primary leading-none">R$ 100,00</div>
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-3 gap-1">
+                          <button className="bg-primary text-primary-foreground rounded-md py-2 text-[10px] font-black">PIX</button>
+                          <button className="bg-foreground text-background rounded-md py-2 text-[10px] font-black">CARTÃO</button>
+                          <button className="bg-card text-foreground border border-border rounded-md py-2 text-[10px] font-black">DINHEIRO</button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeTab === "comandas" && (
+                    <div className="flex flex-col h-full bg-gradient-to-br from-primary/10 via-fuchsia-500/5 to-background">
+                      <div className="bg-gradient-to-br from-primary to-fuchsia-600 text-white px-4 py-3">
+                        <div className="text-[9px] uppercase tracking-wider opacity-80">Comanda Aberta</div>
+                        <div className="text-lg font-black">Mesa 12</div>
+                        <div className="text-[10px] opacity-80">4 pessoas • Carlos (garçom)</div>
+                      </div>
+                      <div className="flex-1 p-3 space-y-1.5 overflow-hidden">
+                        {[
+                          { n: "X-Bacon", q: 2, s: "Pronto", c: "bg-green-500", i: "✓" },
+                          { n: "Pizza Calabresa M", q: 1, s: "Cozinha", c: "bg-yellow-500", i: "🔥" },
+                          { n: "Coca 2L", q: 2, s: "Entregue", c: "bg-blue-500", i: "🚚" },
+                          { n: "Pudim", q: 4, s: "Pendente", c: "bg-orange-500", i: "⏱" },
+                        ].map((it, i) => (
+                          <div key={i} className="flex items-center gap-2 bg-card border border-border rounded-xl px-2.5 py-2">
+                            <div className={`w-7 h-7 rounded-lg ${it.c} text-white text-xs font-bold flex items-center justify-center shrink-0`}>{it.i}</div>
+                            <div className="flex-1 min-w-0">
+                              <div className="text-[12px] font-bold leading-tight">{it.q}× {it.n}</div>
+                              <div className="text-[10px] text-muted-foreground">{it.s}</div>
+                            </div>
+                          </div>
+                        ))}
+                        <button className="w-full border border-dashed border-primary/40 text-primary text-[11px] font-bold py-2 rounded-xl">+ Adicionar item</button>
+                      </div>
+                      <div className="border-t border-border p-3 bg-card">
+                        <div className="flex justify-between text-[10px] mb-0.5"><span className="text-muted-foreground">Subtotal</span><span className="font-mono">132,90</span></div>
+                        <div className="flex justify-between text-[10px] mb-1.5"><span className="text-muted-foreground">Serviço (10%)</span><span className="font-mono">13,29</span></div>
+                        <div className="flex justify-between text-sm font-black mb-2.5"><span>Total</span><span className="text-primary font-mono">R$ 146,19</span></div>
+                        <div className="bg-gradient-to-r from-primary to-fuchsia-600 text-white rounded-xl py-2.5 text-center text-[11px] font-black">Dividir e Fechar</div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeTab === "kds" && (
+                    <div className="flex flex-col h-full bg-zinc-950 text-white">
+                      <div className="flex items-center justify-between px-3 py-2.5 border-b border-white/10">
+                        <div className="flex items-center gap-1.5">
+                          <ChefHat className="w-4 h-4 text-primary" />
+                          <div className="text-[11px] font-black">COZINHA</div>
+                        </div>
+                        <div className="flex items-center gap-2 text-[9px] font-bold">
+                          <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>3</span>
+                          <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>2</span>
+                          <span className="text-white/50">20:14</span>
+                        </div>
+                      </div>
+                      <div className="flex-1 p-2.5 space-y-2 overflow-hidden">
+                        {[
+                          { mesa: "MESA 4", n: "#1281", tempo: "12:34", cor: "border-red-500 bg-red-950/40", badge: "bg-red-500", itens: [{ n: "X-Bacon", q: 2, ok: true }, { n: "Batata G", q: 1, ok: true }, { n: "Coca 2L", q: 2, ok: false }] },
+                          { mesa: "MESA 8", n: "#1284", tempo: "00:48", cor: "border-green-500 bg-green-950/30", badge: "bg-green-500", itens: [{ n: "Combo Família", q: 3, ok: false }, { n: "Pudim", q: 1, ok: false }] },
+                        ].map((p, i) => (
+                          <div key={i} className={`border-2 ${p.cor} rounded-xl p-2.5 flex flex-col`}>
+                            <div className="flex justify-between items-start mb-1.5">
+                              <div>
+                                <div className="text-[11px] font-black">{p.mesa}</div>
+                                <div className="text-[9px] text-white/60">{p.n}</div>
+                              </div>
+                              <div className={`px-2 py-0.5 rounded ${p.badge} text-black text-[10px] font-mono font-black`}>{p.tempo}</div>
+                            </div>
+                            <div className="space-y-1">
+                              {p.itens.map((it, j) => (
+                                <div key={j} className={`text-[11px] font-bold border rounded px-2 py-1 flex items-center gap-2 ${it.ok ? "bg-green-500/10 border-green-500/40 line-through opacity-60" : "bg-white/5 border-white/10"}`}>
+                                  <span className={`w-3 h-3 rounded border ${it.ok ? "bg-green-500 border-green-500 text-black flex items-center justify-center text-[8px]" : "border-white/30"}`}>{it.ok ? "✓" : ""}</span>
+                                  <span className="flex-1">{it.q}× {it.n}</span>
+                                </div>
+                              ))}
+                            </div>
+                            <button className="mt-2 bg-white text-black text-[10px] font-black py-1.5 rounded">FINALIZAR</button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {activeTab === "dashboard" && (
+                    <div className="flex flex-col h-full">
+                      <div className="px-3 py-2.5 border-b border-border flex items-center justify-between">
+                        <div className="flex items-center gap-1.5">
+                          <BarChart3 className="w-4 h-4 text-primary" />
+                          <div className="text-[11px] font-black">Visão Geral • Hoje</div>
+                        </div>
+                        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-primary text-primary-foreground">Hoje</span>
+                      </div>
+                      <div className="flex-1 p-2.5 flex flex-col gap-2 min-h-0 overflow-hidden">
+                        <div className="border border-border rounded-xl p-2.5 bg-card flex flex-col flex-1 min-h-0">
+                          <div className="flex justify-between items-start mb-1">
+                            <div>
+                              <div className="text-[9px] uppercase tracking-wider text-muted-foreground font-bold">Faturamento</div>
+                              <div className="flex items-baseline gap-2">
+                                <div className="text-base font-black">R$ 12.450</div>
+                                <span className="text-[9px] text-green-500 font-black">↗ +24%</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex-1 min-h-0 -mx-1">
+                            <ResponsiveContainer width="100%" height="100%">
+                              <AreaChart
+                                data={[
+                                  { h: "10h", hoje: 420 },
+                                  { h: "12h", hoje: 1240 },
+                                  { h: "14h", hoje: 1180 },
+                                  { h: "16h", hoje: 1050 },
+                                  { h: "18h", hoje: 1820 },
+                                  { h: "20h", hoje: 2480 },
+                                  { h: "22h", hoje: 1680 },
+                                ]}
+                                margin={{ top: 4, right: 4, left: 4, bottom: 0 }}
+                              >
+                                <defs>
+                                  <linearGradient id="dashHojeMobile" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity={0.45} />
+                                    <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity={0} />
+                                  </linearGradient>
+                                </defs>
+                                <Area type="monotone" dataKey="hoje" stroke="hsl(var(--primary))" strokeWidth={2} fill="url(#dashHojeMobile)" />
+                              </AreaChart>
+                            </ResponsiveContainer>
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                          {[
+                            { l: "Ticket médio", v: "R$ 87,40", d: "+8%" },
+                            { l: "Pedidos", v: "142", d: "+12" },
+                          ].map((k, i) => (
+                            <div key={i} className="border border-border rounded-xl p-2 bg-card">
+                              <div className="text-[8px] uppercase tracking-wider text-muted-foreground font-bold">{k.l}</div>
+                              <div className="text-sm font-black leading-tight">{k.v}</div>
+                              <div className="text-[9px] font-bold text-green-500 mt-0.5">{k.d} vs ontem</div>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="border border-border rounded-xl p-2.5 bg-card">
+                          <div className="text-[9px] uppercase tracking-wider text-muted-foreground font-bold mb-1.5">Top Produtos</div>
+                          <div className="space-y-1">
+                            {[
+                              { n: "X-Bacon", v: 48, p: 100, e: "🥓" },
+                              { n: "Pizza Calabresa", v: 32, p: 67, e: "🍕" },
+                              { n: "Combo Família", v: 28, p: 58, e: "🍔" },
+                            ].map((p, i) => (
+                              <div key={i} className="flex items-center gap-2 text-[10px]">
+                                <span className="text-sm">{p.e}</span>
+                                <span className="w-20 font-bold truncate">{p.n}</span>
+                                <div className="flex-1 h-1 bg-muted/40 rounded-full overflow-hidden">
+                                  <div className="h-full bg-gradient-to-r from-primary to-fuchsia-500 rounded-full" style={{ width: `${p.p}%` }}></div>
+                                </div>
+                                <span className="font-mono font-black w-6 text-right">{p.v}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>
