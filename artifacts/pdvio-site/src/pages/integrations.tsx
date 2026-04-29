@@ -33,6 +33,7 @@ type IntegrationItem = {
   slug?: string;
   color?: string;
   domain?: string;
+  local?: string;
 };
 
 const categories: {
@@ -51,9 +52,9 @@ const categories: {
     bg: "bg-emerald-500/10",
     items: [
       { name: "PIX (Banco Central)", desc: "QR Code dinâmico com confirmação automática", slug: "pix", color: "32BCAD" },
-      { name: "Stone", desc: "Maquininha integrada com TEF", domain: "stone.com.br" },
-      { name: "Cielo", desc: "Crédito, débito e voucher", domain: "cielo.com.br" },
-      { name: "Rede", desc: "Conciliação automática de vendas", domain: "userede.com.br" },
+      { name: "Stone", desc: "Maquininha integrada com TEF", local: "/icons/Logo-Stone.svg", domain: "stone.com.br" },
+      { name: "Cielo", desc: "Crédito, débito e voucher", local: "/icons/logo-of-cielo.svg", domain: "cielo.com.br" },
+      { name: "Rede", desc: "Conciliação automática de vendas", local: "/icons/rede.svg", domain: "userede.com.br" },
       { name: "GetNet", desc: "Pagamentos in-app e POS", domain: "getnet.com.br" },
       { name: "PagSeguro", desc: "Link de pagamento e Moderninha", slug: "pagseguro", color: "FFC107", domain: "pagseguro.com.br" },
       { name: "Mercado Pago", desc: "Point e checkout transparente", slug: "mercadopago", color: "00B1EA", domain: "mercadopago.com.br" },
@@ -114,7 +115,7 @@ const categories: {
     items: [
       { name: "Google Analytics 4", desc: "Eventos de e-commerce automáticos", slug: "googleanalytics", color: "E37400", domain: "analytics.google.com" },
       { name: "Meta Pixel", desc: "Conversões para Facebook e Instagram Ads", slug: "meta", color: "0467DF", domain: "meta.com" },
-      { name: "Power BI", desc: "Conector nativo para dashboards", domain: "powerbi.microsoft.com" },
+      { name: "Power BI", desc: "Conector nativo para dashboards", local: "/icons/power-bi.svg", domain: "powerbi.microsoft.com" },
       { name: "Looker Studio", desc: "Relatórios visuais customizados", slug: "looker", color: "4285F4", domain: "lookerstudio.google.com" },
       { name: "Google Sheets", desc: "Exportação programada", slug: "googlesheets", color: "34A853", domain: "sheets.google.com" },
     ],
@@ -140,7 +141,7 @@ const categories: {
     bg: "bg-amber-500/10",
     items: [
       { name: "Open Finance", desc: "Extrato unificado de todas as contas", domain: "openfinancebrasil.org.br" },
-      { name: "Banco Inter", desc: "Boletos e PIX automáticos", domain: "bancointer.com.br" },
+      { name: "Banco Inter", desc: "Boletos e PIX automáticos", local: "/icons/inter.svg", domain: "bancointer.com.br" },
       { name: "Itaú", desc: "Conciliação de cartões e cobranças", domain: "itau.com.br" },
       { name: "Bradesco", desc: "Boletos registrados", domain: "bradesco.com.br" },
       { name: "Santander", desc: "Pix Cobv e cobranças recorrentes", domain: "santander.com.br" },
@@ -156,7 +157,7 @@ const categories: {
     items: [
       { name: "Impressoras ESC/POS", desc: "Bematech, Elgin, Epson, Daruma", domain: "epson.com.br" },
       { name: "Balanças Toledo", desc: "Prix 4, Prix 6 e Prix 6 Plus", domain: "toledobrasil.com.br" },
-      { name: "Balanças Filizola", desc: "Platina e CS-15", domain: "filizola.com.br" },
+      { name: "Balanças Filizola", desc: "Platina e CS-15", local: "/icons/logo-filizola.svg", domain: "filizola.com.br" },
       { name: "Leitores de código", desc: "USB e Bluetooth, qualquer marca" },
       { name: "Gavetas", desc: "Acionamento via impressora" },
       { name: "TEF (Sitef/PayGo)", desc: "Maquininhas integradas ao PDV", domain: "softwareexpress.com.br" },
@@ -171,15 +172,15 @@ const apiFeatures = [
   { icon: Package, title: "Importação em massa", desc: "Suba produtos, clientes e estoque via CSV ou API." },
 ];
 
-const logoWall: { name: string; slug?: string; color?: string; domain?: string }[] = [
+const logoWall: { name: string; slug?: string; color?: string; domain?: string; local?: string }[] = [
   { name: "iFood", slug: "ifood", color: "EA1D2C", domain: "ifood.com.br" },
   { name: "PIX", slug: "pix", color: "32BCAD" },
-  { name: "Stone", domain: "stone.com.br" },
+  { name: "Stone", local: "/icons/Logo-Stone.svg", domain: "stone.com.br" },
   { name: "Mercado Pago", slug: "mercadopago", color: "00B1EA", domain: "mercadopago.com.br" },
   { name: "PagSeguro", slug: "pagseguro", color: "FFC107", domain: "pagseguro.com.br" },
   { name: "Rappi", domain: "rappi.com.br" },
-  { name: "Cielo", domain: "cielo.com.br" },
-  { name: "Rede", domain: "userede.com.br" },
+  { name: "Cielo", local: "/icons/logo-of-cielo.svg", domain: "cielo.com.br" },
+  { name: "Rede", local: "/icons/rede.svg", domain: "userede.com.br" },
   { name: "Shopify", slug: "shopify", color: "7AB55C", domain: "shopify.com" },
   { name: "VTEX", slug: "vtex", color: "ED125F", domain: "vtex.com" },
   { name: "WooCommerce", slug: "woocommerce", color: "96588A", domain: "woocommerce.com" },
@@ -190,10 +191,10 @@ const logoWall: { name: string; slug?: string; color?: string; domain?: string }
   { name: "Brevo", slug: "brevo", color: "0B996E", domain: "brevo.com" },
   { name: "Google Analytics", slug: "googleanalytics", color: "E37400" },
   { name: "Meta", slug: "meta", color: "0467DF" },
-  { name: "Power BI", domain: "powerbi.microsoft.com" },
+  { name: "Power BI", local: "/icons/power-bi.svg", domain: "powerbi.microsoft.com" },
   { name: "Looker", slug: "looker", color: "4285F4" },
   { name: "Nubank", slug: "nubank", color: "820AD1", domain: "nubank.com.br" },
-  { name: "Banco Inter", domain: "bancointer.com.br" },
+  { name: "Banco Inter", local: "/icons/inter.svg", domain: "bancointer.com.br" },
   { name: "Itaú", domain: "itau.com.br" },
   { name: "Santander", domain: "santander.com.br" },
 ];
@@ -203,15 +204,20 @@ function BrandLogo({
   name,
   color,
   domain,
+  local,
   size = 32,
 }: {
   slug?: string;
   name: string;
   color?: string;
   domain?: string;
+  local?: string;
   size?: number;
 }) {
   const sources: string[] = [];
+  if (local) {
+    sources.push(local);
+  }
   if (slug) {
     sources.push(`https://cdn.simpleicons.org/${slug}${color ? `/${color}` : ""}`);
   }
@@ -322,6 +328,7 @@ export default function Integrations() {
                   name={brand.name}
                   color={brand.color}
                   domain={brand.domain}
+                  local={brand.local}
                   size={36}
                 />
                 <span className="text-[10px] md:text-xs font-bold text-muted-foreground text-center leading-tight truncate w-full">
@@ -365,6 +372,7 @@ export default function Integrations() {
                               name={item.name}
                               color={item.color}
                               domain={item.domain}
+                              local={item.local}
                               size={24}
                             />
                           </div>
