@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,7 +12,6 @@ import {
   MessageCircle,
   Banknote,
   Printer,
-  Scale,
   Package,
   Smartphone,
   Globe,
@@ -27,7 +27,21 @@ const fadeIn = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-const categories = [
+type IntegrationItem = {
+  name: string;
+  desc: string;
+  slug?: string;
+  color?: string;
+};
+
+const categories: {
+  id: string;
+  title: string;
+  icon: typeof CreditCard;
+  color: string;
+  bg: string;
+  items: IntegrationItem[];
+}[] = [
   {
     id: "pagamentos",
     title: "Pagamentos",
@@ -35,13 +49,13 @@ const categories = [
     color: "text-emerald-500",
     bg: "bg-emerald-500/10",
     items: [
-      { name: "PIX (Banco Central)", desc: "QR Code dinâmico com confirmação automática" },
-      { name: "Stone", desc: "Maquininha integrada com TEF" },
+      { name: "PIX (Banco Central)", desc: "QR Code dinâmico com confirmação automática", slug: "pix", color: "32BCAD" },
+      { name: "Stone", desc: "Maquininha integrada com TEF", slug: "stone", color: "00A868" },
       { name: "Cielo", desc: "Crédito, débito e voucher" },
       { name: "Rede", desc: "Conciliação automática de vendas" },
       { name: "GetNet", desc: "Pagamentos in-app e POS" },
-      { name: "PagSeguro", desc: "Link de pagamento e Moderninha" },
-      { name: "Mercado Pago", desc: "Point e checkout transparente" },
+      { name: "PagSeguro", desc: "Link de pagamento e Moderninha", slug: "pagseguro", color: "FFC107" },
+      { name: "Mercado Pago", desc: "Point e checkout transparente", slug: "mercadopago", color: "00B1EA" },
       { name: "SafraPay", desc: "TEF integrado ao PDV" },
     ],
   },
@@ -52,8 +66,8 @@ const categories = [
     color: "text-orange-500",
     bg: "bg-orange-500/10",
     items: [
-      { name: "iFood", desc: "Pedidos chegam direto no KDS" },
-      { name: "Rappi", desc: "Cardápio sincronizado em tempo real" },
+      { name: "iFood", desc: "Pedidos chegam direto no KDS", slug: "ifood", color: "EA1D2C" },
+      { name: "Rappi", desc: "Cardápio sincronizado em tempo real", slug: "rappi", color: "FF441F" },
       { name: "99 Food", desc: "Aceite e despache automático" },
       { name: "Goomer", desc: "Cardápio digital QR Code" },
       { name: "Anota AI", desc: "Atendimento via WhatsApp com IA" },
@@ -67,12 +81,12 @@ const categories = [
     color: "text-fuchsia-500",
     bg: "bg-fuchsia-500/10",
     items: [
-      { name: "Shopify", desc: "Estoque sincronizado bidirecional" },
-      { name: "Nuvemshop", desc: "Pedidos e produtos integrados" },
-      { name: "WooCommerce", desc: "Sincronização via API REST" },
+      { name: "Shopify", desc: "Estoque sincronizado bidirecional", slug: "shopify", color: "7AB55C" },
+      { name: "Nuvemshop", desc: "Pedidos e produtos integrados", slug: "tiendanube", color: "1AC0FF" },
+      { name: "WooCommerce", desc: "Sincronização via API REST", slug: "woocommerce", color: "96588A" },
       { name: "Tray", desc: "Multi-loja com estoque unificado" },
-      { name: "VTEX", desc: "Conector enterprise para grandes lojas" },
-      { name: "Mercado Livre", desc: "Anúncios e pedidos automáticos" },
+      { name: "VTEX", desc: "Conector enterprise para grandes lojas", slug: "vtex", color: "ED125F" },
+      { name: "Mercado Livre", desc: "Anúncios e pedidos automáticos", slug: "mercadolibre", color: "FFE600" },
     ],
   },
   {
@@ -97,11 +111,11 @@ const categories = [
     color: "text-purple-500",
     bg: "bg-purple-500/10",
     items: [
-      { name: "Google Analytics 4", desc: "Eventos de e-commerce automáticos" },
-      { name: "Meta Pixel", desc: "Conversões para Facebook e Instagram Ads" },
-      { name: "Power BI", desc: "Conector nativo para dashboards" },
-      { name: "Looker Studio", desc: "Relatórios visuais customizados" },
-      { name: "Google Sheets", desc: "Exportação programada" },
+      { name: "Google Analytics 4", desc: "Eventos de e-commerce automáticos", slug: "googleanalytics", color: "E37400" },
+      { name: "Meta Pixel", desc: "Conversões para Facebook e Instagram Ads", slug: "meta", color: "0467DF" },
+      { name: "Power BI", desc: "Conector nativo para dashboards", slug: "powerbi", color: "F2C811" },
+      { name: "Looker Studio", desc: "Relatórios visuais customizados", slug: "looker", color: "4285F4" },
+      { name: "Google Sheets", desc: "Exportação programada", slug: "googlesheets", color: "34A853" },
     ],
   },
   {
@@ -111,10 +125,10 @@ const categories = [
     color: "text-green-500",
     bg: "bg-green-500/10",
     items: [
-      { name: "WhatsApp Business API", desc: "Pedidos, comprovantes e fidelização" },
-      { name: "Brevo (Sendinblue)", desc: "E-mail marketing e transacional" },
+      { name: "WhatsApp Business API", desc: "Pedidos, comprovantes e fidelização", slug: "whatsapp", color: "25D366" },
+      { name: "Brevo (Sendinblue)", desc: "E-mail marketing e transacional", slug: "brevo", color: "0B996E" },
       { name: "Zenvia", desc: "SMS para confirmação de pedidos" },
-      { name: "Twilio", desc: "Notificações multicanal" },
+      { name: "Twilio", desc: "Notificações multicanal", slug: "twilio", color: "F22F46" },
     ],
   },
   {
@@ -125,11 +139,11 @@ const categories = [
     bg: "bg-amber-500/10",
     items: [
       { name: "Open Finance", desc: "Extrato unificado de todas as contas" },
-      { name: "Banco Inter", desc: "Boletos e PIX automáticos" },
+      { name: "Banco Inter", desc: "Boletos e PIX automáticos", slug: "bancointer", color: "FF7A00" },
       { name: "Itaú", desc: "Conciliação de cartões e cobranças" },
       { name: "Bradesco", desc: "Boletos registrados" },
-      { name: "Santander", desc: "Pix Cobv e cobranças recorrentes" },
-      { name: "Nubank PJ", desc: "Conexão direta para conciliação" },
+      { name: "Santander", desc: "Pix Cobv e cobranças recorrentes", slug: "santander", color: "EC0000" },
+      { name: "Nubank PJ", desc: "Conexão direta para conciliação", slug: "nubank", color: "820AD1" },
     ],
   },
   {
@@ -155,6 +169,78 @@ const apiFeatures = [
   { icon: Smartphone, title: "App + WebView", desc: "Embed o PDVIO no seu app com autenticação OAuth2." },
   { icon: Package, title: "Importação em massa", desc: "Suba produtos, clientes e estoque via CSV ou API." },
 ];
+
+const logoWall: { name: string; slug: string; color: string }[] = [
+  { name: "iFood", slug: "ifood", color: "EA1D2C" },
+  { name: "PIX", slug: "pix", color: "32BCAD" },
+  { name: "Stone", slug: "stone", color: "00A868" },
+  { name: "Mercado Pago", slug: "mercadopago", color: "00B1EA" },
+  { name: "PagSeguro", slug: "pagseguro", color: "FFC107" },
+  { name: "Rappi", slug: "rappi", color: "FF441F" },
+  { name: "Shopify", slug: "shopify", color: "7AB55C" },
+  { name: "VTEX", slug: "vtex", color: "ED125F" },
+  { name: "WooCommerce", slug: "woocommerce", color: "96588A" },
+  { name: "Mercado Livre", slug: "mercadolibre", color: "FFE600" },
+  { name: "Nuvemshop", slug: "tiendanube", color: "1AC0FF" },
+  { name: "WhatsApp", slug: "whatsapp", color: "25D366" },
+  { name: "Twilio", slug: "twilio", color: "F22F46" },
+  { name: "Brevo", slug: "brevo", color: "0B996E" },
+  { name: "Google Analytics", slug: "googleanalytics", color: "E37400" },
+  { name: "Meta", slug: "meta", color: "0467DF" },
+  { name: "Power BI", slug: "powerbi", color: "F2C811" },
+  { name: "Looker", slug: "looker", color: "4285F4" },
+  { name: "Google Sheets", slug: "googlesheets", color: "34A853" },
+  { name: "Nubank", slug: "nubank", color: "820AD1" },
+  { name: "Santander", slug: "santander", color: "EC0000" },
+  { name: "Banco Inter", slug: "bancointer", color: "FF7A00" },
+];
+
+function BrandLogo({
+  slug,
+  name,
+  color,
+  size = 32,
+}: {
+  slug?: string;
+  name: string;
+  color?: string;
+  size?: number;
+}) {
+  const [errored, setErrored] = useState(false);
+  const initials = name
+    .replace(/[()]/g, "")
+    .split(/[\s/-]+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
+
+  if (!slug || errored) {
+    return (
+      <div
+        className="rounded-md bg-muted/60 border border-border flex items-center justify-center font-black text-muted-foreground"
+        style={{ width: size, height: size, fontSize: Math.max(9, Math.round(size / 3)) }}
+        aria-label={name}
+      >
+        {initials}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={`https://cdn.simpleicons.org/${slug}${color ? `/${color}` : ""}`}
+      alt={name}
+      width={size}
+      height={size}
+      loading="lazy"
+      onError={() => setErrored(true)}
+      className="object-contain"
+      style={{ width: size, height: size }}
+    />
+  );
+}
 
 export default function Integrations() {
   return (
@@ -186,6 +272,46 @@ export default function Integrations() {
         </div>
       </section>
 
+      {/* Logo Wall */}
+      <section className="py-16 md:py-24 bg-background border-t border-border relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-muted-foreground mb-3">
+              Marcas que confiam no PDVIO
+            </p>
+            <h2 className="text-2xl md:text-4xl font-black tracking-tight">
+              Plugue e <span className="gradient-text">comece a vender</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 md:gap-4 max-w-6xl mx-auto">
+            {logoWall.map((brand, i) => (
+              <motion.div
+                key={brand.slug}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: (i % 8) * 0.04 }}
+                className="group relative aspect-square rounded-2xl border border-border bg-card hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all flex flex-col items-center justify-center gap-2 p-3"
+                title={brand.name}
+              >
+                <BrandLogo slug={brand.slug} name={brand.name} color={brand.color} size={36} />
+                <span className="text-[10px] md:text-xs font-bold text-muted-foreground text-center leading-tight truncate w-full">
+                  {brand.name}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Categorias */}
       <section className="py-20 md:py-32 bg-muted/20 border-y border-border">
         <div className="container mx-auto px-4 md:px-6">
@@ -208,10 +334,18 @@ export default function Integrations() {
                     </div>
                     <ul className="space-y-3">
                       {cat.items.map((item, j) => (
-                        <li key={j} className="flex items-start gap-3 group">
-                          <CheckCircle2 className={`w-4 h-4 ${cat.color} shrink-0 mt-1`} />
-                          <div>
-                            <div className="font-bold text-foreground text-sm md:text-base">{item.name}</div>
+                        <li
+                          key={j}
+                          className="flex items-start gap-3 group p-2 -mx-2 rounded-lg hover:bg-muted/40 transition-colors"
+                        >
+                          <div className="shrink-0 w-10 h-10 rounded-xl bg-background border border-border flex items-center justify-center">
+                            <BrandLogo slug={item.slug} name={item.name} color={item.color} size={24} />
+                          </div>
+                          <div className="flex-1 min-w-0 pt-0.5">
+                            <div className="flex items-center gap-2">
+                              <span className="font-bold text-foreground text-sm md:text-base">{item.name}</span>
+                              <CheckCircle2 className={`w-3.5 h-3.5 ${cat.color} shrink-0`} />
+                            </div>
                             <div className="text-xs md:text-sm text-muted-foreground leading-relaxed">{item.desc}</div>
                           </div>
                         </li>
