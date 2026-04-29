@@ -52,7 +52,7 @@ const categories: {
     bg: "bg-emerald-500/10",
     items: [
       { name: "PIX (Banco Central)", desc: "QR Code dinâmico com confirmação automática", slug: "pix", color: "32BCAD" },
-      { name: "Stone", desc: "Maquininha integrada com TEF", local: "/icons/Logo-Stone.svg", domain: "stone.com.br" },
+      { name: "Stone", desc: "Maquininha integrada com TEF", local: "/icons/stone.svg", domain: "stone.com.br" },
       { name: "Cielo", desc: "Crédito, débito e voucher", local: "/icons/logo-of-cielo.svg", domain: "cielo.com.br" },
       { name: "Rede", desc: "Conciliação automática de vendas", local: "/icons/rede.svg", domain: "userede.com.br" },
       { name: "GetNet", desc: "Pagamentos in-app e POS", domain: "getnet.com.br" },
@@ -175,7 +175,7 @@ const apiFeatures = [
 const logoWall: { name: string; slug?: string; color?: string; domain?: string; local?: string }[] = [
   { name: "iFood", slug: "ifood", color: "EA1D2C", domain: "ifood.com.br" },
   { name: "PIX", slug: "pix", color: "32BCAD" },
-  { name: "Stone", local: "/icons/Logo-Stone.svg", domain: "stone.com.br" },
+  { name: "Stone", local: "/icons/stone.svg", domain: "stone.com.br" },
   { name: "Mercado Pago", slug: "mercadopago", color: "00B1EA", domain: "mercadopago.com.br" },
   { name: "PagSeguro", slug: "pagseguro", color: "FFC107", domain: "pagseguro.com.br" },
   { name: "Rappi", domain: "rappi.com.br" },
