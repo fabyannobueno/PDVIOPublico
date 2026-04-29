@@ -259,6 +259,31 @@ video {
     animation: marquee 60s linear infinite;
     will-change: transform;
   }
+
+  @keyframes hmarquee-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes hmarquee-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  .animate-hmarquee-left {
+    animation: hmarquee-left linear infinite;
+    will-change: transform;
+  }
+  .animate-hmarquee-right {
+    animation: hmarquee-right linear infinite;
+    will-change: transform;
+  }
+  .hmarquee-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  }
+  .group:hover .animate-hmarquee-left,
+  .group:hover .animate-hmarquee-right {
+    animation-play-state: paused;
+  }
   
   @keyframes blob {
     0% { transform: translate(0px, 0px) scale(1); }

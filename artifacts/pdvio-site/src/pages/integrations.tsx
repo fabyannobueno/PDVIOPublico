@@ -199,6 +199,63 @@ const logoWall: { name: string; slug?: string; color?: string; domain?: string; 
   { name: "Santander", domain: "santander.com.br" },
 ];
 
+function HorizontalLogoCarousel({
+  brands,
+}: {
+  brands: { name: string; slug?: string; color?: string; domain?: string; local?: string }[];
+}) {
+  const half = Math.ceil(brands.length / 2);
+  const rowA = brands.slice(0, half);
+  const rowB = brands.slice(half);
+
+  const Row = ({
+    items,
+    direction,
+    duration,
+  }: {
+    items: typeof brands;
+    direction: "left" | "right";
+    duration: number;
+  }) => {
+    const animClass = direction === "left" ? "animate-hmarquee-left" : "animate-hmarquee-right";
+    return (
+      <div className="group relative overflow-hidden hmarquee-mask">
+        <div
+          className={`flex gap-4 md:gap-5 w-max ${animClass}`}
+          style={{ animationDuration: `${duration}s` }}
+        >
+          {[...items, ...items, ...items, ...items].map((brand, idx) => (
+            <div
+              key={`${brand.name}-${idx}`}
+              className="shrink-0 w-32 md:w-40 h-24 md:h-28 rounded-2xl border border-border bg-card hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all flex flex-col items-center justify-center gap-2 p-3"
+              title={brand.name}
+            >
+              <BrandLogo
+                slug={brand.slug}
+                name={brand.name}
+                color={brand.color}
+                domain={brand.domain}
+                local={brand.local}
+                size={36}
+              />
+              <span className="text-[10px] md:text-xs font-bold text-muted-foreground text-center leading-tight truncate w-full">
+                {brand.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="space-y-4 md:space-y-5 max-w-7xl mx-auto">
+      <Row items={rowA} direction="left" duration={50} />
+      <Row items={rowB} direction="right" duration={60} />
+    </div>
+  );
+}
+
 function BrandLogo({
   slug,
   name,
@@ -312,31 +369,7 @@ export default function Integrations() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 md:gap-4 max-w-6xl mx-auto">
-            {logoWall.map((brand, i) => (
-              <motion.div
-                key={brand.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.4, delay: (i % 8) * 0.04 }}
-                className="group relative aspect-square rounded-2xl border border-border bg-card hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all flex flex-col items-center justify-center gap-2 p-3"
-                title={brand.name}
-              >
-                <BrandLogo
-                  slug={brand.slug}
-                  name={brand.name}
-                  color={brand.color}
-                  domain={brand.domain}
-                  local={brand.local}
-                  size={36}
-                />
-                <span className="text-[10px] md:text-xs font-bold text-muted-foreground text-center leading-tight truncate w-full">
-                  {brand.name}
-                </span>
-              </motion.div>
-            ))}
-          </div>
+          <HorizontalLogoCarousel brands={logoWall} />
         </div>
       </section>
 
