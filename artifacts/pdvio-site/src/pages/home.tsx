@@ -250,7 +250,6 @@ export default function Home() {
               
               <motion.div variants={fadeIn} className="flex flex-wrap gap-x-6 gap-y-3 pt-4 text-sm font-semibold text-muted-foreground">
                 <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Sem cartão de crédito</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> 14 dias grátis</span>
                 <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Cancela quando quiser</span>
               </motion.div>
             </motion.div>
