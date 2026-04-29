@@ -32,6 +32,7 @@ type IntegrationItem = {
   desc: string;
   slug?: string;
   color?: string;
+  domain?: string;
 };
 
 const categories: {
@@ -50,13 +51,13 @@ const categories: {
     bg: "bg-emerald-500/10",
     items: [
       { name: "PIX (Banco Central)", desc: "QR Code dinâmico com confirmação automática", slug: "pix", color: "32BCAD" },
-      { name: "Stone", desc: "Maquininha integrada com TEF", slug: "stone", color: "00A868" },
-      { name: "Cielo", desc: "Crédito, débito e voucher" },
-      { name: "Rede", desc: "Conciliação automática de vendas" },
-      { name: "GetNet", desc: "Pagamentos in-app e POS" },
-      { name: "PagSeguro", desc: "Link de pagamento e Moderninha", slug: "pagseguro", color: "FFC107" },
-      { name: "Mercado Pago", desc: "Point e checkout transparente", slug: "mercadopago", color: "00B1EA" },
-      { name: "SafraPay", desc: "TEF integrado ao PDV" },
+      { name: "Stone", desc: "Maquininha integrada com TEF", domain: "stone.com.br" },
+      { name: "Cielo", desc: "Crédito, débito e voucher", domain: "cielo.com.br" },
+      { name: "Rede", desc: "Conciliação automática de vendas", domain: "userede.com.br" },
+      { name: "GetNet", desc: "Pagamentos in-app e POS", domain: "getnet.com.br" },
+      { name: "PagSeguro", desc: "Link de pagamento e Moderninha", slug: "pagseguro", color: "FFC107", domain: "pagseguro.com.br" },
+      { name: "Mercado Pago", desc: "Point e checkout transparente", slug: "mercadopago", color: "00B1EA", domain: "mercadopago.com.br" },
+      { name: "SafraPay", desc: "TEF integrado ao PDV", domain: "safrapay.com.br" },
     ],
   },
   {
@@ -66,12 +67,12 @@ const categories: {
     color: "text-orange-500",
     bg: "bg-orange-500/10",
     items: [
-      { name: "iFood", desc: "Pedidos chegam direto no KDS", slug: "ifood", color: "EA1D2C" },
-      { name: "Rappi", desc: "Cardápio sincronizado em tempo real", slug: "rappi", color: "FF441F" },
-      { name: "99 Food", desc: "Aceite e despache automático" },
-      { name: "Goomer", desc: "Cardápio digital QR Code" },
-      { name: "Anota AI", desc: "Atendimento via WhatsApp com IA" },
-      { name: "Loggi", desc: "Cálculo de frete e rastreio" },
+      { name: "iFood", desc: "Pedidos chegam direto no KDS", slug: "ifood", color: "EA1D2C", domain: "ifood.com.br" },
+      { name: "Rappi", desc: "Cardápio sincronizado em tempo real", domain: "rappi.com.br" },
+      { name: "99 Food", desc: "Aceite e despache automático", domain: "99app.com" },
+      { name: "Goomer", desc: "Cardápio digital QR Code", domain: "goomer.com.br" },
+      { name: "Anota AI", desc: "Atendimento via WhatsApp com IA", domain: "anota.ai" },
+      { name: "Loggi", desc: "Cálculo de frete e rastreio", domain: "loggi.com" },
     ],
   },
   {
@@ -81,12 +82,12 @@ const categories: {
     color: "text-fuchsia-500",
     bg: "bg-fuchsia-500/10",
     items: [
-      { name: "Shopify", desc: "Estoque sincronizado bidirecional", slug: "shopify", color: "7AB55C" },
-      { name: "Nuvemshop", desc: "Pedidos e produtos integrados", slug: "tiendanube", color: "1AC0FF" },
-      { name: "WooCommerce", desc: "Sincronização via API REST", slug: "woocommerce", color: "96588A" },
-      { name: "Tray", desc: "Multi-loja com estoque unificado" },
-      { name: "VTEX", desc: "Conector enterprise para grandes lojas", slug: "vtex", color: "ED125F" },
-      { name: "Mercado Livre", desc: "Anúncios e pedidos automáticos", slug: "mercadolibre", color: "FFE600" },
+      { name: "Shopify", desc: "Estoque sincronizado bidirecional", slug: "shopify", color: "7AB55C", domain: "shopify.com" },
+      { name: "Nuvemshop", desc: "Pedidos e produtos integrados", domain: "nuvemshop.com.br" },
+      { name: "WooCommerce", desc: "Sincronização via API REST", slug: "woocommerce", color: "96588A", domain: "woocommerce.com" },
+      { name: "Tray", desc: "Multi-loja com estoque unificado", domain: "tray.com.br" },
+      { name: "VTEX", desc: "Conector enterprise para grandes lojas", slug: "vtex", color: "ED125F", domain: "vtex.com" },
+      { name: "Mercado Livre", desc: "Anúncios e pedidos automáticos", domain: "mercadolivre.com.br" },
     ],
   },
   {
@@ -96,12 +97,12 @@ const categories: {
     color: "text-blue-500",
     bg: "bg-blue-500/10",
     items: [
-      { name: "NFC-e (SEFAZ)", desc: "Emissão em todos os estados" },
-      { name: "NF-e", desc: "Nota fiscal eletrônica completa" },
-      { name: "MEI / Simples Nacional", desc: "Regime tributário automático" },
-      { name: "Conta Azul", desc: "Exportação contábil mensal" },
-      { name: "Omie", desc: "ERP e contabilidade integrados" },
-      { name: "Bling", desc: "Sincronização de produtos e pedidos" },
+      { name: "NFC-e (SEFAZ)", desc: "Emissão em todos os estados", domain: "gov.br" },
+      { name: "NF-e", desc: "Nota fiscal eletrônica completa", domain: "nfe.fazenda.gov.br" },
+      { name: "MEI / Simples Nacional", desc: "Regime tributário automático", domain: "gov.br" },
+      { name: "Conta Azul", desc: "Exportação contábil mensal", domain: "contaazul.com" },
+      { name: "Omie", desc: "ERP e contabilidade integrados", domain: "omie.com.br" },
+      { name: "Bling", desc: "Sincronização de produtos e pedidos", domain: "bling.com.br" },
     ],
   },
   {
@@ -111,11 +112,11 @@ const categories: {
     color: "text-purple-500",
     bg: "bg-purple-500/10",
     items: [
-      { name: "Google Analytics 4", desc: "Eventos de e-commerce automáticos", slug: "googleanalytics", color: "E37400" },
-      { name: "Meta Pixel", desc: "Conversões para Facebook e Instagram Ads", slug: "meta", color: "0467DF" },
-      { name: "Power BI", desc: "Conector nativo para dashboards", slug: "powerbi", color: "F2C811" },
-      { name: "Looker Studio", desc: "Relatórios visuais customizados", slug: "looker", color: "4285F4" },
-      { name: "Google Sheets", desc: "Exportação programada", slug: "googlesheets", color: "34A853" },
+      { name: "Google Analytics 4", desc: "Eventos de e-commerce automáticos", slug: "googleanalytics", color: "E37400", domain: "analytics.google.com" },
+      { name: "Meta Pixel", desc: "Conversões para Facebook e Instagram Ads", slug: "meta", color: "0467DF", domain: "meta.com" },
+      { name: "Power BI", desc: "Conector nativo para dashboards", domain: "powerbi.microsoft.com" },
+      { name: "Looker Studio", desc: "Relatórios visuais customizados", slug: "looker", color: "4285F4", domain: "lookerstudio.google.com" },
+      { name: "Google Sheets", desc: "Exportação programada", slug: "googlesheets", color: "34A853", domain: "sheets.google.com" },
     ],
   },
   {
@@ -125,10 +126,10 @@ const categories: {
     color: "text-green-500",
     bg: "bg-green-500/10",
     items: [
-      { name: "WhatsApp Business API", desc: "Pedidos, comprovantes e fidelização", slug: "whatsapp", color: "25D366" },
-      { name: "Brevo (Sendinblue)", desc: "E-mail marketing e transacional", slug: "brevo", color: "0B996E" },
-      { name: "Zenvia", desc: "SMS para confirmação de pedidos" },
-      { name: "Twilio", desc: "Notificações multicanal", slug: "twilio", color: "F22F46" },
+      { name: "WhatsApp Business API", desc: "Pedidos, comprovantes e fidelização", slug: "whatsapp", color: "25D366", domain: "whatsapp.com" },
+      { name: "Brevo (Sendinblue)", desc: "E-mail marketing e transacional", slug: "brevo", color: "0B996E", domain: "brevo.com" },
+      { name: "Zenvia", desc: "SMS para confirmação de pedidos", domain: "zenvia.com" },
+      { name: "Twilio", desc: "Notificações multicanal", domain: "twilio.com" },
     ],
   },
   {
@@ -138,12 +139,12 @@ const categories: {
     color: "text-amber-500",
     bg: "bg-amber-500/10",
     items: [
-      { name: "Open Finance", desc: "Extrato unificado de todas as contas" },
-      { name: "Banco Inter", desc: "Boletos e PIX automáticos", slug: "bancointer", color: "FF7A00" },
-      { name: "Itaú", desc: "Conciliação de cartões e cobranças" },
-      { name: "Bradesco", desc: "Boletos registrados" },
-      { name: "Santander", desc: "Pix Cobv e cobranças recorrentes", slug: "santander", color: "EC0000" },
-      { name: "Nubank PJ", desc: "Conexão direta para conciliação", slug: "nubank", color: "820AD1" },
+      { name: "Open Finance", desc: "Extrato unificado de todas as contas", domain: "openfinancebrasil.org.br" },
+      { name: "Banco Inter", desc: "Boletos e PIX automáticos", domain: "bancointer.com.br" },
+      { name: "Itaú", desc: "Conciliação de cartões e cobranças", domain: "itau.com.br" },
+      { name: "Bradesco", desc: "Boletos registrados", domain: "bradesco.com.br" },
+      { name: "Santander", desc: "Pix Cobv e cobranças recorrentes", domain: "santander.com.br" },
+      { name: "Nubank PJ", desc: "Conexão direta para conciliação", slug: "nubank", color: "820AD1", domain: "nubank.com.br" },
     ],
   },
   {
@@ -153,12 +154,12 @@ const categories: {
     color: "text-slate-500",
     bg: "bg-slate-500/10",
     items: [
-      { name: "Impressoras ESC/POS", desc: "Bematech, Elgin, Epson, Daruma" },
-      { name: "Balanças Toledo", desc: "Prix 4, Prix 6 e Prix 6 Plus" },
-      { name: "Balanças Filizola", desc: "Platina e CS-15" },
+      { name: "Impressoras ESC/POS", desc: "Bematech, Elgin, Epson, Daruma", domain: "epson.com.br" },
+      { name: "Balanças Toledo", desc: "Prix 4, Prix 6 e Prix 6 Plus", domain: "toledobrasil.com.br" },
+      { name: "Balanças Filizola", desc: "Platina e CS-15", domain: "filizola.com.br" },
       { name: "Leitores de código", desc: "USB e Bluetooth, qualquer marca" },
       { name: "Gavetas", desc: "Acionamento via impressora" },
-      { name: "TEF (Sitef/PayGo)", desc: "Maquininhas integradas ao PDV" },
+      { name: "TEF (Sitef/PayGo)", desc: "Maquininhas integradas ao PDV", domain: "softwareexpress.com.br" },
     ],
   },
 ];
@@ -170,43 +171,57 @@ const apiFeatures = [
   { icon: Package, title: "Importação em massa", desc: "Suba produtos, clientes e estoque via CSV ou API." },
 ];
 
-const logoWall: { name: string; slug: string; color: string }[] = [
-  { name: "iFood", slug: "ifood", color: "EA1D2C" },
+const logoWall: { name: string; slug?: string; color?: string; domain?: string }[] = [
+  { name: "iFood", slug: "ifood", color: "EA1D2C", domain: "ifood.com.br" },
   { name: "PIX", slug: "pix", color: "32BCAD" },
-  { name: "Stone", slug: "stone", color: "00A868" },
-  { name: "Mercado Pago", slug: "mercadopago", color: "00B1EA" },
-  { name: "PagSeguro", slug: "pagseguro", color: "FFC107" },
-  { name: "Rappi", slug: "rappi", color: "FF441F" },
-  { name: "Shopify", slug: "shopify", color: "7AB55C" },
-  { name: "VTEX", slug: "vtex", color: "ED125F" },
-  { name: "WooCommerce", slug: "woocommerce", color: "96588A" },
-  { name: "Mercado Livre", slug: "mercadolibre", color: "FFE600" },
-  { name: "Nuvemshop", slug: "tiendanube", color: "1AC0FF" },
-  { name: "WhatsApp", slug: "whatsapp", color: "25D366" },
-  { name: "Twilio", slug: "twilio", color: "F22F46" },
-  { name: "Brevo", slug: "brevo", color: "0B996E" },
+  { name: "Stone", domain: "stone.com.br" },
+  { name: "Mercado Pago", slug: "mercadopago", color: "00B1EA", domain: "mercadopago.com.br" },
+  { name: "PagSeguro", slug: "pagseguro", color: "FFC107", domain: "pagseguro.com.br" },
+  { name: "Rappi", domain: "rappi.com.br" },
+  { name: "Cielo", domain: "cielo.com.br" },
+  { name: "Rede", domain: "userede.com.br" },
+  { name: "Shopify", slug: "shopify", color: "7AB55C", domain: "shopify.com" },
+  { name: "VTEX", slug: "vtex", color: "ED125F", domain: "vtex.com" },
+  { name: "WooCommerce", slug: "woocommerce", color: "96588A", domain: "woocommerce.com" },
+  { name: "Mercado Livre", domain: "mercadolivre.com.br" },
+  { name: "Nuvemshop", domain: "nuvemshop.com.br" },
+  { name: "WhatsApp", slug: "whatsapp", color: "25D366", domain: "whatsapp.com" },
+  { name: "Twilio", domain: "twilio.com" },
+  { name: "Brevo", slug: "brevo", color: "0B996E", domain: "brevo.com" },
   { name: "Google Analytics", slug: "googleanalytics", color: "E37400" },
   { name: "Meta", slug: "meta", color: "0467DF" },
-  { name: "Power BI", slug: "powerbi", color: "F2C811" },
+  { name: "Power BI", domain: "powerbi.microsoft.com" },
   { name: "Looker", slug: "looker", color: "4285F4" },
-  { name: "Google Sheets", slug: "googlesheets", color: "34A853" },
-  { name: "Nubank", slug: "nubank", color: "820AD1" },
-  { name: "Santander", slug: "santander", color: "EC0000" },
-  { name: "Banco Inter", slug: "bancointer", color: "FF7A00" },
+  { name: "Nubank", slug: "nubank", color: "820AD1", domain: "nubank.com.br" },
+  { name: "Banco Inter", domain: "bancointer.com.br" },
+  { name: "Itaú", domain: "itau.com.br" },
+  { name: "Santander", domain: "santander.com.br" },
 ];
 
 function BrandLogo({
   slug,
   name,
   color,
+  domain,
   size = 32,
 }: {
   slug?: string;
   name: string;
   color?: string;
+  domain?: string;
   size?: number;
 }) {
-  const [errored, setErrored] = useState(false);
+  const sources: string[] = [];
+  if (slug) {
+    sources.push(`https://cdn.simpleicons.org/${slug}${color ? `/${color}` : ""}`);
+  }
+  if (domain) {
+    sources.push(`https://www.google.com/s2/favicons?domain=${domain}&sz=128`);
+    sources.push(`https://icons.duckduckgo.com/ip3/${domain}.ico`);
+  }
+
+  const [index, setIndex] = useState(0);
+
   const initials = name
     .replace(/[()]/g, "")
     .split(/[\s/-]+/)
@@ -216,7 +231,7 @@ function BrandLogo({
     .join("")
     .toUpperCase();
 
-  if (!slug || errored) {
+  if (sources.length === 0 || index >= sources.length) {
     return (
       <div
         className="rounded-md bg-muted/60 border border-border flex items-center justify-center font-black text-muted-foreground"
@@ -230,12 +245,12 @@ function BrandLogo({
 
   return (
     <img
-      src={`https://cdn.simpleicons.org/${slug}${color ? `/${color}` : ""}`}
+      src={sources[index]}
       alt={name}
       width={size}
       height={size}
       loading="lazy"
-      onError={() => setErrored(true)}
+      onError={() => setIndex((i) => i + 1)}
       className="object-contain"
       style={{ width: size, height: size }}
     />
@@ -294,7 +309,7 @@ export default function Integrations() {
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 md:gap-4 max-w-6xl mx-auto">
             {logoWall.map((brand, i) => (
               <motion.div
-                key={brand.slug}
+                key={brand.name}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -302,7 +317,13 @@ export default function Integrations() {
                 className="group relative aspect-square rounded-2xl border border-border bg-card hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all flex flex-col items-center justify-center gap-2 p-3"
                 title={brand.name}
               >
-                <BrandLogo slug={brand.slug} name={brand.name} color={brand.color} size={36} />
+                <BrandLogo
+                  slug={brand.slug}
+                  name={brand.name}
+                  color={brand.color}
+                  domain={brand.domain}
+                  size={36}
+                />
                 <span className="text-[10px] md:text-xs font-bold text-muted-foreground text-center leading-tight truncate w-full">
                   {brand.name}
                 </span>
@@ -339,7 +360,13 @@ export default function Integrations() {
                           className="flex items-start gap-3 group p-2 -mx-2 rounded-lg hover:bg-muted/40 transition-colors"
                         >
                           <div className="shrink-0 w-10 h-10 rounded-xl bg-background border border-border flex items-center justify-center">
-                            <BrandLogo slug={item.slug} name={item.name} color={item.color} size={24} />
+                            <BrandLogo
+                              slug={item.slug}
+                              name={item.name}
+                              color={item.color}
+                              domain={item.domain}
+                              size={24}
+                            />
                           </div>
                           <div className="flex-1 min-w-0 pt-0.5">
                             <div className="flex items-center gap-2">
