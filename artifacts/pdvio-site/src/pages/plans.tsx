@@ -185,7 +185,7 @@ export default function Plans() {
             <div className="md:col-span-3">
               <Accordion type="single" collapsible className="w-full space-y-4">
                 {[
-                  { q: "Como funciona o teste de 14 dias grátis?", a: "Você pode testar absolutamente todos os recursos do plano Pro gratuitamente por 14 dias. Não exigimos cartão de crédito para criar a conta. Se ao final do período você não quiser assinar, sua conta volta automaticamente para o plano Iniciante (grátis)." },
+                  { q: "Como funciona o plano gratuito?", a: "Você pode criar sua conta no plano Iniciante e usar o PDVIO sem custo, sem precisar de cartão de crédito. Quando quiser desbloquear recursos avançados, é só fazer upgrade para o Pro a qualquer momento." },
                   { q: "Posso mudar de plano depois?", a: "Sim, você pode fazer upgrade ou downgrade do seu plano a qualquer momento diretamente pelo painel do PDVIO. Se fizer upgrade no meio do mês, pagará apenas o valor proporcional." },
                   { q: "Como é feito o pagamento?", a: "Aceitamos pagamentos via PIX, Boleto ou Cartão de Crédito. A cobrança é pré-paga e automática caso utilize cartão. No plano anual, você ganha mais de 2 meses grátis de desconto." },
                   { q: "Preciso de um equipamento específico?", a: "Não! O PDVIO roda na nuvem. Você pode usar qualquer computador (Windows, Mac, Linux), tablet (iPad, Android) ou até mesmo seu celular. Ele se adapta a qualquer tamanho de tela." },
