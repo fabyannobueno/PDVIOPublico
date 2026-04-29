@@ -88,7 +88,7 @@ export default function Plans() {
                     <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-medium">Suporte por chat</span></li>
                   </ul>
                   <Button asChild variant="outline" className="w-full h-12 rounded-xl font-bold text-base hover:bg-muted">
-                    <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer">Testar grátis por 14 dias</a>
+                    <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer">Começar agora</a>
                   </Button>
                 </CardContent>
               </Card>
@@ -124,7 +124,7 @@ export default function Plans() {
                     <li className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> <span className="text-sm font-bold">Suporte prioritário (WhatsApp)</span></li>
                   </ul>
                   <Button asChild className="w-full h-12 rounded-xl font-bold text-base btn-shine bg-gradient-to-r from-purple-600 to-fuchsia-600 shadow-lg shadow-primary/25 hover:scale-105 transition-transform">
-                    <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer">Testar grátis por 14 dias</a>
+                    <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer">Começar agora</a>
                   </Button>
                 </CardContent>
               </Card>
