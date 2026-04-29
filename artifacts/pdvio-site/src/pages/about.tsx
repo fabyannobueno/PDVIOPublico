@@ -164,7 +164,7 @@ export default function About() {
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-4xl md:text-5xl font-black mb-8 tracking-tighter">Faça parte dessa história.</h2>
           <Button asChild size="lg" className="h-16 px-10 text-xl btn-shine bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-full shadow-2xl hover:scale-105 transition-transform">
-            <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer">Começar teste de 14 dias grátis</a>
+            <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer">Começar agora</a>
           </Button>
         </div>
       </section>
