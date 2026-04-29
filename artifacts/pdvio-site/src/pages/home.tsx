@@ -1231,7 +1231,7 @@ export default function Home() {
                 Criar conta gratuitamente
               </a>
             </Button>
-            <p className="mt-6 text-sm text-muted-foreground font-semibold">14 dias grátis • Sem cartão de crédito • Cancela online</p>
+            <p className="mt-6 text-sm text-muted-foreground font-semibold">Setup em minutos • Sem cartão de crédito • Cancela online</p>
           </AnimatedSection>
         </div>
       </section>
