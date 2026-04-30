@@ -1,9 +1,17 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { REGISTER_URL, asset } from "@/lib/constants";
+import { REGISTER_URL } from "@/lib/constants";
 import { Target, Eye, Heart, Code2, Users, Rocket, Building2 } from "lucide-react";
 import { motion } from "framer-motion";
+import fabianoBueno from "@/assets/team/fabiano-bueno.webp";
+import marinaCosta from "@/assets/team/marina-costa.webp";
+import thiagoAlmeda from "@/assets/team/thiago-almeda.webp";
+import juliaFerraz from "@/assets/team/julia-ferraz.webp";
+import pedroPaulo from "@/assets/team/pedro-paulo.webp";
+import sofiaLopes from "@/assets/team/sofia-lopes.webp";
+import rafaelSantos from "@/assets/team/rafael-santos.webp";
+import pdvioPerfil22 from "@/assets/team/pdvio-perfil-22.webp";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -122,14 +130,14 @@ export default function About() {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { name: "Fabiano Bueno", role: "CEO & Produto", color: "bg-purple-500", image: asset("fabiano-bueno.webp") },
-              { name: "Marina Costa", role: "CTO", color: "bg-fuchsia-500", image: asset("marina-costa.webp") },
-              { name: "Thiago Almeda", role: "Design", color: "bg-blue-500", image: asset("thiago-almeda.webp") },
-              { name: "Julia Ferraz", role: "Sucesso do Cliente", color: "bg-orange-500", image: asset("julia-ferraz.webp") },
-              { name: "Pedro Paulo", role: "Engenharia", color: "bg-teal-500", image: asset("pedro-paulo.webp") },
-              { name: "Sofia Lopes", role: "Marketing", color: "bg-rose-500", image: asset("sofia-lopes.webp") },
-              { name: "Rafael Santos", role: "Vendas", color: "bg-indigo-500", image: asset("rafael-santos.webp") },
-              { name: "Você?", role: "Ver vagas abertas", color: "bg-primary", image: asset("pdvio-perfil-22.webp"), href: "/trabalhe-conosco" },
+              { name: "Fabiano Bueno", role: "CEO & Produto", color: "bg-purple-500", image: fabianoBueno },
+              { name: "Marina Costa", role: "CTO", color: "bg-fuchsia-500", image: marinaCosta },
+              { name: "Thiago Almeda", role: "Design", color: "bg-blue-500", image: thiagoAlmeda },
+              { name: "Julia Ferraz", role: "Sucesso do Cliente", color: "bg-orange-500", image: juliaFerraz },
+              { name: "Pedro Paulo", role: "Engenharia", color: "bg-teal-500", image: pedroPaulo },
+              { name: "Sofia Lopes", role: "Marketing", color: "bg-rose-500", image: sofiaLopes },
+              { name: "Rafael Santos", role: "Vendas", color: "bg-indigo-500", image: rafaelSantos },
+              { name: "Você?", role: "Ver vagas abertas", color: "bg-primary", image: pdvioPerfil22, href: "/trabalhe-conosco" },
             ].map((member, i) => {
               const card = (
                 <Card className="border-border bg-card overflow-hidden group cursor-pointer h-full">

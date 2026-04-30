@@ -1,8 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView, AnimatePresence, type Variants } from "framer-motion";
 import { Link } from "wouter";
-import { REGISTER_URL, asset } from "@/lib/constants";
+import { REGISTER_URL } from "@/lib/constants";
 import pdvioIcon from "@/assets/pdvio-icon.png";
+import marianaImg from "@/assets/testimonials/mariana.webp";
+import robertoImg from "@/assets/testimonials/roberto.webp";
+import amandaImg from "@/assets/testimonials/amanda.webp";
+import carlosImg from "@/assets/testimonials/carlos.webp";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -1148,10 +1152,10 @@ export default function Home() {
             <div className="overflow-hidden px-4 md:px-6 py-10" ref={emblaRef}>
               <div className="flex gap-6 -ml-4">
                 {[
-                  { quote: "Abandonamos um sistema que custava R$400/mês e travava todo fim de semana. O PDVIO é 10x melhor, mais rápido e o suporte realmente resolve.", name: "Mariana Costa", role: "Dona", company: "Hamburgueria Sabor", city: "São Paulo, SP", img: asset("mariana.webp") },
-                  { quote: "O KDS mudou a dinâmica da nossa cozinha. Antes perdíamos pedidos no papel. Hoje a tela organiza tudo por tempo de espera. Impecável.", name: "Roberto Silva", role: "Chef", company: "Bistro 44", city: "Curitiba, PR", img: asset("roberto.webp") },
-                  { quote: "A implantação demorou literalmente 10 minutos. Importei minha planilha de produtos, loguei no tablet e abri o caixa. Simples assim.", name: "Amanda Ferreira", role: "Gerente", company: "Mercadinho Express", city: "Belo Horizonte, MG", img: asset("amanda.webp") },
-                  { quote: "O Dashboard no celular me permite viajar tranquilo. Vejo as vendas, ticket médio e cancelamentos em tempo real de qualquer lugar do mundo.", name: "Carlos Mendes", role: "Sócio-Diretor", company: "Rede Bar Brasil", city: "Rio de Janeiro, RJ", img: asset("carlos.webp") }
+                  { quote: "Abandonamos um sistema que custava R$400/mês e travava todo fim de semana. O PDVIO é 10x melhor, mais rápido e o suporte realmente resolve.", name: "Mariana Costa", role: "Dona", company: "Hamburgueria Sabor", city: "São Paulo, SP", img: marianaImg },
+                  { quote: "O KDS mudou a dinâmica da nossa cozinha. Antes perdíamos pedidos no papel. Hoje a tela organiza tudo por tempo de espera. Impecável.", name: "Roberto Silva", role: "Chef", company: "Bistro 44", city: "Curitiba, PR", img: robertoImg },
+                  { quote: "A implantação demorou literalmente 10 minutos. Importei minha planilha de produtos, loguei no tablet e abri o caixa. Simples assim.", name: "Amanda Ferreira", role: "Gerente", company: "Mercadinho Express", city: "Belo Horizonte, MG", img: amandaImg },
+                  { quote: "O Dashboard no celular me permite viajar tranquilo. Vejo as vendas, ticket médio e cancelamentos em tempo real de qualquer lugar do mundo.", name: "Carlos Mendes", role: "Sócio-Diretor", company: "Rede Bar Brasil", city: "Rio de Janeiro, RJ", img: carlosImg }
                 ].map((t, i) => (
                   <div key={i} className="flex-[0_0_85%] md:flex-[0_0_400px] pl-4">
                     <Card className="h-full border border-border bg-card shadow-lg hover:border-primary/30 transition-colors">
