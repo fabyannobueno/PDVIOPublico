@@ -218,9 +218,14 @@ export default function Home() {
               className="relative h-[600px] w-full hidden lg:block perspective-[2000px]"
             >
               <motion.div
-                animate={{ y: [0, -12, 0] }}
+                animate={{
+                  y: [0, -15, 0],
+                  rotateX: [5, 7, 5],
+                  rotateY: [-10, -8, -10]
+                }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute inset-0 flex items-center justify-center will-change-transform"
+                style={{ transformStyle: "preserve-3d" }}
               >
                 {/* Main Dashboard Card */}
                 <div className="w-[110%] h-[480px] rounded-3xl border border-white/10 bg-card/90 backdrop-blur-2xl shadow-2xl shadow-primary/20 overflow-hidden flex flex-col relative z-10 -mr-12">
