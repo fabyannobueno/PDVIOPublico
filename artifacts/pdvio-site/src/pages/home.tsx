@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { motion, useInView, AnimatePresence, type Variants } from "framer-motion";
+import { motion, useInView, AnimatePresence, useScroll, useTransform, useSpring, type Variants } from "framer-motion";
 import { Link } from "wouter";
 import { REGISTER_URL, asset } from "@/lib/constants";
 import pdvioIcon from "@/assets/pdvio-icon.png";
@@ -194,16 +194,30 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("pdv");
   const [emblaRef] = useEmblaCarousel({ loop: true, align: "center" });
 
+  // Hero parallax — mockup floats up slower than text on scroll
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroTextY = useTransform(heroProgress, [0, 1], [0, -60]);
+  const heroTextOpacity = useTransform(heroProgress, [0, 0.7], [1, 0]);
+  const heroMockupYRaw = useTransform(heroProgress, [0, 1], [0, -180]);
+  const heroMockupRotRaw = useTransform(heroProgress, [0, 1], [0, -8]);
+  const heroMockupY = useSpring(heroMockupYRaw, { stiffness: 80, damping: 20, mass: 0.5 });
+  const heroMockupRot = useSpring(heroMockupRotRaw, { stiffness: 80, damping: 20, mass: 0.5 });
+  const heroBlobY = useTransform(heroProgress, [0, 1], [0, 120]);
+
   return (
     <div className="flex flex-col w-full">
       {/* Cinematic Hero Section */}
-      <section className="relative min-h-[100dvh] flex items-center pt-24 pb-12 overflow-hidden bg-background">
-        <div className="absolute inset-0 w-full h-full bg-grid-pattern opacity-[0.03] dark:opacity-[0.05] z-0"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-[1200px] pointer-events-none z-0">
-          <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-purple-600/30 blur-[120px] animate-blob mix-blend-screen" />
-          <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-fuchsia-600/30 blur-[100px] animate-blob animation-delay-2000 mix-blend-screen" />
-          <div className="absolute -bottom-32 left-[20%] w-[400px] h-[400px] rounded-full bg-blue-600/20 blur-[100px] animate-blob animation-delay-4000 mix-blend-screen" />
-        </div>
+      <section ref={heroRef} className="relative min-h-[100dvh] flex items-center pt-24 pb-12 overflow-hidden bg-background">
+        <div className="absolute inset-0 w-full h-full bg-grid-pattern opacity-[0.03] dark:opacity-[0.04] z-0"></div>
+        <motion.div style={{ y: heroBlobY }} className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-[1200px] pointer-events-none z-0">
+          <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-purple-600/20 blur-[140px] animate-blob mix-blend-screen" />
+          <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-fuchsia-600/20 blur-[120px] animate-blob animation-delay-2000 mix-blend-screen" />
+          <div className="absolute -bottom-32 left-[20%] w-[400px] h-[400px] rounded-full bg-blue-600/15 blur-[120px] animate-blob animation-delay-4000 mix-blend-screen" />
+        </motion.div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
@@ -211,6 +225,7 @@ export default function Home() {
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
+              style={{ y: heroTextY, opacity: heroTextOpacity }}
               className="flex flex-col gap-8 max-w-2xl"
             >
               <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-background/80 backdrop-blur-md text-primary w-fit border border-primary/20 shadow-sm">
@@ -222,10 +237,10 @@ export default function Home() {
               </motion.div>
               
               <motion.div variants={fadeIn} className="relative">
-                <div className="absolute -inset-x-4 -inset-y-4 z-0 bg-gradient-to-r from-primary/20 to-fuchsia-500/20 blur-2xl opacity-50 dark:opacity-30 rounded-[3rem]"></div>
-                <h1 className="relative z-10 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-foreground leading-[1.05]">
+                <div className="absolute -inset-x-4 -inset-y-4 z-0 bg-gradient-to-r from-primary/15 to-fuchsia-500/15 blur-3xl opacity-60 dark:opacity-40 rounded-[3rem]"></div>
+                <h1 className="relative z-10 text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-semibold tracking-[-0.04em] text-foreground leading-[0.95]">
                   Venda mais. <br />
-                  <span className="gradient-text animate-pulse block pb-2">Controle tudo.</span>
+                  <span className="gradient-text block pb-2">Controle tudo.</span>
                 </h1>
               </motion.div>
               
@@ -260,6 +275,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+              style={{ y: heroMockupY, rotate: heroMockupRot }}
               className="relative h-[600px] w-full hidden lg:block perspective-[2000px]"
             >
               <motion.div 
@@ -377,8 +393,8 @@ export default function Home() {
       </section>
 
       {/* Scrolling Trust Marquee */}
-      <section className="py-6 border-y border-border bg-card overflow-hidden">
-        <div className="flex w-max animate-marquee gap-16 pr-16 whitespace-nowrap opacity-40 font-bold text-xl tracking-widest text-muted-foreground uppercase">
+      <section className="py-8 border-y border-border bg-card/50 overflow-hidden">
+        <div className="flex w-max animate-marquee gap-14 pr-14 whitespace-nowrap opacity-50 font-medium text-base tracking-[0.18em] text-muted-foreground uppercase">
           {[...Array(8)].flatMap((_, idx) => [
             <span key={`pwa-${idx}`} aria-hidden={idx > 0} className="flex items-center gap-3 shrink-0"><MonitorSmartphone className="w-6 h-6" /> PWA</span>,
             <span key={`esc-${idx}`} aria-hidden={idx > 0} className="flex items-center gap-3 shrink-0"><Printer className="w-6 h-6" /> ESC/POS</span>,
@@ -394,7 +410,7 @@ export default function Home() {
       <section className="py-32 bg-background relative">
         <div className="container mx-auto px-4 md:px-6">
           <AnimatedSection className="max-w-3xl mb-20">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6">Tudo que você precisa.<br/><span className="text-muted-foreground">Nada do que você não precisa.</span></h2>
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.035em] mb-6 leading-[1.05]">Tudo que você precisa.<br/><span className="text-muted-foreground">Nada do que você não precisa.</span></h2>
             <p className="text-base md:text-xl text-muted-foreground leading-relaxed">Arquitetura modular desenhada para o varejo moderno. Ative as funcionalidades conforme o seu negócio cresce.</p>
           </AnimatedSection>
 
@@ -492,7 +508,7 @@ export default function Home() {
       <section className="py-32 bg-muted/30 border-y border-border">
         <div className="container mx-auto px-4 md:px-6">
           <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl font-black mb-6">Um sistema. Todas as telas.</h2>
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-[-0.035em] mb-6 leading-[1.05]">Um sistema. Todas as telas.</h2>
             <p className="text-xl text-muted-foreground">O PDVIO se adapta ao seu dispositivo. Computador, tablet ou celular — a mesma experiência fluida.</p>
           </AnimatedSection>
 
@@ -1158,10 +1174,10 @@ export default function Home() {
               { value: 4.9, label: "Na App Store", suffix: " ★" }
             ].map((stat, i) => (
               <AnimatedSection key={i} delay={i * 0.1} className="flex flex-col items-center justify-center py-10 md:py-0">
-                <div className="text-4xl md:text-6xl font-black mb-3 tracking-tighter">
+                <div className="text-4xl md:text-6xl font-semibold mb-3 tracking-[-0.04em] tabular-nums">
                   <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
                 </div>
-                <div className="text-primary-foreground/80 font-semibold uppercase tracking-widest text-sm">{stat.label}</div>
+                <div className="text-primary-foreground/80 font-medium uppercase tracking-[0.18em] text-xs">{stat.label}</div>
               </AnimatedSection>
             ))}
           </div>
@@ -1172,7 +1188,7 @@ export default function Home() {
       <section className="py-32 bg-background overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
           <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl font-black mb-6">Quem usa, ama.</h2>
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-[-0.035em] mb-6 leading-[1.05]">Quem usa, ama.</h2>
             <p className="text-xl text-muted-foreground">Não acredite apenas na gente. Veja o que os donos de negócios dizem.</p>
           </AnimatedSection>
 
@@ -1215,23 +1231,27 @@ export default function Home() {
 
       {/* Final Massive CTA */}
       <section className="relative py-40 bg-background overflow-hidden border-t border-border">
-        <div className="absolute inset-0 bg-noise opacity-[0.05] z-0 pointer-events-none"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-primary/20 to-fuchsia-500/20 blur-[100px] animate-pulse z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-noise opacity-[0.04] z-0 pointer-events-none"></div>
+        <motion.div
+          animate={{ scale: [1, 1.08, 1], opacity: [0.5, 0.7, 0.5] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-primary/15 to-fuchsia-500/15 blur-[120px] z-0 pointer-events-none"
+        />
         
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
-            <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter">
+            <h2 className="text-5xl md:text-7xl font-semibold mb-8 tracking-[-0.04em] leading-[0.95]">
               Pronto para transformar<br/>seu negócio?
             </h2>
-            <p className="text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto font-medium">
+            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto font-normal leading-relaxed">
               Junte-se a milhares de comerciantes que já simplificaram suas vendas com o PDVIO.
             </p>
-            <Button asChild size="lg" className="h-16 px-10 text-xl btn-shine bg-foreground text-background hover:bg-foreground/90 rounded-full shadow-2xl">
+            <Button asChild size="lg" className="h-16 px-10 text-lg btn-shine bg-foreground text-background hover:bg-foreground/90 rounded-full shadow-xl shadow-foreground/10">
               <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer">
                 Criar conta gratuitamente
               </a>
             </Button>
-            <p className="mt-6 text-sm text-muted-foreground font-semibold">Setup em minutos • Sem cartão de crédito • Cancela online</p>
+            <p className="mt-6 text-sm text-muted-foreground font-medium">Setup em minutos · Sem cartão de crédito · Cancela online</p>
           </AnimatedSection>
         </div>
       </section>
