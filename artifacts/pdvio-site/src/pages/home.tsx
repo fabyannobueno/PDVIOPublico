@@ -67,59 +67,14 @@ const staggerContainer: Variants = {
   }
 };
 
-function AnimatedSection({ children, className = "", delay = 0 }: { children: React.ReactNode, className?: string, delay?: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-10%" });
-  
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={{
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] } }
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+function AnimatedSection({ children, className = "" }: { children: React.ReactNode, className?: string, delay?: number }) {
+  return <div className={className}>{children}</div>;
 }
 
-// Spotlight Card component (DOM-driven, no React re-renders on mousemove)
+// Spotlight Card — simple hover state, no mousemove (perf)
 function SpotlightCard({ children, className = "" }: { children: React.ReactNode, className?: string }) {
-  const divRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!divRef.current || !overlayRef.current) return;
-    const rect = divRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    overlayRef.current.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(124, 58, 237, 0.1), transparent 40%)`;
-  };
-
-  const handleMouseEnter = () => {
-    if (overlayRef.current) overlayRef.current.style.opacity = "1";
-  };
-
-  const handleMouseLeave = () => {
-    if (overlayRef.current) overlayRef.current.style.opacity = "0";
-  };
-
   return (
-    <div
-      ref={divRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden ${className}`}
-    >
-      <div
-        ref={overlayRef}
-        className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300"
-      />
+    <div className={`relative overflow-hidden transition-colors duration-300 hover:border-primary/30 ${className}`}>
       {children}
     </div>
   );
@@ -262,15 +217,10 @@ export default function Home() {
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
               className="relative h-[600px] w-full hidden lg:block perspective-[2000px]"
             >
-              <motion.div 
-                animate={{ 
-                  y: [0, -15, 0],
-                  rotateX: [5, 7, 5],
-                  rotateY: [-10, -8, -10]
-                }}
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 flex items-center justify-center transform-gpu"
-                style={{ transformStyle: "preserve-3d" }}
+                className="absolute inset-0 flex items-center justify-center will-change-transform"
               >
                 {/* Main Dashboard Card */}
                 <div className="w-[110%] h-[480px] rounded-3xl border border-white/10 bg-card/90 backdrop-blur-2xl shadow-2xl shadow-primary/20 overflow-hidden flex flex-col relative z-10 -mr-12">
@@ -340,11 +290,10 @@ export default function Home() {
                 </div>
 
                 {/* Floating Notification - Top Right */}
-                <motion.div 
-                  animate={{ y: [0, -10, 0] }}
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="absolute -top-6 -right-6 w-64 rounded-2xl bg-card border border-border shadow-2xl p-4 flex items-center gap-4 z-30 transform-gpu"
-                  style={{ transform: "translateZ(100px)" }}
+                  className="absolute -top-6 -right-6 w-64 rounded-2xl bg-card border border-border shadow-2xl p-4 flex items-center gap-4 z-30 will-change-transform"
                 >
                   <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center shrink-0">
                     <Store className="h-6 w-6 text-green-500" />
@@ -356,11 +305,10 @@ export default function Home() {
                 </motion.div>
 
                 {/* Floating Notification - Bottom Left */}
-                <motion.div 
-                  animate={{ y: [0, 10, 0] }}
+                <motion.div
+                  animate={{ y: [0, 8, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  className="absolute -bottom-10 -left-10 w-72 rounded-2xl bg-card border border-border shadow-2xl p-4 flex items-center gap-4 z-30 transform-gpu"
-                  style={{ transform: "translateZ(150px)" }}
+                  className="absolute -bottom-10 -left-10 w-72 rounded-2xl bg-card border border-border shadow-2xl p-4 flex items-center gap-4 z-30 will-change-transform"
                 >
                   <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
                     <CheckCircle2 className="h-6 w-6 text-primary" />
