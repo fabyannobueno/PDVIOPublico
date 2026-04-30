@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { motion, useInView, AnimatePresence, useScroll, useTransform, useSpring, type Variants } from "framer-motion";
+import { motion, useInView, AnimatePresence, type Variants } from "framer-motion";
 import { Link } from "wouter";
 import { REGISTER_URL, asset } from "@/lib/constants";
 import pdvioIcon from "@/assets/pdvio-icon.png";
@@ -194,30 +194,16 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("pdv");
   const [emblaRef] = useEmblaCarousel({ loop: true, align: "center" });
 
-  // Hero parallax — mockup floats up slower than text on scroll
-  const heroRef = useRef<HTMLElement>(null);
-  const { scrollYProgress: heroProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const heroTextY = useTransform(heroProgress, [0, 1], [0, -60]);
-  const heroTextOpacity = useTransform(heroProgress, [0, 0.7], [1, 0]);
-  const heroMockupYRaw = useTransform(heroProgress, [0, 1], [0, -180]);
-  const heroMockupRotRaw = useTransform(heroProgress, [0, 1], [0, -8]);
-  const heroMockupY = useSpring(heroMockupYRaw, { stiffness: 80, damping: 20, mass: 0.5 });
-  const heroMockupRot = useSpring(heroMockupRotRaw, { stiffness: 80, damping: 20, mass: 0.5 });
-  const heroBlobY = useTransform(heroProgress, [0, 1], [0, 120]);
-
   return (
     <div className="flex flex-col w-full">
       {/* Cinematic Hero Section */}
-      <section ref={heroRef} className="relative min-h-[100dvh] flex items-center pt-24 pb-12 overflow-hidden bg-background">
+      <section className="relative min-h-[100dvh] flex items-center pt-24 pb-12 overflow-hidden bg-background">
         <div className="absolute inset-0 w-full h-full bg-grid-pattern opacity-[0.03] dark:opacity-[0.04] z-0"></div>
-        <motion.div style={{ y: heroBlobY }} className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-[1200px] pointer-events-none z-0">
-          <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-purple-600/20 blur-[140px] animate-blob mix-blend-screen" />
-          <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-fuchsia-600/20 blur-[120px] animate-blob animation-delay-2000 mix-blend-screen" />
-          <div className="absolute -bottom-32 left-[20%] w-[400px] h-[400px] rounded-full bg-blue-600/15 blur-[120px] animate-blob animation-delay-4000 mix-blend-screen" />
-        </motion.div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-[1200px] pointer-events-none z-0">
+          <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-purple-600/20 blur-[100px] mix-blend-screen" />
+          <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-fuchsia-600/20 blur-[90px] mix-blend-screen" />
+          <div className="absolute -bottom-32 left-[20%] w-[400px] h-[400px] rounded-full bg-blue-600/15 blur-[90px] mix-blend-screen" />
+        </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
@@ -225,7 +211,6 @@ export default function Home() {
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
-              style={{ y: heroTextY, opacity: heroTextOpacity }}
               className="flex flex-col gap-8 max-w-2xl"
             >
               <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-background/80 backdrop-blur-md text-primary w-fit border border-primary/20 shadow-sm">
@@ -275,7 +260,6 @@ export default function Home() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-              style={{ y: heroMockupY, rotate: heroMockupRot }}
               className="relative h-[600px] w-full hidden lg:block perspective-[2000px]"
             >
               <motion.div 
