@@ -209,10 +209,12 @@ video {
   }
 
   html {
+    @apply bg-background;
     scroll-behavior: smooth;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: none;
   }
 
   body {
@@ -220,6 +222,8 @@ video {
     font-feature-settings: "ss01", "ss03", "cv11", "calt", "kern";
     font-optical-sizing: auto;
     letter-spacing: -0.011em;
+    overscroll-behavior: none;
+    min-height: 100dvh;
   }
 
   h1, h2, h3, h4, h5, h6 {
